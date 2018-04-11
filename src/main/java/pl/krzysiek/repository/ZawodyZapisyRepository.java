@@ -1,13 +1,17 @@
 package pl.krzysiek.repository;
 import pl.krzysiek.domain.ZawodyZapisy;
+
 import java.util.List;
+import java.sql.SQLException;
+
 
 public interface ZawodyZapisyRepository{
 
     public List<ZawodyZapisy> getAll();
-    public void initDatabase();
-    public ZawodyZapisy getById(Long id);
+    public ZawodyZapisy getById(int id) throws SQLException;
     public void addZawodyZapisy(ZawodyZapisy zawodyZapisy);
-    public void deleteZawodyZapisy(ZawodyZapisy zawodyZapisy);
-    public void updateZawodyZapisy(Long oldId, ZawodyZapisy newZawodyZapisy);
+    public void deleteZawodyZapisy(int IdZawodnika) throws SQLException;
+    public void updateZawodyZapisy(int oldId, ZawodyZapisy newZawodyZapisy) throws SQLException;
+    public void dropTable() throws SQLException;
+
 }
