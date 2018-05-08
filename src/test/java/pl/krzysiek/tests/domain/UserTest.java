@@ -103,8 +103,8 @@ public class UserTest {
 
     }
 
-    @After
-    public void dropTable() throws SQLException{
-        userRepository.dropTable();
-    }
+//    @After
+//    public void dropTable() throws SQLException{
+//        userRepository.dropTable();
+//    }
 }

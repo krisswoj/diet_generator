@@ -43,7 +43,7 @@ public class UserImpl implements UserRepository {
             ResultSet rs = connection.getMetaData().getTables(null, null, null, null);
             boolean tableExists = false;
             while (rs.next()) {
-                if ("User".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
+                if ("Users".equalsIgnoreCase(rs.getString("TABLE_NAME"))) {
                     tableExists = true;
                     break;
                 }
