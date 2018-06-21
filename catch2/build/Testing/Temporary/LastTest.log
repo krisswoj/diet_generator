@@ -1,0 +1,38 @@
+Start testing: Jun 20 16:10 CEST
+----------------------------------------------------------
+1/1 Testing: tests
+1/1 Test: tests
+Command: "/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/tests"
+Directory: /Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1
+"tests" start time: Jun 20 16:10 CEST
+Output:
+----------------------------------------------------------
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tests is a Catch v2.2.2 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Some test 2
+-------------------------------------------------------------------------------
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/tests/test_lib.cpp:9
+...............................................................................
+
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/tests/test_lib.cpp:17: FAILED:
+  REQUIRE( testt.count("2 1 2 - + 2 2 / *") == 4 )
+with expansion:
+  1.0 == 4
+
+===============================================================================
+test cases: 3 | 2 passed | 1 failed
+assertions: 6 | 5 passed | 1 failed
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"tests" end time: Jun 20 16:10 CEST
+"tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 20 16:10 CEST

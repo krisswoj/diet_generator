@@ -1,0 +1,10 @@
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/install/strip.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/install.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/install/local.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/test.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/rebuild_cache.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/check.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/edit_cache.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/tests.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/list_install_components.dir
+/Users/krisswoj/Downloads/tau-dzienne-master-20-06-2018/wyklad12-catch2/example1/build/CMakeFiles/fastrpn.dir
