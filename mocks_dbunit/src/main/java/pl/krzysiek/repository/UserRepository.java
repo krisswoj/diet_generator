@@ -1,4 +1,5 @@
 package pl.krzysiek.repository;
+import org.springframework.context.annotation.Bean;
 import pl.krzysiek.domain.User;
 
 import java.sql.Connection;

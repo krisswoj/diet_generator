@@ -1,0 +1,8 @@
+pl/krzysiek/domain/User.class
+pl/krzysiek/repository/UserFactory.class
+pl/krzysiek/configuration/RestConfiguration.class
+pl/krzysiek/Web/UserApi.class
+pl/krzysiek/configuration/RestInitializer.class
+pl/krzysiek/repository/UserRepository.class
+pl/krzysiek/App.class
+pl/krzysiek/services/UserImpl.class

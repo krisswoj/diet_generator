@@ -1,15 +1,14 @@
 package pl.krzysiek.services;
 
+import org.springframework.stereotype.Component;
 import pl.krzysiek.domain.User;
 import pl.krzysiek.repository.UserRepository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class UserImpl implements UserRepository {
 
     private Connection connection;
@@ -29,9 +28,14 @@ public class UserImpl implements UserRepository {
         setConnection(connection);
     }
 
-    public UserImpl() {
-
+    public UserImpl() throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+        if (!isReady()) {
+            createTables();
+        }
+        this.setConnection(this.connection);
     }
+
 
 
     public void createTables() throws SQLException {
@@ -127,7 +131,7 @@ public class UserImpl implements UserRepository {
         deleteTableStatement.executeUpdate();
     }
 
-
+    @Override
     public Connection getConnection() {
         return connection;
     }
