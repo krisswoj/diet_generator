@@ -1,0 +1,21 @@
+Start testing: Jun 22 14:11 CEST
+----------------------------------------------------------
+1/1 Testing: tests
+1/1 Test: tests
+Command: "/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/tests"
+Directory: /Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2
+"tests" start time: Jun 22 14:11 CEST
+Output:
+----------------------------------------------------------
+===============================================================================
+All tests passed (6 assertions in 3 test cases)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"tests" end time: Jun 22 14:11 CEST
+"tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 22 14:11 CEST

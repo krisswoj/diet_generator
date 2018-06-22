@@ -1,0 +1,10 @@
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/install/strip.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/install.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/install/local.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/test.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/rebuild_cache.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/check.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/edit_cache.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/tests.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/list_install_components.dir
+/Users/krisswoj/Desktop/wedki2/wedki_tau_2/catch2/build/CMakeFiles/fastrpn.dir
