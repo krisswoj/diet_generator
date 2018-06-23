@@ -2,10 +2,10 @@ package pl.krzysiek.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import pl.krzysiek.dao.IAccountRepository;
 import pl.krzysiek.domain.Account;
@@ -28,8 +28,6 @@ public class RegisterController {
         return modelAndView;
     }
 
-
-    // dobrze działająca wersja, zapożyczona z gotowca
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid Account account, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
@@ -55,7 +53,7 @@ public class RegisterController {
             accountRepository.save(account);
             modelAndView.addObject("successMessage", "User has been registered successfully - ahahah");
             modelAndView.addObject("account", new Account());
-            modelAndView.setViewName("redirect:success_page");
+            modelAndView.setViewName("success_page");
         }
         return modelAndView;
     }

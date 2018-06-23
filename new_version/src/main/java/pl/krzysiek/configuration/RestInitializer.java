@@ -11,17 +11,16 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 public class RestInitializer implements WebApplicationInitializer {
-
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
+
         WebApplicationContext context = getContext();
         servletContext.addListener(new ContextLoaderListener(context));
-        ServletRegistration.Dynamic dispatcher =
-                servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("DispatcherServlet", new DispatcherServlet(context));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/*");
     }
-    private AnnotationConfigWebApplicationContext getContext() {
+    private AnnotationConfigWebApplicationContext getContext(){
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.setConfigLocation("pl.krzysiek.configuration");
         return context;
