@@ -28,12 +28,15 @@ public class UserImpl implements UserRepository {
         setConnection(connection);
     }
 
+//    public UserImpl() throws SQLException {
+//        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+//        if (!isReady()) {
+//            createTables();
+//        }
+//        this.setConnection(this.connection);
+//    }
+
     public UserImpl() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
-        if (!isReady()) {
-            createTables();
-        }
-        this.setConnection(this.connection);
     }
 
 
