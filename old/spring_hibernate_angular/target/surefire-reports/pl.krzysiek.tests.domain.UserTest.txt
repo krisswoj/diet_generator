@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: pl.krzysiek.tests.domain.UserTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.571 s - in pl.krzysiek.tests.domain.UserTest
