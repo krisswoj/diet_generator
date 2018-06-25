@@ -28,16 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./register">Rejestracja</a>
+                    <a class="nav-link" href="./add_rod">Dodaj wędkę</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./login">Logowanie</span></a>
+                    <a class="nav-link" href="./show_rods">Lista wędek</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./add_rod">Dodaj wędkę</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./show_rods">Lista wędek</span></a>
+                    <a class="nav-link" href="./login">Wyloguj</a>
                 </li>
             </ul>
         </div>
@@ -47,6 +44,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+            <span th:utext="${successMessage}"></span>
             <form autocomplete="off" action="#" th:action="@{/add_rod}"
                   th:object="${rod}" method="post" class="form-horizontal"
                   role="form">
@@ -77,11 +75,10 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
                     </div>
                 </div>
 
-                <span th:utext="${successMessage}"></span>
 
 
             </form>

@@ -11,4 +11,5 @@ public interface IListRepository extends CrudRepository<Rods, Integer> {
 
     Rods findById(int rod_id);
     void deleteById(int rod_id);
+    Rods save(Rods rod);
 }

@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
 public class UserImpl implements UserRepository {
 
     private Connection connection;
@@ -28,16 +27,16 @@ public class UserImpl implements UserRepository {
         setConnection(connection);
     }
 
-//    public UserImpl() throws SQLException {
-//        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
-//        if (!isReady()) {
-//            createTables();
-//        }
-//        this.setConnection(this.connection);
-//    }
-
     public UserImpl() throws SQLException {
+        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+        if (!isReady()) {
+            createTables();
+        }
+        this.setConnection(this.connection);
     }
+
+//    public UserImpl() throws SQLException {
+//    }
 
 
 
@@ -61,7 +60,6 @@ public class UserImpl implements UserRepository {
         }
     }
 
-    @Override
     public List<User> getAll() {
         List<User> users = new LinkedList<>();
         try {
@@ -80,7 +78,6 @@ public class UserImpl implements UserRepository {
         return users;
     }
 
-    @Override
     public User getById(int id) {
         User user = new User();
 
@@ -100,7 +97,6 @@ public class UserImpl implements UserRepository {
         return user;
     }
 
-    @Override
     public void addUser(User user) {
         try {
             addUsersStatement.setString(1, user.getName());
@@ -112,7 +108,7 @@ public class UserImpl implements UserRepository {
     }
 
 
-    @Override
+
     public int deleteUser(User user) throws SQLException {
 
         deleteByIdStatement.setInt(1, user.getId());
@@ -120,7 +116,7 @@ public class UserImpl implements UserRepository {
 
     }
 
-    @Override
+
     public void updateUser(int Idbefore, User user) throws SQLException {
 
         updateStatement.setInt(1, user.getAge());
@@ -129,12 +125,12 @@ public class UserImpl implements UserRepository {
 
     }
 
-    @Override
+
     public void dropTable() throws SQLException {
         deleteTableStatement.executeUpdate();
     }
 
-    @Override
+
     public Connection getConnection() {
         return connection;
     }

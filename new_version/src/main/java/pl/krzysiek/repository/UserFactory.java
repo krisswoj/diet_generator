@@ -11,7 +11,6 @@ public class UserFactory {
 
     public static UserRepository getInstance() {
 
-
         try {
             String url = "jdbc:hsqldb:hsql://localhost/workdb";
             return new UserImpl(DriverManager.getConnection(url));

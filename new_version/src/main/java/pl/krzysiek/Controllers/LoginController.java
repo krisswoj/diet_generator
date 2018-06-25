@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.krzysiek.dao.IAccountRepository;
 import pl.krzysiek.domain.Account;
+import pl.krzysiek.domain.Rods;
 import pl.krzysiek.services.AccountService;
 import pl.krzysiek.services.UserImpl;
 
@@ -42,14 +43,17 @@ public class LoginController {
 
         String wiadomosc;
         if (accountService.checkPassword(email, password) == 1) {
-            wiadomosc = "Dane sie zgadzaja";
-        } else {
-            wiadomosc = "Rozbieznosc danych";
-        }
+            wiadomosc = "Zostałeś poprawnie zalogowany";
+            modelAndView.addObject("successMessage", wiadomosc);
+            modelAndView.addObject("rod", new Rods());
+            modelAndView.setViewName("add_to_list");
 
-        modelAndView.addObject("successMessage", wiadomosc);
-        modelAndView.addObject("account", new Account());
-        modelAndView.setViewName("login");
+        } else {
+            wiadomosc = "Wprowadzone dane nie są poprawne";
+            modelAndView.addObject("successMessage", wiadomosc);
+            modelAndView.addObject("account", new Account());
+            modelAndView.setViewName("login");
+        }
         return modelAndView;
     }
 

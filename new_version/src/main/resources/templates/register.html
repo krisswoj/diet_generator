@@ -26,19 +26,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="./register">Rejestracja</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./login">Logowanie</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./add_rod">Dodaj wędkę</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="./show_rods">Lista wędek</span></a>
-                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./login">Logowanie</a>
             </ul>
         </div>
     </nav>
@@ -50,7 +43,7 @@
             <form autocomplete="off" action="#" th:action="@{/register}"
                   th:object="${account}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Registration Form</h2>
+                <h2>Rejestracja</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
                         <!--<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"-->
@@ -89,7 +82,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <button type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
                     </div>
                 </div>
 

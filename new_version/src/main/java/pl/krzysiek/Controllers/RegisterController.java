@@ -90,7 +90,7 @@ public class RegisterController {
         ModelAndView modelAndView = new ModelAndView();
         Rods rod = new Rods();
         modelAndView.addObject("rod", rod);
-        modelAndView.addObject("successMessage", "Rozmiar Iterable: " + listService.listAll().size());
+//        modelAndView.addObject("successMessage", "Rozmiar");
         modelAndView.setViewName("add_to_list");
         return modelAndView;
     }

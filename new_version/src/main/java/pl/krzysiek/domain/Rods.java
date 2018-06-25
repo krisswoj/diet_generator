@@ -24,12 +24,13 @@ public class Rods {
     private Integer rod_price;
 
 
-    public Rods(int rod_id, String rod_brand, String rod_model, Integer rod_price) {
-        this.rod_id = rod_id;
+    public Rods(String rod_brand, String rod_model, Integer rod_price) {
         this.rod_brand = rod_brand;
         this.rod_model = rod_model;
         this.rod_price = rod_price;
     }
+
+
 
     public Rods() {
     }
