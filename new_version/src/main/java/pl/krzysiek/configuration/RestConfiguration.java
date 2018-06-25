@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 @Configuration
-@EnableWebMvc
+//@EnableWebMvc
 @ComponentScan({"pl.krzysiek"})
 public class RestConfiguration extends WebMvcConfigurerAdapter {
 
@@ -17,5 +17,7 @@ public class RestConfiguration extends WebMvcConfigurerAdapter {
     public void configureMessageConverters(List<HttpMessageConverter<?>> messageConverters){
         super.configureMessageConverters(messageConverters);
     }
+
+
 
 }

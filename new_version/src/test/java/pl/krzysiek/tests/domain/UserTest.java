@@ -1,7 +1,6 @@
 package pl.krzysiek.tests.domain;
 
 
-import org.junit.After;
 import org.junit.Test;
 import org.junit.Before;
 import pl.krzysiek.domain.User;
@@ -9,7 +8,6 @@ import pl.krzysiek.repository.UserFactory;
 import pl.krzysiek.repository.UserRepository;
 
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 
 
 import java.sql.SQLException;
