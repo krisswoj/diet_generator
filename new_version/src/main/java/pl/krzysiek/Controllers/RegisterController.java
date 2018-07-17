@@ -26,7 +26,7 @@ public class RegisterController {
         ModelAndView modelAndView = new ModelAndView();
         Account account = new Account();
         modelAndView.addObject("account", account);
-        modelAndView.setViewName("register");
+        modelAndView.setViewName("login/register");
         return modelAndView;
     }
 
@@ -40,12 +40,12 @@ public class RegisterController {
                             "There is already a user registered with the email provided");
         }
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("register");
+            modelAndView.setViewName("login/register");
         } else {
             accountService.addAccount(account);
             modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("account", new Account());
-            modelAndView.setViewName("register");
+            modelAndView.setViewName("login/register");
         }
         return modelAndView;
     }

@@ -31,11 +31,11 @@ public class RodsController {
             listRepository.save(rod);
             modelAndView.addObject("successMessage", "Wedka została dodana, dziękujemy");
             modelAndView.addObject("rod", new Rods());
-            modelAndView.setViewName("add_to_list");
+            modelAndView.setViewName("list/add_to_list");
             return modelAndView;
         } else {
             modelAndView.addObject("successMessage", "Wystąpił błąd - wędka nie została dodana");
-            modelAndView.setViewName("add_to_list");
+            modelAndView.setViewName("list/add_to_list");
             return modelAndView;
         }
     }
@@ -46,7 +46,7 @@ public class RodsController {
         Rods rod = new Rods();
         modelAndView.addObject("rod", rod);
 //        modelAndView.addObject("successMessage", "Rozmiar");
-        modelAndView.setViewName("add_to_list");
+        modelAndView.setViewName("list/add_to_list");
         return modelAndView;
     }
 
@@ -54,7 +54,7 @@ public class RodsController {
     public ModelAndView showRods(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("counts", rodsService.listAll());
-        modelAndView.setViewName("list");
+        modelAndView.setViewName("list/list");
         return modelAndView;
     }
 

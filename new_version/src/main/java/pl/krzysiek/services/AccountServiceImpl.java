@@ -38,7 +38,7 @@ public class AccountServiceImpl implements AccountService {
     public void addAccount(Account acc) {
         acc.setPassword(bCryptPasswordEncoder.encode(acc.getPassword()));
         acc.setActive(1);
-        Role userRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByRole("USER");
         acc.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         accountRepository.save(acc);
     }

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Rejestracja</title>
+    <title>Logowanie</title>
 
-    <!-- Bootstrap core CSS -->
     <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -26,12 +27,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./register">Rejestracja</a>
+                    <a class="nav-link" href="./add_rod">Dodaj wędkę</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./login">Logowanie</a>
+                    <a class="nav-link" href="./show_rods">Lista wędek</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-danger btn-block" name="registration"
+                                type="Submit">Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
@@ -40,53 +49,41 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <form autocomplete="off" action="#" th:action="@{/register}"
-                  th:object="${account}" method="post" class="form-horizontal"
+            <span th:utext="${successMessage}"></span>
+            <form autocomplete="off" action="#" th:action="@{/add_rod}"
+                  th:object="${rod}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Rejestracja</h2>
+                <h2>Dodawanie wędki</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <!--<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"-->
-                               <!--class="validation-message"></label>-->
-                        <input type="text" th:field="*{name}" placeholder="Name"
+                        <label th:if="${#fields.hasErrors('rod_brand')}" th:errors="*{rod_brand}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{rod_brand}" placeholder="Marka wędki"
                                class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <!--<label th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"-->
-                               <!--class="validation-message"></label>-->
-                        <input type="text" th:field="*{surname}"
-                               placeholder="Last Name" class="form-control"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <!--<label-->
-                                <!--th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
-                                <!--class="validation-message"></label>-->
-                        <input type="text" th:field="*{email}" placeholder="Email"
+                        <label th:if="${#fields.hasErrors('rod_model')}" th:errors="*{rod_model}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{rod_model}" placeholder="Model wędki"
                                class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <!--<label-->
-                                <!--th:if="${#fields.hasErrors('password')}" th:errors="*{password}"-->
-                                <!--class="validation-message"></label>-->
-                        <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control"/>
+                        <input type="text" th:field="*{rod_price}" placeholder="Cena wędki"
+                               class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
+                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
                     </div>
                 </div>
 
-                <span th:utext="${successMessage}"></span>
 
 
             </form>
