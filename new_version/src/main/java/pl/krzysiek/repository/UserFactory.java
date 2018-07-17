@@ -1,8 +1,5 @@
 package pl.krzysiek.repository;
 
-import org.springframework.context.annotation.Bean;
-import pl.krzysiek.services.UserImpl;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
 

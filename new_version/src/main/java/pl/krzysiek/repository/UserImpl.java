@@ -1,4 +1,4 @@
-package pl.krzysiek.services;
+package pl.krzysiek.repository;
 
 import org.springframework.stereotype.Component;
 import pl.krzysiek.domain.User;

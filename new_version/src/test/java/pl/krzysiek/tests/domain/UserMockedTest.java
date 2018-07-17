@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -13,7 +12,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import pl.krzysiek.domain.User;
 import pl.krzysiek.repository.UserRepository;
-import pl.krzysiek.services.UserImpl;
+import pl.krzysiek.repository.UserImpl;
 
 import java.sql.SQLException;
 

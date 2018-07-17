@@ -23,24 +23,13 @@ public class Rods {
     @Column(name = "rod_price")
     private Integer rod_price;
 
+    @Column(name = "optional_information")
+    private String optional_information;
 
-    public Rods(String rod_brand, String rod_model, Integer rod_price) {
-        this.rod_brand = rod_brand;
-        this.rod_model = rod_model;
-        this.rod_price = rod_price;
-    }
-
-
-
-    public Rods() {
-    }
+    public void setRod_id(int rod_id) { this.rod_id = rod_id; }
 
     public Integer getRod_id() {
         return rod_id;
-    }
-
-    public void setRod_id(Integer rod_id) {
-        this.rod_id = rod_id;
     }
 
     public String getRod_brand() {
@@ -66,4 +55,8 @@ public class Rods {
     public void setRod_price(Integer rod_price) {
         this.rod_price = rod_price;
     }
+
+    public String getOptional_information() { return optional_information; }
+
+    public void setOptional_information(String optional_information) { this.optional_information = optional_information; }
 }

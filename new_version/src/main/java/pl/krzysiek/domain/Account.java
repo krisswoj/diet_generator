@@ -3,6 +3,7 @@ package pl.krzysiek.domain;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
@@ -31,16 +32,12 @@ public class Account {
     @NotEmpty(message = "Wprowadź hasło")
     private String password;
 
-    public Account(int id, String name, String surname, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-    }
+    @Column(name = "active")
+    private int active;
 
-    public Account() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     public long getId() {
         return id;
@@ -77,4 +74,12 @@ public class Account {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+
+    public int getActive() { return active; }
+
+    public void setActive(int active) { this.active = active; }
+
+    public Set<Role> getRoles() { return roles; }
+
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 }

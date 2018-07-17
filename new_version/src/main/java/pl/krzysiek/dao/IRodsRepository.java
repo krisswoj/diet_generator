@@ -7,7 +7,7 @@ import pl.krzysiek.domain.Rods;
 import java.util.ArrayList;
 
 @Repository
-public interface IListRepository extends CrudRepository<Rods, Integer> {
+public interface IRodsRepository extends CrudRepository<Rods, Integer> {
 
     Rods findById(int rod_id);
     void deleteById(int rod_id);

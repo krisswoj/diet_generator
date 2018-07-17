@@ -3,20 +3,19 @@ package pl.krzysiek.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.krzysiek.dao.IListRepository;
+import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.Rods;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-@Service
+@Service("ListService")
 @Transactional
-public class ListService {
+public class RodsServiceImpl implements RodsService {
 
 
     @Autowired
-    IListRepository listRepository;
+    IRodsRepository listRepository;
 
     public List<Rods> listAll() {
         List<Rods> counts = new ArrayList<>();
@@ -35,6 +34,11 @@ public class ListService {
             return listRepository.save(updatedRod);
         } else
             return null;
+    }
+
+    public Rods createRodWithExtraInfo(Rods rod){
+        rod.setOptional_information("Dodano przez inny formularz");
+        return listRepository.save(rod);
     }
 
 
