@@ -63,17 +63,20 @@
         <table class="table table-striped">
             <tr>
                 <th>ID Wedki</th>
-                <th>Marka</th>
-                <th>Model</th>
-                <th>Cena</th>
-                <th>Operacje</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Ilość g białka</th>
+                <th>Ilość g węgli</th>
+                <th>Ilość g tłuszczu</th>
             </tr>
             <tr th:each="count : ${counts}">
-                <td th:text="${count.rod_id}"></td>
-                <td th:text="${count.rod_brand}"></td>
-                <td th:text="${count.rod_model}"></td>
-                <td th:text="${count.rod_price}"></td>
-                <td><a href="list.html" th:href="@{/rods-test/(id=${count.rod_id})}">Usun</a></td>
+                <td th:text="${count.ingredient_id}"></td>
+                <td th:text="${count.name}"></td>
+                <td th:text="${count.description}"></td>
+                <td th:text="${count.amount_protins}"></td>
+                <td th:text="${count.amount_carbs}"></td>
+                <td th:text="${count.amount_fats}"></td>
+                <!--<td><a href="list.html" th:href="@{/rods-test/(id=${count.rod_id})}">Usun</a></td>-->
             </tr>
         </table>
     </div>
