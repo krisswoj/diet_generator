@@ -18,7 +18,7 @@ import javax.validation.Valid;
 public class RodsController {
 
     @Autowired
-    private IRodsRepository listRepository;
+    private IRodsRepository rodsRepository;
 
     @Autowired
     private RodsService rodsService;
@@ -28,7 +28,7 @@ public class RodsController {
         ModelAndView modelAndView = new ModelAndView();
 
         if (!rod.getRod_brand().isEmpty() && !rod.getRod_model().isEmpty()) {
-            listRepository.save(rod);
+            rodsRepository.save(rod);
             modelAndView.addObject("successMessage", "Wedka została dodana, dziękujemy");
             modelAndView.addObject("rod", new Rods());
             modelAndView.setViewName("list/add_to_list");
@@ -45,7 +45,6 @@ public class RodsController {
         ModelAndView modelAndView = new ModelAndView();
         Rods rod = new Rods();
         modelAndView.addObject("rod", rod);
-//        modelAndView.addObject("successMessage", "Rozmiar");
         modelAndView.setViewName("list/add_to_list");
         return modelAndView;
     }

@@ -4,8 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import pl.krzysiek.domain.Rods;
 
-import java.util.ArrayList;
-
 @Repository
 public interface IRodsRepository extends CrudRepository<Rods, Integer> {
 

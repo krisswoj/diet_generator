@@ -15,30 +15,30 @@ public class RodsServiceImpl implements RodsService {
 
 
     @Autowired
-    IRodsRepository listRepository;
+    IRodsRepository rodsRepository;
 
     public List<Rods> listAll() {
         List<Rods> counts = new ArrayList<>();
-        listRepository.findAll().forEach(counts::add);
+        rodsRepository.findAll().forEach(counts::add);
         return counts;
     }
 
     public Rods createRod(Rods rod){
-        return listRepository.save(rod);
+        return rodsRepository.save(rod);
     }
 
     public Rods rodToUpdate(int id, Rods rods) {
-        Rods updatedRod = listRepository.findById(id);
+        Rods updatedRod = rodsRepository.findById(id);
         if (!rods.getRod_price().equals(updatedRod.getRod_price())) {
             updatedRod.setRod_price(rods.getRod_price());
-            return listRepository.save(updatedRod);
+            return rodsRepository.save(updatedRod);
         } else
             return null;
     }
 
     public Rods createRodWithExtraInfo(Rods rod){
         rod.setOptional_information("Dodano przez inny formularz");
-        return listRepository.save(rod);
+        return rodsRepository.save(rod);
     }
 
 

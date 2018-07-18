@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>Rejestracja</title>
+<title>Rejestracja</title>
 
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <!--<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"-->
-                               <!--class="validation-message"></label>-->
+                        <!--class="validation-message"></label>-->
                         <input type="text" th:field="*{name}" placeholder="Name"
                                class="form-control"/>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <!--<label th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"-->
-                               <!--class="validation-message"></label>-->
+                        <!--class="validation-message"></label>-->
                         <input type="text" th:field="*{surname}"
                                placeholder="Last Name" class="form-control"/>
                     </div>
@@ -65,8 +65,8 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <!--<label-->
-                                <!--th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
-                                <!--class="validation-message"></label>-->
+                        <!--th:if="${#fields.hasErrors('email')}" th:errors="*{email}"-->
+                        <!--class="validation-message"></label>-->
                         <input type="text" th:field="*{email}" placeholder="Email"
                                class="form-control"/>
                     </div>
@@ -74,8 +74,8 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <!--<label-->
-                                <!--th:if="${#fields.hasErrors('password')}" th:errors="*{password}"-->
-                                <!--class="validation-message"></label>-->
+                        <!--th:if="${#fields.hasErrors('password')}" th:errors="*{password}"-->
+                        <!--class="validation-message"></label>-->
                         <input type="password" th:field="*{password}"
                                placeholder="Password" class="form-control"/>
                     </div>

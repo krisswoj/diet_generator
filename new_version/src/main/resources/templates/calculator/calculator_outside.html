@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kalkulator kalorii</title>
+
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./add_rod">Dodaj wędkę</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./show_rods">Lista wędek</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-danger btn-block" name="registration"
+                                type="Submit">Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <span th:utext="${successMessage}"></span>
+            <form autocomplete="off" action="#" th:action="@{/calculator}"
+                  th:object="${calculator}" method="post" class="form-horizontal" role="form">
+                <h2>Wylicz swoje zapotrzebowanie kaloryczne</h2>
+
+                <div class="form-group">
+
+                    <div class="col-sm-9">
+                        <p>Określ swoją płeć</p>
+                        <label class="radio-inline"><input type="radio" name="sex" th:value="1" th:checked="*{sex}">Kobieta</label>
+                        <label class="radio-inline"><input type="radio" name="sex" th:value="2" th:checked="*{sex}">Mężczyzna</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weight">Twoja waga (w kg):</label>
+                        <input type="text" class="form-control" id="weight" name="weight" th:field="*{weight}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="height">Twoj wzrost (w cm):</label>
+                        <input type="text" class="form-control" id="height" name="height" th:field="*{height}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">Twoj wiek:</label>
+                        <input type="text" class="form-control" id="age" name="age" th:field="*{age}">
+                    </div>
+
+                    <div class="col-sm-9">
+                        <p>Określ swoją budowę ciała</p>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="1" th:checked="*{body_type}">Ektomorfik (Chuda, drobna postura)</label>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="2" th:checked="*{body_type}">Endomorfik (Masywna postawa, z tendencją do odkładania tłuszczu)</label>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="3" th:checked="*{body_type}">Mezomorfik (Naturlanie umięśniona, masywna postura)</label>
+
+                    </div>
+
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('plannedEffort')}" th:errors="*{plannedEffort}"
+                               class="validation-message"></label>
+                        <p>Planowany wysiłek fizyczny w tygodniu</p>
+                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="1"
+                                                           th:checked="*{plannedEffort}">Raz w tygodniu</label>
+                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="2"
+                                                           th:checked="*{plannedEffort}">2-3 razy w tygodniu</label>
+                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="3"
+                                                           th:checked="*{plannedEffort}">4+ w tygodniu</label>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('bodyGoal')}" th:errors="*{bodyGoal}"
+                               class="validation-message"></label>
+                        <p>Określ swój cel</p>
+                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="1"
+                                                           th:checked="*{bodyGoal}">Utrzymanie wagi</label>
+                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="2"
+                                                           th:checked="*{bodyGoal}">Schudnięcie</label>
+                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="3"
+                                                           th:checked="*{bodyGoal}">Przybranie na masie</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">TAU</span>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{css/jquery-3.3.1.slim.min.js}"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script th:src="@{css/popper.min.js}"></script>
+<script th:src="@{css/bootstrap.min.js}"></script>
+
+
+</body>
+</html>

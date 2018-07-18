@@ -26,27 +26,4 @@ public class LoginController {
         modelAndView.setViewName("login/login");
         return modelAndView;
     }
-
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public ModelAndView checkLogin(@RequestParam("email") String email,
-//                                   @RequestParam("password") String password) {
-//        ModelAndView modelAndView = new ModelAndView();
-//
-//        String wiadomosc;
-//        if (accountService.checkPassword(email, password) == 1) {
-//            wiadomosc = "Zostałeś poprawnie zalogowany";
-//            modelAndView.addObject("successMessage", wiadomosc);
-//            modelAndView.addObject("rod", new Rods());
-//            modelAndView.setViewName("add_to_list");
-//
-//        } else {
-//            wiadomosc = "Wprowadzone dane nie są poprawne";
-//            modelAndView.addObject("successMessage", wiadomosc);
-//            modelAndView.addObject("account", new Account());
-//            modelAndView.setViewName("login");
-//        }
-//        return modelAndView;
-//    }
-
-
 }
