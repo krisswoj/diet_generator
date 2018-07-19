@@ -3,16 +3,9 @@ package pl.krzysiek.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.FoodIngredients;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +13,14 @@ import java.util.List;
 @Transactional
 public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
+    static String ingredientsFile = "upload-dir/ingredients.xml";
+
     @Autowired
     IFoodIngredientsRepository foodIngredientsRepository;
+    @Autowired
+    ReaderXMLFilesService readerXMLFilesService;
+    @Autowired
+    FoodIngredientsService foodIngredientsService;
 
     @Override
     public List<FoodIngredients> listAll() {
@@ -37,56 +36,28 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
         return foodIngredientsRepository.save(foodIngredients);
     }
 
-    public List<ArrayList<String>> readXMLFilesF(String xmlPath, String xmlID) {
+    @Override
+    public Integer loadIngredients() {
 
-        List<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+        Integer amountAddedFoodIngredients = 0;
+        List<ArrayList<String>> list = readerXMLFilesService.readXMLFilesF(ingredientsFile, "ingredient");
 
-        try {
+        for (List<String> list2 : list) {
+            FoodIngredients foodIngredients = new FoodIngredients();
 
-            File fXmlFile = new File(xmlPath);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
+            foodIngredients.setName(list2.get(0));
+            foodIngredients.setDescription(list2.get(1));
+            foodIngredients.setCategory(Integer.parseInt(list2.get(2)));
+            foodIngredients.setSubcategory(Integer.parseInt(list2.get(3)));
+            foodIngredients.setAmount_protins(Integer.parseInt(list2.get(4)));
+            foodIngredients.setAmount_carbs(Integer.parseInt(list2.get(5)));
+            foodIngredients.setAmount_fats(Integer.parseInt(list2.get(6)));
 
-            NodeList nList = doc.getElementsByTagName(xmlID);
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-                ArrayList<String> pozycja = new ArrayList<String>();
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-
-                    if (eElement.getElementsByTagName("id").getLength() != 0) {
-                        pozycja.add(eElement.getElementsByTagName("id").item(0).getTextContent());
-                    }
-
-                    if (eElement.getElementsByTagName("name").getLength() != 0) {
-                        pozycja.add(eElement.getElementsByTagName("name").item(0).getTextContent());
-                    }
-
-                    if (eElement.getElementsByTagName("price").getLength() != 0) {
-                        pozycja.add(eElement.getElementsByTagName("price").item(0).getTextContent());
-                    }
-
-                    if (eElement.getElementsByTagName("default_components").getLength() != 0) {
-                        pozycja.add(eElement.getElementsByTagName("default_components").item(0).getTextContent());
-                    }
-
-                    if (eElement.getElementsByTagName("optional_components").getLength() != 0) {
-                        pozycja.add(eElement.getElementsByTagName("optional_components").item(0).getTextContent());
-                    }
-
-                    list.add(pozycja);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            foodIngredientsService.addNew(foodIngredients);
+            amountAddedFoodIngredients++;
         }
-        return (list);
 
+        return amountAddedFoodIngredients;
     }
+
 }

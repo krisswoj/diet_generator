@@ -8,5 +8,6 @@ public interface FoodIngredientsService {
 
     public List<FoodIngredients> listAll();
     public FoodIngredients addNew(FoodIngredients foodIngredients);
+    public Integer loadIngredients();
 
 }

@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.Rods;
+import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.RodsService;
 
 import javax.transaction.Transactional;
@@ -23,6 +24,9 @@ public class RodsApi {
 
     @Autowired
     IRodsRepository listRepository;
+
+    @Autowired
+    FoodIngredientsService foodIngredientsService;
 
     @RequestMapping("/")
     public String index() {
@@ -77,5 +81,11 @@ public class RodsApi {
     public Rods RodsWithExtraInfo(@RequestBody Rods rod) {
         Rods addedRecord = rodsService.createRodWithExtraInfo(rod);
         return addedRecord;
+    }
+
+    @RequestMapping(value = "/load", method = RequestMethod.GET)
+    public Integer load(){
+        foodIngredientsService.loadIngredients();
+        return foodIngredientsService.loadIngredients();
     }
 }
