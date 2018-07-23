@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
-import pl.krzysiek.domain.FoodIngredients;
+import pl.krzysiek.domain.food.FoodIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,40 +23,39 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
     FoodIngredientsService foodIngredientsService;
 
     @Override
-    public List<FoodIngredients> listAll() {
-        List<FoodIngredients> counts = new ArrayList<>();
+    public List<FoodIngredient> listAll() {
+        List<FoodIngredient> counts = new ArrayList<>();
         foodIngredientsRepository.findAll().forEach(counts::add);
         return counts;
     }
 
     @Override
-    public FoodIngredients addNew(FoodIngredients foodIngredients) {
+    public FoodIngredient addNew(FoodIngredient foodIngredient) {
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-        foodIngredients.setCreatedDate(date);
-        return foodIngredientsRepository.save(foodIngredients);
+        foodIngredient.setCreatedDate(date);
+        return foodIngredientsRepository.save(foodIngredient);
     }
 
     @Override
-    public Integer loadIngredients() {
+    public Integer loadIngredients(String xmlFile, String xmlID){
 
         Integer amountAddedFoodIngredients = 0;
-        List<ArrayList<String>> list = readerXMLFilesService.readXMLFilesF(ingredientsFile, "ingredient");
+        List<ArrayList<String>> list = readerXMLFilesService.readXMLFilesF(ingredientsFile, xmlID);
 
         for (List<String> list2 : list) {
-            FoodIngredients foodIngredients = new FoodIngredients();
+            FoodIngredient foodIngredient = new FoodIngredient();
 
-            foodIngredients.setName(list2.get(0));
-            foodIngredients.setDescription(list2.get(1));
-            foodIngredients.setCategory(Integer.parseInt(list2.get(2)));
-            foodIngredients.setSubcategory(Integer.parseInt(list2.get(3)));
-            foodIngredients.setAmount_protins(Integer.parseInt(list2.get(4)));
-            foodIngredients.setAmount_carbs(Integer.parseInt(list2.get(5)));
-            foodIngredients.setAmount_fats(Integer.parseInt(list2.get(6)));
+            foodIngredient.setName(list2.get(0));
+            foodIngredient.setDescription(list2.get(1));
+            foodIngredient.setCategory(Integer.parseInt(list2.get(2)));
+            foodIngredient.setSubcategory(Integer.parseInt(list2.get(3)));
+            foodIngredient.setAmount_protins(Integer.parseInt(list2.get(4)));
+            foodIngredient.setAmount_carbs(Integer.parseInt(list2.get(5)));
+            foodIngredient.setAmount_fats(Integer.parseInt(list2.get(6)));
 
-            foodIngredientsService.addNew(foodIngredients);
+            foodIngredientsService.addNew(foodIngredient);
             amountAddedFoodIngredients++;
         }
-
         return amountAddedFoodIngredients;
     }
 

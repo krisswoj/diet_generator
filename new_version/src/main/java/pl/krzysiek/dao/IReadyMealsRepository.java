@@ -2,8 +2,8 @@ package pl.krzysiek.dao;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.krzysiek.domain.food.FoodIngredient;
+import pl.krzysiek.domain.food.ReadyMeal;
 
 @Repository
-public interface IFoodIngredientsRepository extends CrudRepository<FoodIngredient, Integer> {
+public interface IReadyMealsRepository extends CrudRepository<ReadyMeal, Integer> {
 }

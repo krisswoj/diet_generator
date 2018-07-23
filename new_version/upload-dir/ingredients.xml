@@ -1,75 +1,219 @@
 <?xml version="1.0"?>
 <ingredients>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Szynka szarpama</name>
-        <description>brak dodatkowego opisu</description>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
-        <amount_protins>23</amount_protins>
-        <amount_carbs>65</amount_carbs>
-        <amount_fats>12</amount_fats>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>Serek bieluch</name>
+        <description>Twarożek do smarowania na chleb</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>17</amount_protins>
+        <amount_carbs>7</amount_carbs>
+        <amount_fats>3</amount_fats>
     </ingredient>
 </ingredients>

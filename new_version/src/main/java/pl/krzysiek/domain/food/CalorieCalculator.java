@@ -1,11 +1,11 @@
-package pl.krzysiek.domain;
+package pl.krzysiek.domain.food;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Entity
-@Table(name = "calorie_calculator")
+@Table(name = "calorie_calculator", catalog = "tau")
 public class CalorieCalculator {
 
     @Id

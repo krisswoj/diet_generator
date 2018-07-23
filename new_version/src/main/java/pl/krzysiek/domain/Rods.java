@@ -4,26 +4,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "rods")
+@Table(name = "rods", catalog = "tau")
 public class Rods {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "rod_id")
     private int rod_id;
-
-    @Column(name = "rod_brand")
-    @NotEmpty(message = "Wprowadz marke wedki")
     private String rod_brand;
-
-    @Column(name = "rod_model")
-    @NotEmpty(message = "Wprowadz model wedki")
     private String rod_model;
-
-    @Column(name = "rod_price")
     private Integer rod_price;
-
-    @Column(name = "optional_information")
     private String optional_information;
 
     public void setRod_id(int rod_id) { this.rod_id = rod_id; }

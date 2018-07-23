@@ -1,36 +1,30 @@
-package pl.krzysiek.domain;
+package pl.krzysiek.domain.food;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "food_ingredients")
-public class FoodIngredients {
+@Table(name = "food_ingredients", catalog = "tau")
+public class FoodIngredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ingredient_id")
     private long ingredient_id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "description")
     private String description;
-    @Column(name = "category")
     private int category;
-    @Column(name = "subcategory")
     private int subcategory;
-    @Column(name = "amount_protins")
     private double amount_protins;
-    @Column(name = "amount_carbs")
     private double amount_carbs;
-    @Column(name = "amount_fats")
     private double amount_fats;
-    @Column(name = "createdDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
-    @Column(name = "updateDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+
+    public FoodIngredient() {
+    }
 
     public long getIngredient_id() {
         return ingredient_id;

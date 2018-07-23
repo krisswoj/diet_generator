@@ -1,6 +1,6 @@
 package pl.krzysiek.services;
 
-import pl.krzysiek.domain.CalorieCalculator;
+import pl.krzysiek.domain.food.CalorieCalculator;
 
 import java.util.List;
 

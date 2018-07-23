@@ -1,13 +1,13 @@
 package pl.krzysiek.services;
 
-import pl.krzysiek.domain.FoodIngredients;
+import pl.krzysiek.domain.food.FoodIngredient;
 
 import java.util.List;
 
 public interface FoodIngredientsService {
 
-    public List<FoodIngredients> listAll();
-    public FoodIngredients addNew(FoodIngredients foodIngredients);
-    public Integer loadIngredients();
+    public List<FoodIngredient> listAll();
+    public FoodIngredient addNew(FoodIngredient foodIngredient);
+    public Integer loadIngredients(String xmlFile, String xmlID);
 
 }

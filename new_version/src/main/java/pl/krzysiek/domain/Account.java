@@ -1,12 +1,15 @@
 package pl.krzysiek.domain;
 
+import pl.krzysiek.domain.food.ReadyMeal;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "accounts", catalog = "tau")
 public class Account {
 
     @Id
@@ -14,31 +17,22 @@ public class Account {
     @Column(name = "user_id")
     private long id;
 
-    @Column(name = "name")
-    @NotEmpty(message = "Wprowadz swoje imie")
     private String name;
-
-
-    @Column(name = "surname")
-    @NotEmpty(message = "Wprowadz swoje nazwisko")
     private String surname;
-
-    @Column(name = "email")
-    @NotEmpty(message = "Wprowadz swoj adres e-mail")
-    @Email(message = "Wprowadź poprawny adres e-mail")
     private String email;
-
-    @Column(name = "password")
-    @NotEmpty(message = "Wprowadź hasło")
     private String password;
-
-    @Column(name = "active")
     private int active;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private List<ReadyMeal> readyMeals;
+
+    public Account() {
+    }
     public long getId() {
         return id;
     }
@@ -79,7 +73,13 @@ public class Account {
 
     public void setActive(int active) { this.active = active; }
 
-    public Set<Role> getRoles() { return roles; }
-
     public void setRoles(Set<Role> roles) { this.roles = roles; }
+
+    public List<ReadyMeal> getReadyMeals() {
+        return readyMeals;
+    }
+
+    public void setReadyMeals(List<ReadyMeal> readyMeals) {
+        this.readyMeals = readyMeals;
+    }
 }

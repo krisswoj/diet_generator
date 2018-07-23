@@ -1,5 +1,7 @@
 package pl.krzysiek.Controllers;
 
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.mock.web.MockMultipartFile;
 import pl.krzysiek.storage.StorageFileNotFoundException;
 import pl.krzysiek.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Controller
@@ -48,7 +55,18 @@ public class FileUploadController {
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-            RedirectAttributes redirectAttributes) {
+                                   RedirectAttributes redirectAttributes) throws IOException {
+
+        System.out.println("Nazwa pliku oryginal: " + file.getOriginalFilename());
+//        MultipartFile multipartFile = new  MockMultipartFile(FilenameUtils.getBaseName(oldMultipartFile.getOriginalFilename()).concat(new SimpleDateFormat("yyyyMMddHHmm").format(new Date())) + "." + FilenameUtils.getExtension(oldMultipartFile.getOriginalFilename()), oldMultipartFile.getInputStream());
+
+//        String currentDate = new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
+//
+//        file.getOriginalFilename().replace(file.getOriginalFilename(), FilenameUtils.getBaseName(file.getOriginalFilename()).concat(currentDate) + "." + FilenameUtils.getExtension(file.getOriginalFilename())).toLowerCase();
+//
+//
+////        System.out.println("Nazwa pliku po modyfikacji: " + multipartFile.getOriginalFilename());
+
 
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message",

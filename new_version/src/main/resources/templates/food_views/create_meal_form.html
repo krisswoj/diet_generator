@@ -10,6 +10,7 @@
 
     <title>Logowanie</title>
 
+    <!-- Bootstrap core CSS -->
     <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -55,76 +56,44 @@
     </nav>
 </header>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <span th:utext="${successMessage}"></span>
-            <form autocomplete="off" action="#" th:action="@{/add_food_ingredient}"
-                  th:object="${food_ingredient}" method="post"  class="form-horizontal" role="form">
-                <h2>Dodawanie składnika spożywczego</h2>
+<div class="container" th:fragment="content">
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{name}" placeholder="Nazwa składnika"
+
+    <form autocomplete="off" action="#" th:action="@{/create_meal}"
+          th:object="${ingredientsS}" method="post" class="form-horizontal" role="form">
+        <div th:if="${not #lists.isEmpty(ingredients)}">
+            <h2>Przygotuj posiłek</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>ID</th>
+                    <th>Nazwa</th>
+                    <th>Ilość g białka</th>
+                    <th>Ilość g węgli</th>
+                    <th>Ilość g tłuszczu</th>
+                    <th>Twoja porcja</th>
+                </tr>
+                <tr th:each="count : ${ingredients}">
+                    <td th:text="${count.ingredient_id}"><input type="hidden" th:field="*{ingredient_id}" th:value="${count.ingredient_id}"></td>
+                    <td th:text="${count.name}"></td>
+                    <td th:text="${count.amount_protins}"></td>
+                    <td th:text="${count.amount_carbs}"></td>
+                    <td th:text="${count.amount_fats}"></td>
+                    <td><input type="text" th:field="*{grams_portion}" placeholder="Zawartość tłuszczy na 100g produktu"
                                class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość białka na 100g produktu</p>
-                        <input type="text" th:field="*{amount_protins}" placeholder="Zawartość białka na 100g produktu"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość węglowodanów na 100g produktu</p>
-                        <input type="text" th:field="*{amount_carbs}" placeholder="Zawartość węglowodanów na 100g produktu"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość tłuszczy na 100g produktu</p>
-                        <input type="text" th:field="*{amount_fats}" placeholder="Zawartość tłuszczy na 100g produktu"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
-                    </div>
-                </div>
-
-
-
-            </form>
+                        </td>
+                    <!--<td><a href="list.html" th:href="@{/rods-test/(id=${count.rod_id})}">Usun</a></td>-->
+                </tr>
+            </table>
         </div>
-        <div class="custom-file col-md-6 col-md-offset-3">
-            <form method="POST" enctype="multipart/form-data" action="/add_food_ingredient">
-            <input type="file" class="custom-file-input" id="file" name="file">
-            <label class="custom-file-label" for="file">Wgraj plik XML</label>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" value="Upload" class="btn btn-primary btn-block">Dodaj</button>
-                    </div>
-                </div>
-            </form>
+
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
+            </div>
         </div>
-    </div>
+    </form>
+
 </div>
 
 <footer class="footer">
