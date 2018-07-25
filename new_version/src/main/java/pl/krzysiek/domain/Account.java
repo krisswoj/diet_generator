@@ -1,46 +1,46 @@
 package pl.krzysiek.domain;
 
-import pl.krzysiek.domain.food.ReadyMeal;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "accounts", catalog = "tau")
 public class Account {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private long id;
-
+    private int userId;
     private String name;
     private String surname;
     private String email;
     private String password;
-    private int active;
+    private Integer active;
+    private Set<Role> roles;
+    private List<ReadyMeal> readyMeals;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    public Set<Role> getRoles() { return roles; }
+
+    public void setRoles(Set<Role> roles) { this.roles = roles; }
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private List<ReadyMeal> readyMeals;
+    public List<ReadyMeal> getReadyMeals() { return readyMeals; }
 
-    public Account() {
-    }
-    public long getId() {
-        return id;
+    public void setReadyMeals(List<ReadyMeal> readyMeals) { this.readyMeals = readyMeals; }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -49,6 +49,8 @@ public class Account {
         this.name = name;
     }
 
+    @Basic
+    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -57,6 +59,8 @@ public class Account {
         this.surname = surname;
     }
 
+    @Basic
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -65,21 +69,46 @@ public class Account {
         this.email = email;
     }
 
-    public String getPassword() { return password; }
-
-    public void setPassword(String password) { this.password = password; }
-
-    public int getActive() { return active; }
-
-    public void setActive(int active) { this.active = active; }
-
-    public void setRoles(Set<Role> roles) { this.roles = roles; }
-
-    public List<ReadyMeal> getReadyMeals() {
-        return readyMeals;
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
     }
 
-    public void setReadyMeals(List<ReadyMeal> readyMeals) {
-        this.readyMeals = readyMeals;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Basic
+    @Column(name = "active")
+    public Integer getActive() {
+        return active;
+    }
+
+    public void setActive(Integer active) {
+        this.active = active;
+    }
+
+    public Account() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Account)) return false;
+        Account account = (Account) o;
+        return getUserId() == account.getUserId() &&
+                Objects.equals(getName(), account.getName()) &&
+                Objects.equals(getSurname(), account.getSurname()) &&
+                Objects.equals(getEmail(), account.getEmail()) &&
+                Objects.equals(getPassword(), account.getPassword()) &&
+                Objects.equals(getActive(), account.getActive());
+//                Objects.equals(getRole(), account.getRole());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getUserId(), getName(), getSurname(), getEmail(), getPassword(), getActive());
     }
 }

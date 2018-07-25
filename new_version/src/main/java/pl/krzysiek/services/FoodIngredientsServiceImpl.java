@@ -2,15 +2,14 @@ package pl.krzysiek.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
-import pl.krzysiek.domain.food.FoodIngredient;
+import pl.krzysiek.domain.FoodIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("food_ingredients")
-@Transactional
+@Service
+//@Transactional
 public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
     static String ingredientsFile = "upload-dir/ingredients.xml";
@@ -37,10 +36,11 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
     }
 
     @Override
-    public Integer loadIngredients(String xmlFile, String xmlID){
+    public Iterable<FoodIngredient> loadIngredients(String xmlFile, String xmlID) {
 
-        Integer amountAddedFoodIngredients = 0;
         List<ArrayList<String>> list = readerXMLFilesService.readXMLFilesF(ingredientsFile, xmlID);
+
+        List<FoodIngredient> foodIngredientList = new ArrayList<>();
 
         for (List<String> list2 : list) {
             FoodIngredient foodIngredient = new FoodIngredient();
@@ -49,14 +49,15 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
             foodIngredient.setDescription(list2.get(1));
             foodIngredient.setCategory(Integer.parseInt(list2.get(2)));
             foodIngredient.setSubcategory(Integer.parseInt(list2.get(3)));
-            foodIngredient.setAmount_protins(Integer.parseInt(list2.get(4)));
-            foodIngredient.setAmount_carbs(Integer.parseInt(list2.get(5)));
-            foodIngredient.setAmount_fats(Integer.parseInt(list2.get(6)));
+            foodIngredient.setAmountProtins(Integer.parseInt(list2.get(4)));
+            foodIngredient.setAmountCarbs(Integer.parseInt(list2.get(5)));
+            foodIngredient.setAmountFats(Integer.parseInt(list2.get(6)));
 
-            foodIngredientsService.addNew(foodIngredient);
-            amountAddedFoodIngredients++;
+            foodIngredientList.add(foodIngredient);
         }
-        return amountAddedFoodIngredients;
+
+        System.out.println(foodIngredientList);
+        return foodIngredientsRepository.saveAll(foodIngredientList);
     }
 
 }

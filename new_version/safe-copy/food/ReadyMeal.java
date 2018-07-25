@@ -20,10 +20,10 @@ public class ReadyMeal {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date created_date;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    private Date update_date;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "meal_id", referencedColumnName = "meal_id")
@@ -64,20 +64,20 @@ public class ReadyMeal {
         this.description = description;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getcreated_date() {
+        return created_date;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setcreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getupdate_date() {
+        return update_date;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setupdate_date(Date update_date) {
+        this.update_date = update_date;
     }
 
     public List<ReadyMealDetails> getReadyMealDetails() {

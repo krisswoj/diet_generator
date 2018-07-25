@@ -4,40 +4,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.IRodsRepository;
-import pl.krzysiek.domain.Rods;
+import pl.krzysiek.domain.Rod;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service("ListService")
 @Transactional
-public class RodsServiceImpl implements RodsService {
+public class RodsServiceImpl implements RodService {
 
 
     @Autowired
     IRodsRepository rodsRepository;
 
-    public List<Rods> listAll() {
-        List<Rods> counts = new ArrayList<>();
+    public List<Rod> listAll() {
+        List<Rod> counts = new ArrayList<>();
         rodsRepository.findAll().forEach(counts::add);
         return counts;
     }
 
-    public Rods createRod(Rods rod){
+    public Rod createRod(Rod rod){
         return rodsRepository.save(rod);
     }
 
-    public Rods rodToUpdate(int id, Rods rods) {
-        Rods updatedRod = rodsRepository.findById(id);
-        if (!rods.getRod_price().equals(updatedRod.getRod_price())) {
-            updatedRod.setRod_price(rods.getRod_price());
+    public Rod rodToUpdate(int id, Rod rods) {
+        Rod updatedRod = rodsRepository.findById(id);
+        if (!rods.getPrice().equals(updatedRod.getPrice())) {
+            updatedRod.setPrice(rods.getPrice());
             return rodsRepository.save(updatedRod);
         } else
             return null;
     }
 
-    public Rods createRodWithExtraInfo(Rods rod){
-        rod.setOptional_information("Dodano przez inny formularz");
+    public Rod createRodWithExtraInfo(Rod rod){
+        rod.setOptionalInformation("Dodano przez inny formularz");
         return rodsRepository.save(rod);
     }
 

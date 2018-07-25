@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.ICalculatorRepository;
-import pl.krzysiek.domain.food.CalorieCalculator;
+import pl.krzysiek.domain.CalorieCalculator;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("calculator")
-@Transactional
+@Service
+//        ("calculator")
+//@Transactional
 public class CalculatorServiceImpl implements CalculatorService {
 
     @Autowired
@@ -56,13 +57,13 @@ public class CalculatorServiceImpl implements CalculatorService {
             tea = ((4 * 60 * 8) / 7);
         }
 
-        if (calorieCalculator.getBody_type() == 1) {
+        if (calorieCalculator.getBodyType() == 1) {
             neat = 700;
         }
-        if (calorieCalculator.getBody_type() == 2) {
+        if (calorieCalculator.getBodyType() == 2) {
             neat = 200;
         }
-        if (calorieCalculator.getBody_type() == 3) {
+        if (calorieCalculator.getBodyType() == 3) {
             neat = 500;
         }
 

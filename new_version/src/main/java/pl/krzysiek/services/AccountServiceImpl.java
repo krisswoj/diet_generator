@@ -10,14 +10,14 @@ import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.Role;
 
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-@Service("AccountService")
-@Transactional
+@Service
+//        ("AccountService")
+//@Transactional
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
@@ -43,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(acc);
     }
 
-    public Account getById(long id) {
+    public Account getById(int id) {
         Account acc = accountRepository.findById(id);
         return acc;
     }
@@ -52,7 +52,7 @@ public class AccountServiceImpl implements AccountService {
         String userId;
         try {
             Account account = accountRepository.findByName(name);
-            userId = String.valueOf(account.getId());
+            userId = String.valueOf(account.getUserId());
         } catch (Exception ex) {
             return 0;
         }
@@ -76,7 +76,7 @@ public class AccountServiceImpl implements AccountService {
         String userId;
         try {
             Account account = accountRepository.findByEmail(email);
-            userId = String.valueOf(account.getId());
+            userId = String.valueOf(account.getUserId());
         } catch (Exception ex) {
             return 0;
         }

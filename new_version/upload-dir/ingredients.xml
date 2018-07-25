@@ -1,7 +1,16 @@
 <?xml version="1.0"?>
 <ingredients>
     <ingredient>
-        <name>Serek bieluch</name>
+        <name>Conuer db kody za free</name>
+        <description>db kody rozdaja</description>
+        <category>0</category>
+        <subcategory>0</subcategory>
+        <amount_protins>55</amount_protins>
+        <amount_carbs>55</amount_carbs>
+        <amount_fats>55</amount_fats>
+    </ingredient>
+    <ingredient>
+        <name>2323534 bieluch</name>
         <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
@@ -10,7 +19,7 @@
         <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Serek bieluch</name>
+        <name>Serserrtek bieluch</name>
         <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
@@ -19,7 +28,7 @@
         <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Serek bieluch</name>
+        <name>Ser56ek bieluch</name>
         <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>
@@ -28,16 +37,7 @@
         <amount_fats>3</amount_fats>
     </ingredient>
     <ingredient>
-        <name>Serek bieluch</name>
-        <description>Twarożek do smarowania na chleb</description>
-        <category>0</category>
-        <subcategory>0</subcategory>
-        <amount_protins>17</amount_protins>
-        <amount_carbs>7</amount_carbs>
-        <amount_fats>3</amount_fats>
-    </ingredient>
-    <ingredient>
-        <name>Serek bieluch</name>
+        <name>Se222rek bieluch</name>
         <description>Twarożek do smarowania na chleb</description>
         <category>0</category>
         <subcategory>0</subcategory>

@@ -88,9 +88,9 @@
 
                     <div class="col-sm-9">
                         <p>Określ swoją budowę ciała</p>
-                        <label class="radio-inline"><input type="radio" name="body_type" th:value="1" th:checked="*{body_type}">Ektomorfik (Chuda, drobna postura)</label>
-                        <label class="radio-inline"><input type="radio" name="body_type" th:value="2" th:checked="*{body_type}">Endomorfik (Masywna postawa, z tendencją do odkładania tłuszczu)</label>
-                        <label class="radio-inline"><input type="radio" name="body_type" th:value="3" th:checked="*{body_type}">Mezomorfik (Naturlanie umięśniona, masywna postura)</label>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="1" th:checked="*{bodyType}">Ektomorfik (Chuda, drobna postura)</label>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="2" th:checked="*{bodyType}">Endomorfik (Masywna postawa, z tendencją do odkładania tłuszczu)</label>
+                        <label class="radio-inline"><input type="radio" name="body_type" th:value="3" th:checked="*{bodyType}">Mezomorfik (Naturlanie umięśniona, masywna postura)</label>
 
                     </div>
 
@@ -98,11 +98,11 @@
                         <label th:if="${#fields.hasErrors('plannedEffort')}" th:errors="*{plannedEffort}"
                                class="validation-message"></label>
                         <p>Planowany wysiłek fizyczny w tygodniu</p>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="1"
+                        <label class="radio-inline"><input type="radio" name="planned_effort" th:value="1"
                                                            th:checked="*{plannedEffort}">Raz w tygodniu</label>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="2"
+                        <label class="radio-inline"><input type="radio" name="planned_effort" th:value="2"
                                                            th:checked="*{plannedEffort}">2-3 razy w tygodniu</label>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="3"
+                        <label class="radio-inline"><input type="radio" name="planned_effort" th:value="3"
                                                            th:checked="*{plannedEffort}">4+ w tygodniu</label>
                     </div>
 
@@ -110,11 +110,11 @@
                         <label th:if="${#fields.hasErrors('bodyGoal')}" th:errors="*{bodyGoal}"
                                class="validation-message"></label>
                         <p>Określ swój cel</p>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="1"
+                        <label class="radio-inline"><input type="radio" name="body_goal" th:value="1"
                                                            th:checked="*{bodyGoal}">Utrzymanie wagi</label>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="2"
+                        <label class="radio-inline"><input type="radio" name="body_goal" th:value="2"
                                                            th:checked="*{bodyGoal}">Schudnięcie</label>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="3"
+                        <label class="radio-inline"><input type="radio" name="body_goal" th:value="3"
                                                            th:checked="*{bodyGoal}">Przybranie na masie</label>
                     </div>
                 </div>

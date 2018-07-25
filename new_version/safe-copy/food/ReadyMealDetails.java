@@ -16,8 +16,8 @@ public class ReadyMealDetails {
     @Column(name = "meal_id")
     private long meal_id;
 
-    @Column(name = "ingredient_id")
-    private long ingredient_id;
+    @Column(name = "id")
+    private long id;
 
     private int grams_portion;
 
@@ -40,12 +40,12 @@ public class ReadyMealDetails {
         this.meal_id = meal_id;
     }
 
-    public long getIngredient_id() {
-        return ingredient_id;
+    public long getid() {
+        return id;
     }
 
-    public void setIngredient_id(long ingredient_id) {
-        this.ingredient_id = ingredient_id;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public int getGrams_portion() {

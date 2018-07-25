@@ -7,8 +7,8 @@ import pl.krzysiek.domain.Account;
 @Repository
 public interface IAccountRepository extends CrudRepository<Account, Integer> {
 
-    Account findById(long id);
-    Account findByName(String nick);
+    Account findById(int userId);
+    Account findByName(String name);
     Account findByEmail(String email);
     Account findByPassword(String password);
 

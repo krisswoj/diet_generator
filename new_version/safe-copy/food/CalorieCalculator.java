@@ -10,7 +10,7 @@ public class CalorieCalculator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "calculator_id")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "sex")
@@ -29,13 +29,13 @@ public class CalorieCalculator {
 //    @NotEmpty(message = "Wprowadz swoj wiek")
     private int age;
 
-    @Column(name = "plannedEffort")
+    @Column(name = "planned_effort")
 //    @NotEmpty(message = "Okresl przewidywany wysilek fizyczny")
-    private int plannedEffort;
+    private int planned_effort;
 
-    @Column(name = "bodyGoal")
+    @Column(name = "body_goal")
 //    @NotEmpty(message = "Okresl swoj cel")
-    private int bodyGoal;
+    private int body_goal;
 
     @Column(name = "user_id")
     private long user_id;
@@ -43,16 +43,16 @@ public class CalorieCalculator {
     @Column(name = "body_type")
     private int body_type;
 
-    @Column(name = "caloriesDemand")
-    private int caloriesDemand;
+    @Column(name = "calories_demand")
+    private int calories_demand;
 
-    @Column(name = "createdDate")
+    @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date created_date;
 
-    @Column(name = "updateDate")
+    @Column(name = "update_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    private Date update_date;
 
     public long getId() {
         return id;
@@ -94,20 +94,20 @@ public class CalorieCalculator {
         this.age = age;
     }
 
-    public int getPlannedEffort() {
-        return plannedEffort;
+    public int getplanned_effort() {
+        return planned_effort;
     }
 
-    public void setPlannedEffort(int plannedEffort) {
-        this.plannedEffort = plannedEffort;
+    public void setplanned_effort(int planned_effort) {
+        this.planned_effort = planned_effort;
     }
 
-    public int getBodyGoal() {
-        return bodyGoal;
+    public int getbody_goal() {
+        return body_goal;
     }
 
-    public void setBodyGoal(int bodyGoal) {
-        this.bodyGoal = bodyGoal;
+    public void setbody_goal(int body_goal) {
+        this.body_goal = body_goal;
     }
 
     public long getUser_id() {
@@ -118,20 +118,20 @@ public class CalorieCalculator {
         this.user_id = user_id;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getcreated_date() {
+        return created_date;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setcreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getupdate_date() {
+        return update_date;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setupdate_date(Date update_date) {
+        this.update_date = update_date;
     }
 
     public int getBody_type() {
@@ -142,11 +142,11 @@ public class CalorieCalculator {
         this.body_type = body_type;
     }
 
-    public int getCaloriesDemand() {
-        return caloriesDemand;
+    public int getcalories_demand() {
+        return calories_demand;
     }
 
-    public void setCaloriesDemand(int caloriesDemand) {
-        this.caloriesDemand = caloriesDemand;
+    public void setcalories_demand(int calories_demand) {
+        this.calories_demand = calories_demand;
     }
 }

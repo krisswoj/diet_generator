@@ -5,11 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.krzysiek.dao.IAccountRepository;
-import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.Account;
 import pl.krzysiek.services.AccountService;
-import pl.krzysiek.services.RodsService;
 
 import javax.validation.Valid;
 

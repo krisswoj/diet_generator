@@ -1,128 +1,128 @@
-package pl.krzysiek.Web;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-import pl.krzysiek.dao.IReadyMealsRepository;
-import pl.krzysiek.dao.IRodsRepository;
-import pl.krzysiek.domain.Rods;
-import pl.krzysiek.domain.food.ReadyMeal;
-import pl.krzysiek.domain.food.ReadyMealDetails;
-import pl.krzysiek.services.FoodIngredientsService;
-import pl.krzysiek.services.RodsService;
-
-import javax.transaction.Transactional;
-import java.sql.SQLException;
-import java.util.*;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
-@Transactional
-@RestController
-public class RodsApi {
-
-
-    @Autowired
-    RodsService rodsService;
-
-    @Autowired
-    IRodsRepository listRepository;
-
-    @Autowired
-    FoodIngredientsService foodIngredientsService;
-
-    @Autowired
-    IReadyMealsRepository readyMealsRepository;
-
-    @RequestMapping("/")
-    public String index() {
-        return "Wszystko dziala ;-)";
-    }
-
-    @RequestMapping(value ="/take-meals", method = GET)
-    public Iterable<ReadyMeal> getReadyMeals() throws SQLException{
-        return readyMealsRepository.findAll();
-    }
-
-    @RequestMapping(value = "/add-ready-meal", method = GET)
-        public ReadyMeal addReadyMeal(){
-
-            ReadyMeal readyMeal = new ReadyMeal();
-
-            readyMeal.setTitle("Testowy posilek krzycha");
-            readyMeal.setDescription("ble ergijrgjndsfjgrjigr");
-            readyMeal.setUser_id(1);
-            readyMeal.setMeal_id(1);
-
-
-            List<ReadyMealDetails> readyMealDetails = new ArrayList<ReadyMealDetails>();
-
-            ReadyMealDetails readyMealDetails1 = new ReadyMealDetails();
-            readyMealDetails1.setMeal_id(readyMeal.getMeal_id());
-            readyMealDetails1.setIngredient_id(15);
-            readyMealDetails1.setGrams_portion(60);
-
-            ReadyMealDetails readyMealDetails2 = new ReadyMealDetails();
-            readyMealDetails2.setMeal_id(readyMeal.getMeal_id());
-            readyMealDetails2.setIngredient_id(16);
-            readyMealDetails2.setGrams_portion(50);
-
-            readyMealDetails.add(readyMealDetails1);
-            readyMealDetails.add(readyMealDetails2);
-
-            readyMeal.setReadyMealDetails(readyMealDetails);
-
-            return readyMealsRepository.save(readyMeal);
-        }
-
-
-
-    @RequestMapping(value = "/rods-rest/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public Rods getRod(@PathVariable("id") int id) throws SQLException {
-        return listRepository.findById(id);
-    }
-
-    @RequestMapping(value = "/rods-rest", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Rods> getRods() throws SQLException {
-        return rodsService.listAll();
-    }
-
-    @RequestMapping(value ="/rods-rest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Rods addRod(@RequestBody Rods rod) {
-        Rods addedRod = listRepository.save(rod);
-        return addedRod;
-    }
-
-    @RequestMapping(value = "/rods-test", method = GET)
-    @ResponseBody
-    public String deleteRods(@RequestParam("id") int id) throws SQLException {
-        listRepository.deleteById(id);
-        return String.format("Wedka o id  #%d zostala usunieta", id);
-    }
-
-    @RequestMapping(value = "/rods-test/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public String deleteRodss(@PathVariable("id") int id) throws SQLException {
-        listRepository.deleteById(id);
-        return String.format("Wedka o id  #%d zostala usunieta", id);
-    }
-
-    @RequestMapping(value = "/rods-rest/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Rods rodToUpdate(@PathVariable("id") int id, @RequestBody Rods rod){
-        return rodsService.rodToUpdate(id, rod);
-    }
-
-    @RequestMapping(value = "/rods-update/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Rods updateRods(@RequestBody Rods rod, @PathVariable("id") int id) throws SQLException{
-        Rods addedRod = rod;
-        addedRod.setRod_id(id);
-        return listRepository.save(addedRod);
-    }
-
-    @RequestMapping(value = "/extra-info", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Rods RodsWithExtraInfo(@RequestBody Rods rod) {
-        Rods addedRecord = rodsService.createRodWithExtraInfo(rod);
-        return addedRecord;
-    }
-}
+//package pl.krzysiek.Web;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.http.MediaType;
+//import org.springframework.web.bind.annotation.*;
+//import pl.krzysiek.dao.IReadyMealsRepository;
+//import pl.krzysiek.dao.IRodsRepository;
+//import pl.krzysiek.domain.ReadyMeal;
+//import pl.krzysiek.domain.ReadyMealDetails;
+//import pl.krzysiek.domain.Rod;
+//import pl.krzysiek.services.FoodIngredientsService;
+//import pl.krzysiek.services.RodService;
+//
+//import javax.transaction.Transactional;
+//import java.sql.SQLException;
+//import java.util.*;
+//
+//import static org.springframework.web.bind.annotation.RequestMethod.GET;
+//
+//@Transactional
+//@RestController
+//public class RodsApi {
+//
+//
+//    @Autowired
+//    RodService rodsService;
+//
+//    @Autowired
+//    IRodsRepository listRepository;
+//
+//    @Autowired
+//    FoodIngredientsService foodIngredientsService;
+//
+//    @Autowired
+//    IReadyMealsRepository readyMealsRepository;
+//
+//    @RequestMapping("/")
+//    public String index() {
+//        return "Wszystko dziala ;-)";
+//    }
+//
+//    @RequestMapping(value ="/take-meals", method = GET)
+//    public Iterable<ReadyMeal> getReadyMeals() throws SQLException{
+//        return readyMealsRepository.findAll();
+//    }
+//
+//    @RequestMapping(value = "/add-ready-meal", method = GET)
+//        public ReadyMeal addReadyMeal(){
+//
+//            ReadyMeal readyMeal = new ReadyMeal();
+//
+//            readyMeal.setTitle("Testowy posilek krzycha");
+//            readyMeal.setDescription("ble ergijrgjndsfjgrjigr");
+//            readyMeal.setAccountByUserId(1);
+//            readyMeal.setMealId(1);
+//
+//
+//            List<ReadyMealDetails> readyMealDetails = new ArrayList<ReadyMealDetails>();
+//
+//            ReadyMealDetails readyMealDetails1 = new ReadyMealDetails();
+//            readyMealDetails1.setMeal_id(readyMeal.getMeal_id());
+//            readyMealDetails1.setid(15);
+//            readyMealDetails1.setGrams_portion(60);
+//
+//            ReadyMealDetails readyMealDetails2 = new ReadyMealDetails();
+//            readyMealDetails2.setMeal_id(readyMeal.getMeal_id());
+//            readyMealDetails2.setid(16);
+//            readyMealDetails2.setGrams_portion(50);
+//
+//            readyMealDetails.add(readyMealDetails1);
+//            readyMealDetails.add(readyMealDetails2);
+//
+//            readyMeal.setReadyMealDetails(readyMealDetails);
+//
+//            return readyMealsRepository.save(readyMeal);
+//        }
+//
+//
+//
+//    @RequestMapping(value = "/rods-rest/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public Rod getRod(@PathVariable("id") int id) throws SQLException {
+//        return listRepository.findById(id);
+//    }
+//
+//    @RequestMapping(value = "/rods-rest", produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Rod> getRods() throws SQLException {
+//        return rodsService.listAll();
+//    }
+//
+//    @RequestMapping(value ="/rods-rest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Rod addRod(@RequestBody Rod rod) {
+//        Rod addedRod = listRepository.save(rod);
+//        return addedRod;
+//    }
+//
+//    @RequestMapping(value = "/rods-test", method = GET)
+//    @ResponseBody
+//    public String deleteRods(@RequestParam("id") int id) throws SQLException {
+//        listRepository.deleteById(id);
+//        return String.format("Wedka o id  #%d zostala usunieta", id);
+//    }
+//
+//    @RequestMapping(value = "/rods-test/{id}", method = RequestMethod.DELETE)
+//    @ResponseBody
+//    public String deleteRodss(@PathVariable("id") int id) throws SQLException {
+//        listRepository.deleteById(id);
+//        return String.format("Wedka o id  #%d zostala usunieta", id);
+//    }
+//
+//    @RequestMapping(value = "/rods-rest/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Rod rodToUpdate(@PathVariable("id") int id, @RequestBody Rod rod){
+//        return rodsService.rodToUpdate(id, rod);
+//    }
+//
+//    @RequestMapping(value = "/rods-update/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Rod updateRods(@RequestBody Rod rod, @PathVariable("id") int id) throws SQLException{
+//        Rod addedRod = rod;
+//        addedRod.setId(id);
+//        return listRepository.save(addedRod);
+//    }
+//
+//    @RequestMapping(value = "/extra-info", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public Rod RodsWithExtraInfo(@RequestBody Rod rod) {
+//        Rod addedRecord = rodsService.createRodWithExtraInfo(rod);
+//        return addedRecord;
+//    }
+//}

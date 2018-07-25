@@ -64,24 +64,24 @@
                 <h2>Dodawanie wędki</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('rod_brand')}" th:errors="*{rod_brand}"
+                        <label th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{rod_brand}" placeholder="Marka wędki"
+                        <input type="text" th:field="*{brand}" placeholder="Marka wędki"
                                class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('rod_model')}" th:errors="*{rod_model}"
+                        <label th:if="${#fields.hasErrors('model')}" th:errors="*{model}"
                                class="validation-message"></label>
-                        <input type="text" th:field="*{rod_model}" placeholder="Model wędki"
+                        <input type="text" th:field="*{model}" placeholder="Model wędki"
                                class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{rod_price}" placeholder="Cena wędki"
+                        <input type="text" th:field="*{price}" placeholder="Cena wędki"
                                class="form-control"/>
                     </div>
                 </div>

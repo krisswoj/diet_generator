@@ -69,11 +69,11 @@
                 <th>Operacje</th>
             </tr>
             <tr th:each="count : ${counts}">
-                <td th:text="${count.rod_id}"></td>
-                <td th:text="${count.rod_brand}"></td>
-                <td th:text="${count.rod_model}"></td>
-                <td th:text="${count.rod_price}"></td>
-                <td><a href="list.html" th:href="@{/rods-test/(id=${count.rod_id})}">Usun</a></td>
+                <td th:text="${count.id}"></td>
+                <td th:text="${count.brand}"></td>
+                <td th:text="${count.model}"></td>
+                <td th:text="${count.price}"></td>
+                <td><a href="list.html" th:href="@{/rods-test/(id=${count.id})}">Usun</a></td>
             </tr>
         </table>
     </div>

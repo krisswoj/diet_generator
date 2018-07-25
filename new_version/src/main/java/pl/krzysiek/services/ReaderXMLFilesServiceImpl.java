@@ -17,8 +17,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("ReaderXMLFiles")
-@Transactional
+@Service
+//        ("ReaderXMLFiles")
+//@Transactional
 public class ReaderXMLFilesServiceImpl implements ReaderXMLFilesService {
 
     private ReaderXMLFilesService readerXMLFilesService;

@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
-import pl.krzysiek.domain.food.FoodIngredient;
+import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReaderXMLFilesService;
 
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("food_ingredients")
+//@SessionAttributes("food_ingredients")
 public class FoodIngredientsController {
 
     @Autowired
@@ -38,8 +38,7 @@ public class FoodIngredientsController {
     @RequestMapping(value = "/add_food_ingredient", method = RequestMethod.GET)
     public ModelAndView addFood() {
         ModelAndView modelAndView = new ModelAndView();
-        FoodIngredient foodIngredient = new FoodIngredient();
-        modelAndView.addObject("food_ingredient", foodIngredient);
+        modelAndView.addObject("food_ingredient", new FoodIngredient());
         modelAndView.setViewName("food_views/add_to_list");
         return modelAndView;
     }
@@ -57,8 +56,8 @@ public class FoodIngredientsController {
     @RequestMapping(value = "/add_food_ingredient", method = RequestMethod.POST)
     public ModelAndView addFoodByXML(@RequestParam("file") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView();
-        Integer amount = foodIngredientsService.loadIngredients("none", "ingredient");
-        modelAndView.addObject("successMessage", "Do bazy dodalismy: " + amount + " skladnikow");
+        foodIngredientsService.loadIngredients("none", "ingredient");
+        modelAndView.addObject("successMessage", "Do bazy dodalismy: x skladnikow");
         modelAndView.addObject("food_ingredient", new FoodIngredient());
         modelAndView.setViewName("food_views/add_to_list");
         return modelAndView;

@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "food_ingredients", catalog = "tau")
+@Table(name = "food_ingredient", catalog = "tau")
 public class FoodIngredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ingredient_id")
-    private long ingredient_id;
+    @Column(name = "id")
+    private long id;
     private String name;
     private String description;
     private int category;
@@ -19,19 +19,19 @@ public class FoodIngredient {
     private double amount_carbs;
     private double amount_fats;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
+    private Date created_date;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDate;
+    private Date update_date;
 
     public FoodIngredient() {
     }
 
-    public long getIngredient_id() {
-        return ingredient_id;
+    public long getid() {
+        return id;
     }
 
-    public void setIngredient_id(long ingredient_id) {
-        this.ingredient_id = ingredient_id;
+    public void setid(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -90,19 +90,19 @@ public class FoodIngredient {
         this.amount_fats = amount_fats;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Date getcreated_date() {
+        return created_date;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setcreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getupdate_date() {
+        return update_date;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setupdate_date(Date update_date) {
+        this.update_date = update_date;
     }
 }
