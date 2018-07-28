@@ -13,7 +13,6 @@ import pl.krzysiek.services.CalculatorService;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("calculator")
 public class CalorieCalculatorController {
 
     @Autowired
@@ -37,7 +36,6 @@ public class CalorieCalculatorController {
     public ModelAndView calculatorOutside(){
         ModelAndView modelAndView = new ModelAndView();
         CalorieCalculator calorieCalculator = new CalorieCalculator();
-//        modelAndView.addObject("successMessage", "none");
         modelAndView.addObject("calculator", calorieCalculator);
         modelAndView.setViewName("calculator/calculator_outside");
         return modelAndView;

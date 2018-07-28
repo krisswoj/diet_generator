@@ -6,4 +6,6 @@ import pl.krzysiek.domain.FoodIngredient;
 
 @Repository
 public interface IFoodIngredientsRepository extends CrudRepository<FoodIngredient, Integer> {
+
+    FoodIngredient findById(int id);
 }

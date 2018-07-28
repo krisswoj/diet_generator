@@ -7,6 +7,7 @@ import java.util.List;
 public interface FoodIngredientsService {
 
     public List<FoodIngredient> listAll();
+    public FoodIngredient getById(int id);
     public FoodIngredient addNew(FoodIngredient foodIngredient);
     public Iterable<FoodIngredient> loadIngredients(String xmlFile, String xmlID);
 

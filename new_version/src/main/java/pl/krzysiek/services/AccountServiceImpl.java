@@ -16,8 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 
 @Service
-//        ("AccountService")
-//@Transactional
 public class AccountServiceImpl implements AccountService {
 
     @Autowired

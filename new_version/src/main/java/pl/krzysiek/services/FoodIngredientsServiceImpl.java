@@ -3,6 +3,7 @@ package pl.krzysiek.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
+import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
 
 import java.util.ArrayList;
@@ -33,6 +34,11 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
         foodIngredient.setCreatedDate(date);
         return foodIngredientsRepository.save(foodIngredient);
+    }
+
+    public FoodIngredient getById(int id) {
+        FoodIngredient acc = foodIngredientsRepository.findById(id);
+        return acc;
     }
 
     @Override

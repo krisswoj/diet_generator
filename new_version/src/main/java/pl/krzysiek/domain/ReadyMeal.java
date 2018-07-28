@@ -2,6 +2,7 @@ package pl.krzysiek.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,8 @@ public class ReadyMeal {
     private Timestamp createdDate;
     private Timestamp updateDate;
     private Account accountByUserId;
+    private List<ReadyMealDetails> readyMealDetailsList;
+    private ReadyMealDetails readyMealDetails;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,22 +68,46 @@ public class ReadyMeal {
         this.updateDate = updateDate;
     }
 
+    public ReadyMeal() {
+    }
+
+//    @OneToMany
+//    public ReadyMealDetails getReadyMealDetails() {
+//        return readyMealDetails;
+//    }
+//
+//    public void setReadyMealDetails(ReadyMealDetails readyMealDetails) {
+//        this.readyMealDetails = readyMealDetails;
+//    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    public List<ReadyMealDetails> getReadyMealDetailsList() {
+        return readyMealDetailsList;
+    }
+
+    public void setReadyMealDetailsList(List<ReadyMealDetails> readyMealDetailsList) {
+        this.readyMealDetailsList = readyMealDetailsList;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ReadyMeal)) return false;
         ReadyMeal readyMeal = (ReadyMeal) o;
-        return mealId == readyMeal.mealId &&
-                Objects.equals(title, readyMeal.title) &&
-                Objects.equals(description, readyMeal.description) &&
-                Objects.equals(createdDate, readyMeal.createdDate) &&
-                Objects.equals(updateDate, readyMeal.updateDate);
+        return getMealId() == readyMeal.getMealId() &&
+                Objects.equals(getTitle(), readyMeal.getTitle()) &&
+                Objects.equals(getDescription(), readyMeal.getDescription()) &&
+                Objects.equals(getCreatedDate(), readyMeal.getCreatedDate()) &&
+                Objects.equals(getUpdateDate(), readyMeal.getUpdateDate()) &&
+                Objects.equals(getAccountByUserId(), readyMeal.getAccountByUserId());
+//                Objects.equals(getReadyMealDetailsList(), readyMeal.getReadyMealDetailsList()) &&
+//                Objects.equals(getReadyMealDetails(), readyMeal.getReadyMealDetails());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(mealId, title, description, createdDate, updateDate);
+        return Objects.hash(getMealId(), getTitle(), getDescription(), getCreatedDate(), getUpdateDate(), getAccountByUserId());
     }
 
     @ManyToOne

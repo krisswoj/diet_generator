@@ -61,41 +61,57 @@
 
     <form autocomplete="off" action="#" th:action="@{/create_meal}"
           th:object="${ingredientsForm}" method="post" class="form-horizontal" role="form">
-        <div th:if="${not #lists.isEmpty(ingredientsList)}">
-            <h2>Przygotuj posiłek</h2>
-            <table class="table table-striped">
-                <tr>
-                    <th>ID</th>
-                    <th>Nazwa</th>
-                    <th>Ilość g białka</th>
-                    <th>Ilość g węgli</th>
-                    <th>Ilość g tłuszczu</th>
-                    <th>Twoja porcja</th>
-                </tr>
-                <tr th:each="count : ${ingredientsList}">
-                    <td th:text="${count.id}"><input type="hidden" th:field="*{id}" th:value="${ingredients.id}"></td>
+
+        <h2>Przygotuj posiłek</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Ilość g białka</th>
+                <th>Ilość g węgli</th>
+                <th>Ilość g tłuszczu</th>
+                <th>Twoja porcja</th>
+            </tr>
+            <tr th:each="count : ${ingredientsList}">
+                <div th:each="ingredientsForm : ${ingredientsForm}">
+
+                    <td th:text="${count.id}"></td>
+                    <input type="hidden" name="food_ingredient_id" id="food_ingredient_id" th:value="${count.id}"
+                           class="form-control"/>
                     <td th:text="${count.name}"></td>
+                    <td th:text="${count.description}"></td>
                     <td th:text="${count.amountProtins}"></td>
                     <td th:text="${count.amountCarbs}"></td>
                     <td th:text="${count.amountFats}"></td>
-                    <td><input type="text" th:field="*{a}" placeholder="Zawartość tłuszczy na 100g produktu"
-                               class="form-control"/>
-                        </td>
-                    <!--<td><a href="list.html" th:href="@{/rods-test/(id=${count.id})}">Usun</a></td>-->
-                </tr>
-            </table>
-        </div>
+                    <td><input type="text" name="gramsPortion" id="gramsPortion" value="0" class="form-control"/></td>
+                </div>
+            </tr>
 
+            <!--###############Moje próby wyświetlenia tabeli w tabeli, oraz za pomocą thymeleaf - bezskutecznie.##############-->
+            <!--<span th:each="ingredientsForm, stat : *{readyMealDetailsList}">-->
+            <!--<tr th:each="count : ${ingredientsList}">-->
+            <!--<div th:each="ingredientsForm, stat: ${ingredientsFormList}">-->
+            <!--<td th:text="${count.id}">-->
+            <!--<td th:text="${count.name}"></td>-->
+            <!--<td th:text="${count.amountProtins}"></td>-->
+            <!--<td th:text="${count.amountCarbs}"></td>-->
+            <!--<td th:text="${count.amountFats}"></td>-->
+            <!--<input type="text" th:field="*{readyMealDetailsList[__${stat.index}__].gramsPortion}"/>-->
+            <!--<td><input type="text" th:field="*{readyMealDetails.gramsPortion}" placeholder="Wprowadz wage produktu" class="form-control"/>-->
+            <!--</span>-->
+
+        </table>
 
         <div class="form-group">
             <div class="col-sm-9">
                 <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
             </div>
         </div>
+        <!--</div>-->
     </form>
 
 </div>
-
 <footer class="footer">
     <div class="container">
         <span class="text-muted">TAU</span>
