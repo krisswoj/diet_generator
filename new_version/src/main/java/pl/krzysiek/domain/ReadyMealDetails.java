@@ -1,5 +1,7 @@
 package pl.krzysiek.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -49,6 +51,7 @@ public class ReadyMealDetails {
 
     @ManyToOne
     @JoinColumn(name = "meal_id", referencedColumnName = "meal_id")
+    @JsonBackReference
     public ReadyMeal getReadyMealByMealId() {
         return readyMealByMealId;
     }
@@ -59,6 +62,7 @@ public class ReadyMealDetails {
 
     @ManyToOne
     @JoinColumn(name = "food_ingredient_id", referencedColumnName = "id")
+    @JsonBackReference
     public FoodIngredient getFoodIngredientByFoodIngredientId() {
         return foodIngredientByFoodIngredientId;
     }

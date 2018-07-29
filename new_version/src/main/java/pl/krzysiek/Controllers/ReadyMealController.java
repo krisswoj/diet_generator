@@ -3,6 +3,7 @@ package pl.krzysiek.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,8 +20,11 @@ import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReadyMealService;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 public class ReadyMealController {
@@ -40,15 +44,9 @@ public class ReadyMealController {
     @Autowired
     IAccountRepository accountRepository;
 
-    @RequestMapping(value = "/create_meal", method = RequestMethod.GET)
+    @RequestMapping(value = "/create_meal", method = GET)
     public ModelAndView createMealForm() {
         ModelAndView modelAndView = new ModelAndView();
-
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        Account account = new Account();
-//        account = accountRepository.findByName(auth.getName());
-//        System.out.println("co wydrukuje auth get name user id: " + account.getUserId() + " a teraz email: " + account.getEmail());
-
         modelAndView.addObject("ingredientsList", foodIngredientsService.listAll());
         modelAndView.addObject("ingredientsForm", new ReadyMeal());
         modelAndView.setViewName("food_views/create_meal_form");
@@ -60,23 +58,31 @@ public class ReadyMealController {
                                         @RequestParam("gramsPortion") Integer[] gramsPortion,
                                         @RequestParam("food_ingredient_id") Integer[] food_ingredient_id)  {
         ModelAndView modelAndView = new ModelAndView();
-
         modelAndView.addObject("ingredientsForm", new ReadyMeal());
         modelAndView.addObject("ingredientsList", foodIngredientsService.listAll());
-
-        Account account = new Account();
-        account.setUserId(5);
-
-        readyMeal.setAccountByUserId(account);
-
-        readyMeal.setTitle("Przykladowy danie numer 2");
-        readyMeal.setDescription("Przykladowy opis dla dania numer 2");
-
         readyMeal.setReadyMealDetailsList(readyMealService.converterDataFromForm(gramsPortion, food_ingredient_id));
 
-        readyMealsRepository.save(readyMeal);
-
+        if(readyMealService.saveReadyMeal(readyMeal)){
+            modelAndView.addObject("message", "Danie dodano do bazy danych");
+        }
+        else{
+            modelAndView.addObject("message", "Przepraszamy, danie nie zostalo dodane - sprobuj ponownie");
+        }
         modelAndView.setViewName("food_views/create_meal_form");
         return modelAndView;
     }
+
+//    @RequestMapping(value = "/show_all_meals", method = GET)
+//    public ModelAndView showReadyMeals(){
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("readyMealsList", readyMealsRepository.findAll());
+//
+//        return modelAndView;
+//    }
+
+//    @RequestMapping(value ="/take-meals", method = GET)
+//    public Iterable<ReadyMeal> getReadyMeals() throws SQLException {
+//        return readyMealsRepository.findAll();
+//    }
 }

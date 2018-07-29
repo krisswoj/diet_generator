@@ -1,5 +1,8 @@
 package pl.krzysiek.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -18,12 +21,14 @@ public class Account {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonBackReference
     public Set<Role> getRoles() { return roles; }
 
     public void setRoles(Set<Role> roles) { this.roles = roles; }
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonManagedReference
     public List<ReadyMeal> getReadyMeals() { return readyMeals; }
 
     public void setReadyMeals(List<ReadyMeal> readyMeals) { this.readyMeals = readyMeals; }

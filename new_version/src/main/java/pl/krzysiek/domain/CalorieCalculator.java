@@ -1,5 +1,7 @@
 package pl.krzysiek.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -157,6 +159,7 @@ public class CalorieCalculator {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @JsonBackReference
     public Account getAccountByUserId() {
         return accountByUserId;
     }

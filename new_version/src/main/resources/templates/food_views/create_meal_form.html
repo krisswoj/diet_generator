@@ -63,7 +63,24 @@
           th:object="${ingredientsForm}" method="post" class="form-horizontal" role="form">
 
         <h2>Przygotuj posiłek</h2>
+
+        <div class="form-group">
+            <span th:utext="${message}"></span>
+            <div class="col-sm-9">
+                <input type="text" th:field="*{title}" placeholder="Nazwa składnika"
+                       class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"
+                       class="form-control"/>
+            </div>
+        </div>
+
         <table class="table table-striped">
+
             <tr>
                 <th>ID</th>
                 <th>Nazwa</th>

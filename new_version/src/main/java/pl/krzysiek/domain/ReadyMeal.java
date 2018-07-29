@@ -1,5 +1,8 @@
 package pl.krzysiek.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
@@ -71,16 +74,8 @@ public class ReadyMeal {
     public ReadyMeal() {
     }
 
-//    @OneToMany
-//    public ReadyMealDetails getReadyMealDetails() {
-//        return readyMealDetails;
-//    }
-//
-//    public void setReadyMealDetails(ReadyMealDetails readyMealDetails) {
-//        this.readyMealDetails = readyMealDetails;
-//    }
-
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonManagedReference
     public List<ReadyMealDetails> getReadyMealDetailsList() {
         return readyMealDetailsList;
     }
@@ -111,6 +106,7 @@ public class ReadyMeal {
     }
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     public Account getAccountByUserId() {
         return accountByUserId;
