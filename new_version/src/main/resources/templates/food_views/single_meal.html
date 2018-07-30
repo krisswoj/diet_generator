@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logowanie</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{css/form-validation.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/#">Fixed navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./add_rod">Dodaj wędkę</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./show_rods">Lista wędek</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./show_food_ingredients">Pokaż składniki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./add_food_ingredient">Dodaj składnik</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./calculator">Kalkulator kalorii</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-danger btn-block" name="registration"
+                                type="Submit">Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            <h2>Szczegóły posiłku</h2>
+            <fieldset disabled>
+                <div class="form-group">
+                    <label>Nazwa dania</label>
+                    <input type="text" class="form-control" th:value="${readyMealInfo.title}">
+                </div>
+            </fieldset>
+
+            <fieldset disabled>
+                <div class="form-group">
+                    <label>Opis dania</label>
+                    <textarea type="text" class="form-control" th:field="*{readyMealInfo.description}"
+                              rows="2"></textarea>
+                </div>
+            </fieldset>
+
+
+            <div class="mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Niezbędne składniki</span>
+                </h4>
+                <ul class="list-group mb-3" th:each="count : ${readyMealInfo.readyMealDetailsList}">
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0" th:text="${count.foodIngredientByFoodIngredientId.name}"></h6>
+                            <small class="text-muted"
+                                   th:text="'Węglowodany: '+${ #numbers.formatDecimal((count.gramsPortion * (count.foodIngredientByFoodIngredientId.amountCarbs/10)/10),1,1) + ' g | Białko: '
+                                   + #numbers.formatDecimal((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountProtins/10)/10),1,1) + ' g | Tłuszcze: '
+                                   + #numbers.formatDecimal((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountFats/10)/10),1,1) + ' g | ' +
+                                   #numbers.formatDecimal(((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountCarbs/10)/10)*calories.carbsCalories())+
+                                   ((count.gramsPortion * (count.foodIngredientByFoodIngredientId.amountProtins/10)/10)*calories.protinsCalories())+
+                                   ((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountFats/10)/10)*calories.fatCalories()),1,1) +' kcal'}"></small>
+                        </div>
+                        <span class="text-muted"
+                              th:text="${#numbers.formatDecimal(count.gramsPortion, 1, 1)} +' gram'"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-4">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Podsumowanie</span>
+                </h4>
+                <table class="table table-borderless">
+                    <thead>
+                    <tr>
+                        <th scope="col">Węglowodany</th>
+                        <th scope="col">Białko</th>
+                        <th scope="col">Tłuszcze</th>
+                        <th scope="col">Kcal</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>112 g</td>
+                        <td>87 g</td>
+                        <td>233 g</td>
+                        <td>833 kcal</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <fieldset disabled>
+                <div class="form-group">
+                    <label>Data dodania</label>
+                    <input type="text" class="form-control" th:value="${readyMealInfo.createdDate}">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">TAU</span>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{css/jquery-3.3.1.slim.min.js}"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script th:src="@{css/popper.min.js}"></script>
+<script th:src="@{css/bootstrap.min.js}"></script>
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "ready_meal_details", schema = "tau", catalog = "")
 public class ReadyMealDetails {
     private int id;
-    private Integer gramsPortion;
+    private Double gramsPortion;
     private ReadyMeal readyMealByMealId;
     private FoodIngredient foodIngredientByFoodIngredientId;
 
@@ -26,11 +26,11 @@ public class ReadyMealDetails {
 
     @Basic
     @Column(name = "grams_portion")
-    public Integer getGramsPortion() {
+    public Double getGramsPortion() {
         return gramsPortion;
     }
 
-    public void setGramsPortion(Integer gramsPortion) {
+    public void setGramsPortion(Double gramsPortion) {
         this.gramsPortion = gramsPortion;
     }
 

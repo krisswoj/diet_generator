@@ -55,9 +55,9 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
             foodIngredient.setDescription(list2.get(1));
             foodIngredient.setCategory(Integer.parseInt(list2.get(2)));
             foodIngredient.setSubcategory(Integer.parseInt(list2.get(3)));
-            foodIngredient.setAmountProtins(Integer.parseInt(list2.get(4)));
-            foodIngredient.setAmountCarbs(Integer.parseInt(list2.get(5)));
-            foodIngredient.setAmountFats(Integer.parseInt(list2.get(6)));
+            foodIngredient.setAmountProtins(Double.parseDouble(list2.get(4)));
+            foodIngredient.setAmountCarbs(Double.parseDouble(list2.get(5)));
+            foodIngredient.setAmountFats(Double.parseDouble(list2.get(6)));
 
             foodIngredientList.add(foodIngredient);
         }

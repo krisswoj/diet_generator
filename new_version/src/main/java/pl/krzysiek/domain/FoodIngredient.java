@@ -2,7 +2,6 @@ package pl.krzysiek.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,9 +12,9 @@ public class FoodIngredient {
     private String description;
     private Integer category;
     private Integer subcategory;
-    private Integer amountProtins;
-    private Integer amountCarbs;
-    private Integer amountFats;
+    private Double amountProtins;
+    private Double amountCarbs;
+    private Double amountFats;
     private Timestamp createdDate;
     private Timestamp updateDate;
 
@@ -72,31 +71,31 @@ public class FoodIngredient {
 
     @Basic
     @Column(name = "amount_protins")
-    public Integer getAmountProtins() {
+    public Double getAmountProtins() {
         return amountProtins;
     }
 
-    public void setAmountProtins(Integer amountProtins) {
+    public void setAmountProtins(Double amountProtins) {
         this.amountProtins = amountProtins;
     }
 
     @Basic
     @Column(name = "amount_carbs")
-    public Integer getAmountCarbs() {
+    public Double getAmountCarbs() {
         return amountCarbs;
     }
 
-    public void setAmountCarbs(Integer amountCarbs) {
+    public void setAmountCarbs(Double amountCarbs) {
         this.amountCarbs = amountCarbs;
     }
 
     @Basic
     @Column(name = "amount_fats")
-    public Integer getAmountFats() {
+    public Double getAmountFats() {
         return amountFats;
     }
 
-    public void setAmountFats(Integer amountFats) {
+    public void setAmountFats(Double amountFats) {
         this.amountFats = amountFats;
     }
 
@@ -119,6 +118,15 @@ public class FoodIngredient {
     public void setUpdateDate(Timestamp updateDate) {
         this.updateDate = updateDate;
     }
+
+//    @Basic
+//    public FoodIngredientCalories getFoodIngredientCalories() {
+//        return foodIngredientCalories;
+//    }
+//
+//    public void setFoodIngredientCalories(FoodIngredientCalories foodIngredientCalories) {
+//        this.foodIngredientCalories = foodIngredientCalories;
+//    }
 
     @Override
     public boolean equals(Object o) {

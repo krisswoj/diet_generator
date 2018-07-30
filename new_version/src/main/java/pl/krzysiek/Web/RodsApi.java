@@ -8,6 +8,7 @@ import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
 import pl.krzysiek.domain.Rod;
+import pl.krzysiek.services.FoodIngredientCaloriesService;
 import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReadyMealService;
 import pl.krzysiek.services.RodService;
@@ -38,6 +39,9 @@ public class RodsApi {
     @Autowired
     ReadyMealService readyMealService;
 
+    @Autowired
+    FoodIngredientCaloriesService foodIngredientCaloriesService;
+
     @RequestMapping("/")
     public String index() {
         return "Wszystko dziala ;-)";
@@ -48,44 +52,11 @@ public class RodsApi {
         return readyMealService.findAlle();
     }
 
-    @RequestMapping(value = "/take_meal/{id}", method = RequestMethod.GET)
-    public ReadyMeal getReadReal(@PathVariable("id") int id){
-        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
-        return readyMeal;
-    }
-
-
-//    @RequestMapping(value = "/add-ready-meal", method = GET)
-//        public ReadyMeal addReadyMeal(){
-//
-//            ReadyMeal readyMeal = new ReadyMeal();
-//
-//            readyMeal.setTitle("Testowy posilek krzycha");
-//            readyMeal.setDescription("ble ergijrgjndsfjgrjigr");
-//            readyMeal.setAccountByUserId(1);
-//            readyMeal.setMealId(1);
-//
-//
-//            List<ReadyMealDetails> readyMealDetails = new ArrayList<ReadyMealDetails>();
-//
-//            ReadyMealDetails readyMealDetails1 = new ReadyMealDetails();
-//            readyMealDetails1.setMeal_id(readyMeal.getMeal_id());
-//            readyMealDetails1.setid(15);
-//            readyMealDetails1.setGrams_portion(60);
-//
-//            ReadyMealDetails readyMealDetails2 = new ReadyMealDetails();
-//            readyMealDetails2.setMeal_id(readyMeal.getMeal_id());
-//            readyMealDetails2.setid(16);
-//            readyMealDetails2.setGrams_portion(50);
-//
-//            readyMealDetails.add(readyMealDetails1);
-//            readyMealDetails.add(readyMealDetails2);
-//
-//            readyMeal.setReadyMealDetails(readyMealDetails);
-//
-//            return readyMealsRepository.save(readyMeal);
-//        }
-
+//    @RequestMapping(value = "/take_meal/{id}", method = RequestMethod.GET)
+//    public ReadyMeal getReadReal(@PathVariable("id") int id){
+//        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
+//        return readyMeal;
+//    }
 
 
     @RequestMapping(value = "/rods-rest/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

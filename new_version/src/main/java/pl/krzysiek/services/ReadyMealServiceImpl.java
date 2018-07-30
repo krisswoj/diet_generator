@@ -23,7 +23,7 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     IReadyMealsRepository readyMealsRepository;
 
     @Override
-    public List<ReadyMealDetails> converterDataFromForm(Integer[] gramsPortion, Integer[] food_ingredient_id) {
+    public List<ReadyMealDetails> converterDataFromForm(Double[] gramsPortion, Integer[] food_ingredient_id) {
         List<ReadyMealDetails> readyMealDetailsList = new ArrayList<ReadyMealDetails>();
 
         for(int i = 0; i<food_ingredient_id.length; i++){
