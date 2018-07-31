@@ -10,6 +10,11 @@ public class FoodIngredientCalories {
     private String foodIngredientType;
     private int foodIngredientCalories;
 
+//    private Double carbsAmountStatic;
+//    private Double protinsAmountStatic;
+//    private Double fatsAmountStatic;
+//    private Double caloriesAmountStatic;
+
     @Id
     @Column(name = "idfood_ingredient_calories")
     public int getIdfoodIngredientCalories() {
@@ -55,4 +60,36 @@ public class FoodIngredientCalories {
 
         return Objects.hash(idfoodIngredientCalories, foodIngredientType, foodIngredientCalories);
     }
+
+//    public Double getCarbsAmountStatic() {
+//        return carbsAmountStatic;
+//    }
+//
+//    public void setCarbsAmountStatic(Double carbsAmountStatic) {
+//        this.carbsAmountStatic = carbsAmountStatic;
+//    }
+//
+//    public Double getProtinsAmountStatic() {
+//        return protinsAmountStatic;
+//    }
+//
+//    public void setProtinsAmountStatic(Double protinsAmountStatic) {
+//        this.protinsAmountStatic = protinsAmountStatic;
+//    }
+//
+//    public Double getFatsAmountStatic() {
+//        return fatsAmountStatic;
+//    }
+//
+//    public void setFatsAmountStatic(Double fatsAmountStatic) {
+//        this.fatsAmountStatic = fatsAmountStatic;
+//    }
+//
+//    public Double getCaloriesAmountStatic() {
+//        return caloriesAmountStatic;
+//    }
+//
+//    public void setCaloriesAmountStatic(Double caloriesAmountStatic) {
+//        this.caloriesAmountStatic = caloriesAmountStatic;
+//    }
 }

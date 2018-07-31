@@ -1,10 +1,12 @@
-package pl.krzysiek.services;
+package pl.krzysiek.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
+import pl.krzysiek.services.FoodIngredientsService;
+import pl.krzysiek.services.ReaderXMLFilesService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -89,12 +89,10 @@
                         <div>
                             <h6 class="my-0" th:text="${count.foodIngredientByFoodIngredientId.name}"></h6>
                             <small class="text-muted"
-                                   th:text="'Węglowodany: '+${ #numbers.formatDecimal((count.gramsPortion * (count.foodIngredientByFoodIngredientId.amountCarbs/10)/10),1,1) + ' g | Białko: '
-                                   + #numbers.formatDecimal((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountProtins/10)/10),1,1) + ' g | Tłuszcze: '
-                                   + #numbers.formatDecimal((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountFats/10)/10),1,1) + ' g | ' +
-                                   #numbers.formatDecimal(((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountCarbs/10)/10)*calories.carbsCalories())+
-                                   ((count.gramsPortion * (count.foodIngredientByFoodIngredientId.amountProtins/10)/10)*calories.protinsCalories())+
-                                   ((count.gramsPortion*(count.foodIngredientByFoodIngredientId.amountFats/10)/10)*calories.fatCalories()),1,1) +' kcal'}"></small>
+                                   th:text="'Węglowodany: '+${ #numbers.formatDecimal((calories.carbsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountCarbs)),1,1)
+                                   + ' g | Białko: '+ #numbers.formatDecimal((calories.protinsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountProtins)),1,1)
+                                   + ' g | Tłuszcze: '+ #numbers.formatDecimal((calories.fatGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountFats)),1,1)
+                                   + ' g | ' + #numbers.formatDecimal((calories.kcalAmount(count.gramsPortion, count.foodIngredientByFoodIngredientId.amountCarbs, count.foodIngredientByFoodIngredientId.amountProtins, count.foodIngredientByFoodIngredientId.amountFats)),1,1) +' kcal'}"></small>
                         </div>
                         <span class="text-muted"
                               th:text="${#numbers.formatDecimal(count.gramsPortion, 1, 1)} +' gram'"></span>
@@ -117,10 +115,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>112 g</td>
-                        <td>87 g</td>
-                        <td>233 g</td>
-                        <td>833 kcal</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>

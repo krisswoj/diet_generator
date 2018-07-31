@@ -1,4 +1,4 @@
-package pl.krzysiek.services;
+package pl.krzysiek.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,6 +8,7 @@ import pl.krzysiek.dao.IAccountRepository;
 import pl.krzysiek.dao.IRoleRepository;
 import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.Role;
+import pl.krzysiek.services.AccountService;
 
 
 import java.util.ArrayList;

@@ -1,10 +1,11 @@
-package pl.krzysiek.services;
+package pl.krzysiek.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.Rod;
+import pl.krzysiek.services.RodService;
 
 import java.util.ArrayList;
 import java.util.List;

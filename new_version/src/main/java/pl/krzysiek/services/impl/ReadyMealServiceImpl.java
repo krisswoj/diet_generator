@@ -1,4 +1,4 @@
-package pl.krzysiek.services;
+package pl.krzysiek.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,6 +10,7 @@ import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
+import pl.krzysiek.services.ReadyMealService;
 
 import java.util.ArrayList;
 import java.util.List;
