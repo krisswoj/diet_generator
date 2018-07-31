@@ -18,7 +18,6 @@ public class ReadyMeal {
     private Timestamp updateDate;
     private Account accountByUserId;
     private List<ReadyMealDetails> readyMealDetailsList;
-    private ReadyMealDetails readyMealDetails;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,8 +94,6 @@ public class ReadyMeal {
                 Objects.equals(getCreatedDate(), readyMeal.getCreatedDate()) &&
                 Objects.equals(getUpdateDate(), readyMeal.getUpdateDate()) &&
                 Objects.equals(getAccountByUserId(), readyMeal.getAccountByUserId());
-//                Objects.equals(getReadyMealDetailsList(), readyMeal.getReadyMealDetailsList()) &&
-//                Objects.equals(getReadyMealDetails(), readyMeal.getReadyMealDetails());
     }
 
     @Override

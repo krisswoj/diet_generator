@@ -115,10 +115,10 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td th:text="${#numbers.formatDecimal(calories.totalCarbsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                        <td th:text="${#numbers.formatDecimal(calories.totalProtinsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                        <td th:text="${#numbers.formatDecimal(calories.totalFatsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                        <td th:text="${#numbers.formatDecimal(calories.totalKcalGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' kcal'}"></td>
                     </tr>
                     </tbody>
                 </table>
