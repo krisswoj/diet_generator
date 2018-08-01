@@ -92,7 +92,8 @@
                                    th:text="'Węglowodany: '+${ #numbers.formatDecimal((calories.carbsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountCarbs)),1,1)
                                    + ' g | Białko: '+ #numbers.formatDecimal((calories.protinsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountProtins)),1,1)
                                    + ' g | Tłuszcze: '+ #numbers.formatDecimal((calories.fatGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountFats)),1,1)
-                                   + ' g | ' + #numbers.formatDecimal((calories.kcalAmount(count.gramsPortion, count.foodIngredientByFoodIngredientId.amountCarbs, count.foodIngredientByFoodIngredientId.amountProtins, count.foodIngredientByFoodIngredientId.amountFats)),1,1) +' kcal'}"></small>
+                                   + ' g | ' + #numbers.formatDecimal((calories.kcalAmount(count.gramsPortion, count.foodIngredientByFoodIngredientId.amountCarbs, count.foodIngredientByFoodIngredientId.amountProtins,
+                                   count.foodIngredientByFoodIngredientId.amountFats)),1,1) +' kcal'}"></small>
                         </div>
                         <span class="text-muted"
                               th:text="${#numbers.formatDecimal(count.gramsPortion, 1, 1)} +' gram'"></span>

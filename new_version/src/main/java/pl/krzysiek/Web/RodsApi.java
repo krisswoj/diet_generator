@@ -3,8 +3,10 @@ package pl.krzysiek.Web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.dao.IReadyMealsRepository;
 import pl.krzysiek.dao.IRodsRepository;
+import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
 import pl.krzysiek.domain.Rod;
@@ -32,6 +34,9 @@ public class RodsApi {
 
     @Autowired
     FoodIngredientsService foodIngredientsService;
+
+    @Autowired
+    IFoodIngredientsRepository foodIngredientsRepository;
 
     @Autowired
     IReadyMealsRepository readyMealsRepository;
@@ -63,6 +68,12 @@ public class RodsApi {
     @ResponseBody
     public Rod getRod(@PathVariable("id") int id) throws SQLException {
         return listRepository.findById(id);
+    }
+
+    @RequestMapping(value = "/ingredients-by-id/{id}")
+    @ResponseBody
+    public List<FoodIngredient> listById(@PathVariable("id") int id) throws SQLException{
+        return foodIngredientsRepository.findAllByCategory(id);
     }
 
     @RequestMapping(value = "/rods-rest", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -68,10 +68,10 @@ public class ReadyMealController {
     }
 
     @RequestMapping(value = "/take-meal", method = RequestMethod.GET)
-    public ModelAndView getReadReal(){
+    public ModelAndView getReadReal(@RequestParam("id") int id){
         ModelAndView modelAndView = new ModelAndView();
         //@RequestParam("id") int id
-        ReadyMeal readyMeal = readyMealsRepository.findByMealId(39);
+        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
         modelAndView.addObject("readyMealInfo", readyMeal);
         modelAndView.addObject("calories", foodIngredientCaloriesService);
         modelAndView.setViewName("food_views/single_meal");

@@ -79,6 +79,20 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="col-sm-9">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="category" id="1" th:value="1" th:checked="*{category}"> Danie główne
+                    </label>
+                    <label class="btn btn-outline-primary">
+                        <input type="radio" name="category" id="2" autocomplete="off" th:value="2" th:checked="*{category}"> Danie dodatkowe
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
         <table class="table table-striped">
 
             <tr>
@@ -101,7 +115,8 @@
                     <td th:text="${count.amountProtins}"></td>
                     <td th:text="${count.amountCarbs}"></td>
                     <td th:text="${count.amountFats}"></td>
-                    <td><input type="text" name="gramsPortion" id="gramsPortion" value="0" class="form-control"/></td>
+                    <td><input type="text" name="gramsPortion" id="gramsPortion" value="0" class="form-control"/>
+                    </td>
                 </div>
             </tr>
 
@@ -117,7 +132,6 @@
             <!--<input type="text" th:field="*{readyMealDetailsList[__${stat.index}__].gramsPortion}"/>-->
             <!--<td><input type="text" th:field="*{readyMealDetails.gramsPortion}" placeholder="Wprowadz wage produktu" class="form-control"/>-->
             <!--</span>-->
-
         </table>
 
         <div class="form-group">

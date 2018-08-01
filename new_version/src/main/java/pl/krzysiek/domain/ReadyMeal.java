@@ -12,6 +12,7 @@ import java.util.Objects;
 @Table(name = "ready_meal", schema = "tau", catalog = "")
 public class ReadyMeal {
     private int mealId;
+    private Integer category;
     private String title;
     private String description;
     private Timestamp createdDate;
@@ -39,6 +40,12 @@ public class ReadyMeal {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Basic
+    @Column(name = "category")
+    public Integer getCategory() { return category; }
+
+    public void setCategory(Integer category) { this.category = category; }
 
     @Basic
     @Column(name = "description")
@@ -93,13 +100,14 @@ public class ReadyMeal {
                 Objects.equals(getDescription(), readyMeal.getDescription()) &&
                 Objects.equals(getCreatedDate(), readyMeal.getCreatedDate()) &&
                 Objects.equals(getUpdateDate(), readyMeal.getUpdateDate()) &&
+                Objects.equals(getCategory(), readyMeal.getCategory()) &&
                 Objects.equals(getAccountByUserId(), readyMeal.getAccountByUserId());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getMealId(), getTitle(), getDescription(), getCreatedDate(), getUpdateDate(), getAccountByUserId());
+        return Objects.hash(getMealId(), getTitle(), getDescription(), getCreatedDate(), getUpdateDate(), getAccountByUserId(), getCategory());
     }
 
     @ManyToOne
