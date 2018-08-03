@@ -12,19 +12,22 @@ import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReaderXMLFilesService;
 
 import javax.validation.Valid;
+import java.util.List;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
-//@SessionAttributes("food_ingredients")
 public class FoodIngredientsController {
 
     @Autowired
     private FoodIngredientsService foodIngredientsService;
 
-    @Autowired
-    private IFoodIngredientsRepository foodIngredientsRepository;
 
-    @Autowired
-    private ReaderXMLFilesService readerXMLFilesService;
+    @RequestMapping(path="/", method=RequestMethod.GET)
+    public String goHome(){
+        return "index";
+    }
+
 
     @RequestMapping(value = "/show_food_ingredients", method = RequestMethod.GET)
     public ModelAndView showFoodIngeredients(Model model) {

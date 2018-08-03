@@ -10,12 +10,10 @@ import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
 import pl.krzysiek.domain.Rod;
-import pl.krzysiek.services.FoodIngredientCaloriesService;
-import pl.krzysiek.services.FoodIngredientsService;
-import pl.krzysiek.services.ReadyMealService;
-import pl.krzysiek.services.RodService;
+import pl.krzysiek.services.*;
 
 import javax.transaction.Transactional;
+import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -47,28 +45,33 @@ public class RodsApi {
     @Autowired
     FoodIngredientCaloriesService foodIngredientCaloriesService;
 
-    @RequestMapping("/")
-    public String index() {
-        return "Wszystko dziala ;-)";
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        return "Wszystko dziala ;-)";
+//    }
 
     @RequestMapping(value ="/take-meals", method = GET)
     public List<ReadyMeal> getReadyMeals() throws SQLException {
         return readyMealService.findAlle();
     }
 
-//    @RequestMapping(value = "/take_meal/{id}", method = RequestMethod.GET)
-//    public ReadyMeal getReadReal(@PathVariable("id") int id){
-//        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
-//        return readyMeal;
-//    }
+    @RequestMapping(path = "/ingredients-list-all", method = RequestMethod.GET)
+    public List<FoodIngredient> getFoodIngredients(){
+        return foodIngredientsService.listAll();
+    }
 
+    @RequestMapping(value = "/take_meal/{id}", method = RequestMethod.GET)
+    public ReadyMeal getReadReal(@PathVariable("id") int id){
+        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
+        return readyMeal;
+    }
 
     @RequestMapping(value = "/rods-rest/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public Rod getRod(@PathVariable("id") int id) throws SQLException {
         return listRepository.findById(id);
     }
+
 
     @RequestMapping(value = "/ingredients-by-id/{id}")
     @ResponseBody
