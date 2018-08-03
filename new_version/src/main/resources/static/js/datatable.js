@@ -11,7 +11,23 @@ $(document).ready(function () {
             {"mData": "amountCarbs"},
             {"mData": "amountFats"}
         ],
-        
+        "oLanguage": {
+            "sProcessing": "Dane są przetwarzane...",
+            "sLengthMenu": "Ilość pozycji na stronie _MENU_",
+            "sZeroRecords": "Brak danych do wyświetlenia",
+            "sInfo": "Pozycja _START_ z _END_ na _TOTAL_",
+            "sInfoEmpty": "Strona 0 na 0 na wpisów  0",
+            "sInfoFiltered": "(Wyfiltrowano z  _MAX_ rekordów)",
+            "sInfoPostFix": "",
+            "sSearch": "Szukaj:",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "Pierwsza",
+                "sPrevious": "Cofnij",
+                "sNext": "Dalej",
+                "sLast": "Cofnij",
+            }
+        },
         initComplete: function () {
             this.api().columns().every(function () {
                 var column = this;
