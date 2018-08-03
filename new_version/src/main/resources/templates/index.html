@@ -1,44 +1,129 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8" />
-	<title>Spring Boot + JPA + Datatables</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-	<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-	<script src="/js/datatable.js"></script>
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>none</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
+    <script src="/js/datatable.js"></script>
+
+</head>
+<!--<nav class="navbar-collapse collapse">-->
+<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"-->
+<!--aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--<span class="navbar-toggler-icon"></span>-->
+<!--</button>-->
+<!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--<ul class="navbar-nav mr-auto">-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_rod">Dodaj wędkę</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_rods">Lista wędek</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_food_ingredients">Pokaż składniki</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_food_ingredient">Dodaj składnik</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./calculator">Kalkulator kalorii</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<form th:action="@{/logout}" method="get">-->
+<!--<button class="btn btn-md btn-danger btn-block" name="registration"-->
+<!--type="Submit">Logout-->
+<!--</button>-->
+<!--</form>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+<header>
+    <nav class="navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </nav>
+</header>
 <body>
-	<h1>Employees Table</h1>
-	<table id="ingredientsTable" class="display">
-      
-       <!-- Header Table -->
-       <thead>
-            <tr>
-                <th>Id</th>
-				<th>Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Active</th>
-            </tr>
+<div class="col-md-12">
+    <h2>Employees Table</h2>
+    <table id="ingredientsTable" class="display">
+
+        <!-- Header Table -->
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>description</th>
+            <th>category</th>
+            <th>amountProtins</th>
+            <th>amountCarbs</th>
+            <th>amountFats</th>
+        </tr>
         </thead>
         <!-- Footer Table -->
         <tfoot>
-            <tr>
-                <th>Id</th>
-				<th>Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Active</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>description</th>
+            <th>category</th>
+            <th>amountProtins</th>
+            <th>amountCarbs</th>
+            <th>amountFats</th>
+        </tr>
         </tfoot>
     </table>
-    
+</div>
+
+
+<footer class="footer"></footer>
+
+
 </body>
 </html>
