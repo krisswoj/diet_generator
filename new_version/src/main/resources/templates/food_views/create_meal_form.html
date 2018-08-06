@@ -1,3 +1,172 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--<meta name="description" content="">-->
+<!--<meta name="author" content="">-->
+
+<!--<title>Logowanie</title>-->
+
+<!--&lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--<link th:href="@{css/bootstrap.min.css}" rel="stylesheet">-->
+
+<!--&lt;!&ndash; Custom styles for this template &ndash;&gt;-->
+<!--<link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--<header>-->
+<!--&lt;!&ndash; Fixed navbar &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">-->
+<!--<a class="navbar-brand" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/#">Fixed navbar</a>-->
+<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"-->
+<!--aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--<span class="navbar-toggler-icon"></span>-->
+<!--</button>-->
+<!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--<ul class="navbar-nav mr-auto">-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_rod">Dodaj wędkę</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_rods">Lista wędek</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_food_ingredients">Pokaż składniki</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_food_ingredient">Dodaj składnik</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./calculator">Kalkulator kalorii</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<form th:action="@{/logout}" method="get">-->
+<!--<button class="btn btn-md btn-danger btn-block" name="registration"-->
+<!--type="Submit">Logout-->
+<!--</button>-->
+<!--</form>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+<!--</header>-->
+
+<!--<div class="container" th:fragment="content">-->
+
+
+<!--<form autocomplete="off" action="#" th:action="@{/create_meal}"-->
+<!--th:object="${ingredientsForm}" method="post" class="form-horizontal" role="form">-->
+
+<!--<h2>Przygotuj posiłek</h2>-->
+
+<!--<div class="form-group">-->
+<!--<span th:utext="${message}"></span>-->
+<!--<div class="col-sm-9">-->
+<!--<input type="text" th:field="*{title}" placeholder="Nazwa składnika"-->
+<!--class="form-control"/>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group">-->
+<!--<div class="col-sm-9">-->
+<!--<input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"-->
+<!--class="form-control"/>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="form-group">-->
+<!--<div class="col-sm-9">-->
+<!--<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+<!--<label class="btn btn-outline-primary">-->
+<!--<input type="radio" name="category" id="1" th:value="1" th:checked="*{category}"> Danie główne-->
+<!--</label>-->
+<!--<label class="btn btn-outline-primary">-->
+<!--<input type="radio" name="category" id="2" autocomplete="off" th:value="2" th:checked="*{category}"> Danie dodatkowe-->
+<!--</label>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+<!--<table class="table table-striped">-->
+
+<!--<tr>-->
+<!--<th>ID</th>-->
+<!--<th>Nazwa</th>-->
+<!--<th>Opis</th>-->
+<!--<th>Ilość g białka</th>-->
+<!--<th>Ilość g węgli</th>-->
+<!--<th>Ilość g tłuszczu</th>-->
+<!--<th>Twoja porcja</th>-->
+<!--</tr>-->
+<!--<tr th:each="count : ${ingredientsList}">-->
+<!--<div th:each="ingredientsForm : ${ingredientsForm}">-->
+
+<!--<td th:text="${count.id}"></td>-->
+<!--<input type="hidden" name="food_ingredient_id" id="food_ingredient_id" th:value="${count.id}"-->
+<!--class="form-control"/>-->
+<!--<td th:text="${count.name}"></td>-->
+<!--<td th:text="${count.description}"></td>-->
+<!--<td th:text="${count.amountProtins}"></td>-->
+<!--<td th:text="${count.amountCarbs}"></td>-->
+<!--<td th:text="${count.amountFats}"></td>-->
+<!--<td><input type="text" name="gramsPortion" id="gramsPortion" value="0" class="form-control"/>-->
+<!--</td>-->
+<!--</div>-->
+<!--</tr>-->
+
+<!--&lt;!&ndash;###############Moje próby wyświetlenia tabeli w tabeli, oraz za pomocą thymeleaf - bezskutecznie.##############&ndash;&gt;-->
+<!--&lt;!&ndash;<span th:each="ingredientsForm, stat : *{readyMealDetailsList}">&ndash;&gt;-->
+<!--&lt;!&ndash;<tr th:each="count : ${ingredientsList}">&ndash;&gt;-->
+<!--&lt;!&ndash;<div th:each="ingredientsForm, stat: ${ingredientsFormList}">&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${count.id}">&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${count.name}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${count.amountProtins}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${count.amountCarbs}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;<td th:text="${count.amountFats}"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;<input type="text" th:field="*{readyMealDetailsList[__${stat.index}__].gramsPortion}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;<td><input type="text" th:field="*{readyMealDetails.gramsPortion}" placeholder="Wprowadz wage produktu" class="form-control"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--</table>-->
+
+<!--<div class="form-group">-->
+<!--<div class="col-sm-9">-->
+<!--<button type="submit" class="btn btn-primary btn-block">Dodaj</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</form>-->
+
+<!--</div>-->
+<!--<footer class="footer">-->
+<!--<div class="container">-->
+<!--<span class="text-muted">TAU</span>-->
+<!--</div>-->
+<!--</footer>-->
+
+<!--&lt;!&ndash; Bootstrap core JavaScript-->
+<!--================================================== &ndash;&gt;-->
+<!--&lt;!&ndash; Placed at the end of the document so the pages load faster &ndash;&gt;-->
+<!--<script th:src="@{css/jquery-3.3.1.slim.min.js}"-->
+<!--integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"-->
+<!--crossorigin="anonymous"></script>-->
+<!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>-->
+<!--<script th:src="@{css/popper.min.js}"></script>-->
+<!--<script th:src="@{css/bootstrap.min.js}"></script>-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
@@ -8,157 +177,149 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Logowanie</title>
-
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+    <title>none</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
+    <script src="/js/datatable.js"></script>
+
 </head>
-
-<body>
-
+<!--<nav class="navbar-collapse collapse">-->
+<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"-->
+<!--aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--<span class="navbar-toggler-icon"></span>-->
+<!--</button>-->
+<!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--<ul class="navbar-nav mr-auto">-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_rod">Dodaj wędkę</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_rods">Lista wędek</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./show_food_ingredients">Pokaż składniki</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./add_food_ingredient">Dodaj składnik</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="./calculator">Kalkulator kalorii</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<form th:action="@{/logout}" method="get">-->
+<!--<button class="btn btn-md btn-danger btn-block" name="registration"-->
+<!--type="Submit">Logout-->
+<!--</button>-->
+<!--</form>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
 <header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/#">Fixed navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./add_rod">Dodaj wędkę</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./show_rods">Lista wędek</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./show_food_ingredients">Pokaż składniki</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./add_food_ingredient">Dodaj składnik</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./calculator">Kalkulator kalorii</a>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{/logout}" method="get">
-                        <button class="btn btn-md btn-danger btn-block" name="registration"
-                                type="Submit">Logout
-                        </button>
-                    </form>
+    <nav class="navbar-inverse">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
                 </li>
             </ul>
-        </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li><a href="../navbar-static-top/">Static top</a></li>
+                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </nav>
 </header>
+<body>
+<div class="row">
+    <div class="col-md-9">
+        <h2>Employees Table</h2>
+        <p th:text="${message}"></p>
+        <form autocomplete="off" action="#" th:action="@{/create_meal}"
+              th:object="${ingredientsForm}" method="post" class="form-horizontal" role="form">
 
-<div class="container" th:fragment="content">
 
 
-    <form autocomplete="off" action="#" th:action="@{/create_meal}"
-          th:object="${ingredientsForm}" method="post" class="form-horizontal" role="form">
+            <table id="ingredientsTable" class="display">
+                <!-- Header Table -->
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>description</th>
+                    <th>category</th>
+                    <th>amountProtins</th>
+                    <th>amountCarbs</th>
+                    <th>amountFats</th>
+                    <th>amountFats</th>
+                </tr>
+                </thead>
 
-        <h2>Przygotuj posiłek</h2>
+                <tbody>
 
-        <div class="form-group">
-            <span th:utext="${message}"></span>
-            <div class="col-sm-9">
-                <input type="text" th:field="*{title}" placeholder="Nazwa składnika"
-                       class="form-control"/>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-sm-9">
-                <input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"
-                       class="form-control"/>
-            </div>
-        </div>
+                </tbody>
+                <!-- Footer Table -->
+                <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>description</th>
+                    <th>category</th>
+                    <th>amountProtins</th>
+                    <th>amountCarbs</th>
+                    <th>amountFats</th>
+                    <th>amountFats</th>
+                </tr>
+                </tfoot>
+            </table>
 
-        <div class="form-group">
-            <div class="col-sm-9">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary">
-                        <input type="radio" name="category" id="1" th:value="1" th:checked="*{category}"> Danie główne
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <input type="radio" name="category" id="2" autocomplete="off" th:value="2" th:checked="*{category}"> Danie dodatkowe
-                    </label>
+
+            <div class="form-group">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
                 </div>
             </div>
-        </div>
 
-
-        <table class="table table-striped">
-
-            <tr>
-                <th>ID</th>
-                <th>Nazwa</th>
-                <th>Opis</th>
-                <th>Ilość g białka</th>
-                <th>Ilość g węgli</th>
-                <th>Ilość g tłuszczu</th>
-                <th>Twoja porcja</th>
-            </tr>
-            <tr th:each="count : ${ingredientsList}">
-                <div th:each="ingredientsForm : ${ingredientsForm}">
-
-                    <td th:text="${count.id}"></td>
-                    <input type="hidden" name="food_ingredient_id" id="food_ingredient_id" th:value="${count.id}"
-                           class="form-control"/>
-                    <td th:text="${count.name}"></td>
-                    <td th:text="${count.description}"></td>
-                    <td th:text="${count.amountProtins}"></td>
-                    <td th:text="${count.amountCarbs}"></td>
-                    <td th:text="${count.amountFats}"></td>
-                    <td><input type="text" name="gramsPortion" id="gramsPortion" value="0" class="form-control"/>
-                    </td>
-                </div>
-            </tr>
-
-            <!--###############Moje próby wyświetlenia tabeli w tabeli, oraz za pomocą thymeleaf - bezskutecznie.##############-->
-            <!--<span th:each="ingredientsForm, stat : *{readyMealDetailsList}">-->
-            <!--<tr th:each="count : ${ingredientsList}">-->
-            <!--<div th:each="ingredientsForm, stat: ${ingredientsFormList}">-->
-            <!--<td th:text="${count.id}">-->
-            <!--<td th:text="${count.name}"></td>-->
-            <!--<td th:text="${count.amountProtins}"></td>-->
-            <!--<td th:text="${count.amountCarbs}"></td>-->
-            <!--<td th:text="${count.amountFats}"></td>-->
-            <!--<input type="text" th:field="*{readyMealDetailsList[__${stat.index}__].gramsPortion}"/>-->
-            <!--<td><input type="text" th:field="*{readyMealDetails.gramsPortion}" placeholder="Wprowadz wage produktu" class="form-control"/>-->
-            <!--</span>-->
-        </table>
-
-        <div class="form-group">
-            <div class="col-sm-9">
-                <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
-            </div>
-        </div>
-        <!--</div>-->
-    </form>
-
-</div>
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">TAU</span>
+        </form>
     </div>
-</footer>
+</div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script th:src="@{css/jquery-3.3.1.slim.min.js}"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script th:src="@{css/popper.min.js}"></script>
-<script th:src="@{css/bootstrap.min.js}"></script>
+
+<!--<footer class="footer"></footer>-->
 
 
 </body>
 </html>
+
+
+
+
