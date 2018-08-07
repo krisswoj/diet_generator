@@ -1,7 +1,5 @@
-package pl.krzysiek.Controllers;
+package pl.krzysiek.controllers;
 
-import org.apache.commons.io.FilenameUtils;
-import org.springframework.mock.web.MockMultipartFile;
 import pl.krzysiek.storage.StorageFileNotFoundException;
 import pl.krzysiek.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.stream.Collectors;
 
 @Controller
@@ -33,7 +26,7 @@ public class FileUploadController {
         this.storageService = storageService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/upload")
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("files", storageService.loadAll().map(
@@ -53,7 +46,7 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/")
+    @PostMapping("/upload")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) throws IOException {
 

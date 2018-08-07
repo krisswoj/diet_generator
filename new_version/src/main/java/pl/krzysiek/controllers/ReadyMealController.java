@@ -1,4 +1,4 @@
-package pl.krzysiek.Controllers;
+package pl.krzysiek.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

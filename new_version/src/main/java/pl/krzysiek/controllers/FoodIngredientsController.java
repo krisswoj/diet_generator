@@ -1,4 +1,4 @@
-package pl.krzysiek.Controllers;
+package pl.krzysiek.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,15 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.services.FoodIngredientsService;
-import pl.krzysiek.services.ReaderXMLFilesService;
 
 import javax.validation.Valid;
-import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 public class FoodIngredientsController {

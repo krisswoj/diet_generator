@@ -1,4 +1,4 @@
-package pl.krzysiek.Web;
+package pl.krzysiek.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -8,12 +8,10 @@ import pl.krzysiek.dao.IReadyMealsRepository;
 import pl.krzysiek.dao.IRodsRepository;
 import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
-import pl.krzysiek.domain.ReadyMealDetails;
 import pl.krzysiek.domain.Rod;
 import pl.krzysiek.services.*;
 
 import javax.transaction.Transactional;
-import java.math.BigInteger;
 import java.sql.SQLException;
 import java.util.*;
 
