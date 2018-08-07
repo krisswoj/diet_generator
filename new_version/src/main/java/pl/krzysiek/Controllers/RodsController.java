@@ -14,7 +14,6 @@ import pl.krzysiek.services.RodService;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("register")
 public class RodsController {
 
     @Autowired
@@ -23,7 +22,7 @@ public class RodsController {
     @Autowired
     private RodService rodService;
 
-    @RequestMapping(value = "/add_rod", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-rod", method = RequestMethod.POST)
     public ModelAndView addRod(@Valid Rod rod) {
         ModelAndView modelAndView = new ModelAndView();
 
@@ -31,29 +30,29 @@ public class RodsController {
             rodsRepository.save(rod);
             modelAndView.addObject("successMessage", "Wedka została dodana, dziękujemy");
             modelAndView.addObject("rod", new Rod());
-            modelAndView.setViewName("list/add_to_list");
+            modelAndView.setViewName("list/rods_add_to_list");
             return modelAndView;
         } else {
             modelAndView.addObject("successMessage", "Wystąpił błąd - wędka nie została dodana");
-            modelAndView.setViewName("list/add_to_list");
+            modelAndView.setViewName("list/rods_add_to_list");
             return modelAndView;
         }
     }
 
-    @RequestMapping(value = "/add_rod", method = RequestMethod.GET)
+    @RequestMapping(value = "/add-rod", method = RequestMethod.GET)
     public ModelAndView addRod() {
         ModelAndView modelAndView = new ModelAndView();
         Rod rod = new Rod();
         modelAndView.addObject("rod", rod);
-        modelAndView.setViewName("list/add_to_list");
+        modelAndView.setViewName("list/rods_add_to_list");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/show_rods", method = RequestMethod.GET)
+    @RequestMapping(value = "/show-rods", method = RequestMethod.GET)
     public ModelAndView showRods(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("counts", rodService.listAll());
-        modelAndView.setViewName("list/list");
+        modelAndView.setViewName("list/rods_list");
         return modelAndView;
     }
 

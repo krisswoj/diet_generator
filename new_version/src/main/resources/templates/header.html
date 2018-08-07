@@ -1,0 +1,23 @@
+<header xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand">Generator diet</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" href="./add-rod">Dodaj wędkę</a></li>
+                <li><a class="nav-link" href="./show-rods">Lista wędek</a></li>
+                <li><a class="nav-link" href="./show-food-ingredients">Pokaż składniki</a></li>
+                <li><a class="nav-link" href="./add-food-ingredient">Dodaj składnik</a></li>
+                <li><a class="nav-link" href="./calculator">Kalkulator kalorii</a></li>
+                <li class="nav-item">
+                    <form th:action="@{/logout}" method="get">
+                        <button class="btn btn-md btn-danger btn-block logout_button" name="registration"
+                                type="Submit">Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

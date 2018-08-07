@@ -2,96 +2,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Logowanie</title>
-
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+    <title>Generator diet</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <link th:href="@{css/sticky-footer-navbar.css}" rel="stylesheet">
 </head>
 
-<body>
-
-<header>
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="http://getbootstrap.com/docs/4.1/examples/sticky-footer-navbar/#">Fixed navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="./register">Rejestracja</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="./login">Logowanie</a>
-                </li>
+<header xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <nav class="navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand">Generator diet</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" href="./login">Logowanie</a></li>
+                <li><a class="nav-link" href="./register">Rejestracja</a></li>
             </ul>
         </div>
     </nav>
 </header>
 
-<!-- Begin page content -->
-<div class="container" th:fragment="content">
+<body>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <span th:utext="${successMessage}"></span>
-                <form th:action="@{/login}" method="POST" class="form-signin">
-                <!--<form autocomplete="off" action="#" th:action="@{/login}" th:object="${account}" method="post" class="form-horizontal" role="form">-->
-                    <h2>Logowanie</h2>
-                    <div class="form-group">
-                        <div class="col-sm-9">
-                            <input type="text" id="email" name="email" th:placeholder="Email"
-                                   class="form-control"/>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <span th:utext="${successMessage}"></span>
+            <form th:action="@{/login}" method="POST" class="form-horizontal">
+                <h2>Logowanie</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" id="email" name="email" th:placeholder="Email"
+                               class="form-control"/>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-9">
-                            <input type="password" id="password" name="password" placeholder="Haslo"
-                                   class="form-control"/>
-                        </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="password" id="password" name="password" placeholder="Haslo"
+                               class="form-control"/>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-9">
-                            <button type="submit" name="Submit" value="Login" class="btn btn-primary btn-block">Zaloguj</button>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" name="Submit" value="Login" class="btn btn-primary btn-block">Zaloguj
+                        </button>
                     </div>
-
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-
 </div>
-
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">TAU</span>
+        <span class="text-muted">Generator diet - Krzysztof Wojdak ver 1.0</span>
     </div>
 </footer>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script th:src="@{css/jquery-3.3.1.slim.min.js}"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script th:src="@{css/popper.min.js}"></script>
-<script th:src="@{css/bootstrap.min.js}"></script>
-
-
 </body>
 </html>

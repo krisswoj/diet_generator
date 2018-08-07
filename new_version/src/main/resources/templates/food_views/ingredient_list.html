@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:include="layout :: page">
+
+<!--<div class="container" th:fragment="content">-->
+<!--<div class="row">-->
+<!--<div class="col-12">-->
+<!--<h2>Lista składników</h2>-->
+<!--<table class="table table-striped table-bordered dataTable" id="ingredientsTable">-->
+<!--<thead>-->
+<!--<tr>-->
+<!--<th>id</th>-->
+<!--<th>name</th>-->
+<!--<th>description</th>-->
+<!--<th>amountProtins</th>-->
+<!--<th>amountCarbs</th>-->
+<!--<th>amountFats</th>-->
+<!--</tr>-->
+<!--</thead>-->
+<!--<tbody>-->
+<!--</tbody>-->
+<!--</table>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<div class="container" th:fragment="content">
+
+    <div th:if="${not #lists.isEmpty(counts)}">
+        <h2>Lista składników</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID Wedki</th>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Ilość g białka</th>
+                <th>Ilość g węgli</th>
+                <th>Ilość g tłuszczu</th>
+            </tr>
+            <tr th:each="count : ${counts}">
+                <td th:text="${count.id}"></td>
+                <td th:text="${count.name}"></td>
+                <td th:text="${count.description}"></td>
+                <td th:text="${count.amountProtins}"></td>
+                <td th:text="${count.amountCarbs}"></td>
+                <td th:text="${count.amountFats}"></td>
+                <td><a href="list.html" th:href="@{/rods-test/(id=${count.id})}">Usun</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

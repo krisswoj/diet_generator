@@ -119,15 +119,6 @@ public class FoodIngredient {
         this.updateDate = updateDate;
     }
 
-//    @Basic
-//    public FoodIngredientCalories getFoodIngredientCalories() {
-//        return foodIngredientCalories;
-//    }
-//
-//    public void setFoodIngredientCalories(FoodIngredientCalories foodIngredientCalories) {
-//        this.foodIngredientCalories = foodIngredientCalories;
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

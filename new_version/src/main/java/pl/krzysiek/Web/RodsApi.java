@@ -45,11 +45,6 @@ public class RodsApi {
     @Autowired
     FoodIngredientCaloriesService foodIngredientCaloriesService;
 
-//    @RequestMapping("/")
-//    public String index() {
-//        return "Wszystko dziala ;-)";
-//    }
-
     @RequestMapping(value ="/take-meals", method = GET)
     public List<ReadyMeal> getReadyMeals() throws SQLException {
         return readyMealService.findAlle();

@@ -10,10 +10,8 @@ import pl.krzysiek.services.RodService;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("ListService")
-@Transactional
+@Service
 public class RodsServiceImpl implements RodService {
-
 
     @Autowired
     IRodsRepository rodsRepository;

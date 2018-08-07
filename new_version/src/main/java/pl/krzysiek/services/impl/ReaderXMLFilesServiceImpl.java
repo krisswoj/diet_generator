@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-//        ("ReaderXMLFiles")
-//@Transactional
 public class ReaderXMLFilesServiceImpl implements ReaderXMLFilesService {
 
     private ReaderXMLFilesService readerXMLFilesService;

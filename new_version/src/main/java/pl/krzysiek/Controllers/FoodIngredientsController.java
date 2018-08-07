@@ -23,46 +23,40 @@ public class FoodIngredientsController {
     private FoodIngredientsService foodIngredientsService;
 
 
-    @RequestMapping(path="/", method=RequestMethod.GET)
-    public String goHome(){
-        return "index";
-    }
-
-
-    @RequestMapping(value = "/show_food_ingredients", method = RequestMethod.GET)
+    @RequestMapping(value = "/show-food-ingredients", method = RequestMethod.GET)
     public ModelAndView showFoodIngeredients(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("counts", foodIngredientsService.listAll());
-        modelAndView.setViewName("food_views/list");
+        modelAndView.setViewName("food_views/ingredient_list");
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add_food_ingredient", method = RequestMethod.GET)
+    @RequestMapping(value = "/add-food-ingredient", method = RequestMethod.GET)
     public ModelAndView addFood() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("food_ingredient", new FoodIngredient());
-        modelAndView.setViewName("food_views/add_to_list");
+        modelAndView.setViewName("food_views/add_to_list_new_ingredient");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add_food_ingredient", params = "name", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-food-ingredient", params = "name", method = RequestMethod.POST)
     public ModelAndView addFood(@Valid FoodIngredient foodIngredient, @RequestParam("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
         foodIngredientsService.addNew(foodIngredient);
         modelAndView.addObject("successMessage", "Dziekujemy, składnik zostal dodany");
         modelAndView.addObject("food_ingredient", new FoodIngredient());
-        modelAndView.setViewName("food_views/add_to_list");
+        modelAndView.setViewName("food_views/add_to_list_new_ingredient");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add_food_ingredient", method = RequestMethod.POST)
+    @RequestMapping(value = "/add-food-ingredient", method = RequestMethod.POST)
     public ModelAndView addFoodByXML(@RequestParam("file") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView();
         foodIngredientsService.loadIngredients("none", "ingredient");
-        modelAndView.addObject("successMessage", "Do bazy dodalismy: x skladnikow");
+        modelAndView.addObject("successMessage", "Potwierdzamy dodanie skladnikow do bazy");
         modelAndView.addObject("food_ingredient", new FoodIngredient());
-        modelAndView.setViewName("food_views/add_to_list");
+        modelAndView.setViewName("food_views/add_to_list_new_ingredient");
         return modelAndView;
     }
 }
