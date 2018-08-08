@@ -9,7 +9,7 @@ public interface ReadyMealService {
 
     List<ReadyMealDetails> converterDataFromForm(Double[] gramsPortion, Integer[] food_ingredient_id);
     Boolean saveReadyMeal(ReadyMeal readyMeal);
-    List<ReadyMeal> findAlle();
+    List<ReadyMeal> findAll();
 
 
 }

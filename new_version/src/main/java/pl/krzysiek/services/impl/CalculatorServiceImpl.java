@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.krzysiek.dao.ICalculatorRepository;
 import pl.krzysiek.domain.CalorieCalculator;
+import pl.krzysiek.services.AccountService;
 import pl.krzysiek.services.CalculatorService;
 
 
@@ -16,6 +17,8 @@ public class CalculatorServiceImpl implements CalculatorService {
 
     @Autowired
     ICalculatorRepository calculatorRepository;
+    @Autowired
+    AccountService accountService;
 
 
     public List<CalorieCalculator> listAll() {
@@ -29,6 +32,7 @@ public class CalculatorServiceImpl implements CalculatorService {
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
         calorieCalculator.setCreatedDate(date);
         calorieCalculator.setCaloriesDemand(caloricDemand(calorieCalculator));
+        calorieCalculator.setAccountByUserId(accountService.loggedUser());
         return calculatorRepository.save(calorieCalculator);
     }
 

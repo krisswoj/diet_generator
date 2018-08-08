@@ -2,125 +2,134 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="layout :: page">
-
 <div class="container" th:fragment="content">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <span th:utext="${successMessage}"></span>
-            <form autocomplete="off" action="#" th:action="@{/add-food-ingredient}"
-                  th:object="${food_ingredient}" method="post"  class="form-horizontal" role="form">
-                <h2>Dodawanie składnika spożywczego</h2>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{name}" placeholder="Nazwa składnika"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość białka na 100g produktu</p>
-                        <input type="text" th:field="*{amountProtins}" placeholder="Zawartość białka na 100g produktu" class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość węglowodanów na 100g produktu</p>
-                        <input type="text" th:field="*{amountCarbs}" placeholder="Zawartość węglowodanów na 100g produktu"
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Zawartość tłuszczy na 100g produktu</p>
-                        <input type="text" th:field="*{amountFats}" placeholder="Zawartość tłuszczy na 100g produktu"
-                               class="form-control"/>
-                    </div>
-                </div>
 
 
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <p>Określ grupę spożywczą</p>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category1" name="category" th:value="1" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category1">nabiał i jaja</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category2" name="category" th:value="2" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category2">mięso i ryby</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category3" name="category" th:value="3" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category3">tłuszcze</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category4" name="category" th:value="4" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category4">produkty zbożowe</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category5" name="category" th:value="5" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category5">warzywa i owoce</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category6" name="category" th:value="6" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category6">orzechy i nasiona</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category7" name="category" th:value="7" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category7">dania gotowe</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category8" name="category" th:value="8" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category8">napoje i słodycze</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category9" name="category" th:value="9" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category9">fast food</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category10" name="category" th:value="10" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category10">odżywki</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="category11" name="category" th:value="11" th:checked="*{category}" class="custom-control-input">
-                            <label class="custom-control-label" for="category11">inne</label>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
-                    </div>
-                </div>
-
-
-
-            </form>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header smaller_h1">Dodaj składnik spożywczy</h1>
+                <h4 th:utext="${successMessage}"></h4>
+            </div>
         </div>
-        <div class="custom-file col-md-6 col-md-offset-3">
-            <form method="POST" enctype="multipart/form-data" action="/add_food_ingredient">
-            <input type="file" class="custom-file-input" id="file" name="file">
-            <label class="custom-file-label" for="file">Wgraj plik XML</label>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" value="Upload" class="btn btn-primary btn-block">Dodaj</button>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form autocomplete="off" action="#" th:action="@{/add-food-ingredient}"
+                                  th:object="${food_ingredient}" method="post" class="form-horizontal" role="form">
+
+                                <div class="form-group">
+                                    <p>Nazwa składnika spożywczego</p>
+                                    <input type="text" th:field="*{name}" placeholder="Nazwa składnika"
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <p>Opis składnika (Opcjonalnie)</p>
+                                    <input type="text" th:field="*{description}"
+                                           placeholder="Opis składnika (Opcjonalnie)"
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+
+                                    <p>Zawartość białka na 100g produktu</p>
+                                    <input type="text" th:field="*{amountProtins}"
+                                           placeholder="Zawartość białka na 100g produktu" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <p>Zawartość węglowodanów na 100g produktu</p>
+                                    <input type="text" th:field="*{amountCarbs}"
+                                           placeholder="Zawartość węglowodanów na 100g produktu"
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <p>Zawartość tłuszczy na 100g produktu</p>
+                                    <input type="text" th:field="*{amountFats}"
+                                           placeholder="Zawartość tłuszczy na 100g produktu"
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <p>Określ grupę spożywczą</p>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category1" name="category" th:value="1"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category1">nabiał i jaja</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category2" name="category" th:value="2"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category2">mięso i ryby</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category3" name="category" th:value="3"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category3">tłuszcze</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category4" name="category" th:value="4"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category4">produkty zbożowe</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category5" name="category" th:value="5"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category5">warzywa i owoce</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category6" name="category" th:value="6"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category6">orzechy i nasiona</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category7" name="category" th:value="7"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category7">dania gotowe</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category8" name="category" th:value="8"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category8">napoje i słodycze</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category9" name="category" th:value="9"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category9">fast food</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category10" name="category" th:value="10"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category10">odżywki</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="category11" name="category" th:value="11"
+                                               th:checked="*{category}" class="custom-control-input">
+                                        <label class="custom-control-label" for="category11">inne</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <h4>Wgraj listę składnikow za pomocą XML</h4>
+                                <form method="POST" enctype="multipart/form-data" action="/add_food_ingredient">
+                                    <div class="form-group">
+                                        <input type="file" name="file" id="file">
+                                    </div>
+                                    <button type="submit" value="Upload" class="btn btn-primary btn-block">Wgraj
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+

@@ -25,7 +25,8 @@ public class CalorieCalculatorController {
         ModelAndView modelAndView = new ModelAndView();
 
         calculatorService.addNew(calorieCalculator);
-        modelAndView.addObject("successMessage", "Dziekuje, twoje zapotrzebowanie kaloryczne to"  + calculatorService.caloricDemand(calorieCalculator));
+
+        modelAndView.addObject("successMessage", (calculatorService.caloricDemand(calorieCalculator).toString()));
         modelAndView.addObject("calculator", new CalorieCalculator());
         modelAndView.setViewName("calculator/calculator_outside");
         return modelAndView;

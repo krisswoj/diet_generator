@@ -45,7 +45,7 @@ public class RodsApi {
 
     @RequestMapping(value ="/take-meals", method = GET)
     public List<ReadyMeal> getReadyMeals() throws SQLException {
-        return readyMealService.findAlle();
+        return readyMealService.findAll();
     }
 
     @RequestMapping(path = "/ingredients-list-all", method = RequestMethod.GET)

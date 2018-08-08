@@ -10,6 +10,7 @@ import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
+import pl.krzysiek.services.AccountService;
 import pl.krzysiek.services.ReadyMealService;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     IAccountRepository accountRepository;
     @Autowired
     IReadyMealsRepository readyMealsRepository;
+    @Autowired
+    AccountService accountService;
 
     @Override
     public List<ReadyMealDetails> converterDataFromForm(Double[] gramsPortion, Integer[] food_ingredient_id) {
@@ -43,10 +46,7 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     @Override
     public Boolean saveReadyMeal(ReadyMeal readyMeal) {
 
-        UserDetails userDetails =
-                (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Account user = accountRepository.findByEmail(userDetails.getUsername());
-        readyMeal.setAccountByUserId(user);
+        readyMeal.setAccountByUserId(accountService.loggedUser());
         try {
             readyMealsRepository.save(readyMeal);
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     }
 
     @Override
-    public List<ReadyMeal> findAlle() {
+    public List<ReadyMeal> findAll() {
         List<ReadyMeal> readyMealList = new ArrayList<>();
         for(ReadyMeal readyMeal : readyMealsRepository.findAll()){
             readyMealList.add(readyMeal);

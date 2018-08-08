@@ -2,77 +2,136 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="layout :: page">
-
 <div class="container" th:fragment="content">
-    <div class="row">
-        <div class="col-md-9 col-md-offset-3">
-            <span th:utext="${successMessage}"></span>
-            <form autocomplete="off" action="#" th:action="@{/calculator}"
-                  th:object="${calculator}" method="post" class="form-horizontal" role="form">
-                <h2>Wylicz swoje zapotrzebowanie kaloryczne</h2>
 
-                <div class="form-group">
 
-                    <div class="col-sm-9">
-                        <p>Określ swoją płeć</p>
-                        <label class="radio-inline"><input type="radio" name="sex" th:value="1" th:checked="*{sex}">Kobieta</label>
-                        <label class="radio-inline"><input type="radio" name="sex" th:value="2" th:checked="*{sex}">Mężczyzna</label>
-                    </div>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header smaller_h1">Oblicz zapotrzebowanie kaloryczne</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form autocomplete="off" action="#" th:action="@{/calculator}"
+                                  th:object="${calculator}" method="post" class="form-horizontal" role="form">
 
-                    <div class="form-group">
-                        <label for="weight">Twoja waga (w kg):</label>
-                        <input type="text" class="form-control" id="weight" name="weight" th:field="*{weight}">
-                    </div>
+                                <div class="form-group">
+                                    <label>Określ swoją płeć</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="sex" th:value="1" th:checked="*{sex}">Kobieta
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="sex" th:value="2" th:checked="*{sex}">Mężczyzna
+                                        </label>
+                                    </div>
+                                </div>
 
-                    <div class="form-group">
-                        <label for="height">Twoj wzrost (w cm):</label>
-                        <input type="text" class="form-control" id="height" name="height" th:field="*{height}">
-                    </div>
+                                <div class="form-group">
+                                    <label for="weight">Twoja waga (w kg):</label>
+                                    <input type="text" class="form-control" id="weight" name="weight"
+                                           th:field="*{weight}">
+                                </div>
 
-                    <div class="form-group">
-                        <label for="age">Twoj wiek:</label>
-                        <input type="text" class="form-control" id="age" name="age" th:field="*{age}">
-                    </div>
+                                <div class="form-group">
+                                    <label for="height">Twoj wzrost (w cm):</label>
+                                    <input type="text" class="form-control" id="height" name="height"
+                                           th:field="*{height}">
+                                </div>
 
-                    <div class="col-sm-9">
-                        <p>Określ swoją budowę ciała</p>
-                        <label class="radio-inline"><input type="radio" name="bodyType" th:value="1" th:checked="*{bodyType}">Ektomorfik (Chuda, drobna postura)</label>
-                        <label class="radio-inline"><input type="radio" name="bodyType" th:value="2" th:checked="*{bodyType}">Endomorfik (Masywna postawa, z tendencją do odkładania tłuszczu)</label>
-                        <label class="radio-inline"><input type="radio" name="bodyType" th:value="3" th:checked="*{bodyType}">Mezomorfik (Naturlanie umięśniona, masywna postura)</label>
+                                <div class="form-group">
+                                    <label for="age">Twoj wiek:</label>
+                                    <input type="text" class="form-control" id="age" name="age" th:field="*{age}">
+                                </div>
 
-                    </div>
 
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('plannedEffort')}" th:errors="*{plannedEffort}"
-                               class="validation-message"></label>
-                        <p>Planowany wysiłek fizyczny w tygodniu</p>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="1"
-                                                           th:checked="*{plannedEffort}">Raz w tygodniu</label>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="2"
-                                                           th:checked="*{plannedEffort}">2-3 razy w tygodniu</label>
-                        <label class="radio-inline"><input type="radio" name="plannedEffort" th:value="3"
-                                                           th:checked="*{plannedEffort}">4+ w tygodniu</label>
-                    </div>
+                                <div class="form-group">
+                                    <label>Określ swoją budowę ciała</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyType" th:value="1" th:checked="*{bodyType}">Ektomorfik (Chuda, drobna postura)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyType" th:value="2" th:checked="*{bodyType}">Endomorfik (Masywna postawa, z tendencją do odkładania tłuszczu)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyType" th:value="3" th:checked="*{bodyType}">Mezomorfik (Naturlanie umięśniona, masywna postura)
+                                        </label>
+                                    </div>
+                                </div>
 
-                    <div class="col-sm-9">
-                        <label th:if="${#fields.hasErrors('bodyGoal')}" th:errors="*{bodyGoal}"
-                               class="validation-message"></label>
-                        <p>Określ swój cel</p>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="1"
-                                                           th:checked="*{bodyGoal}">Utrzymanie wagi</label>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="2"
-                                                           th:checked="*{bodyGoal}">Schudnięcie</label>
-                        <label class="radio-inline"><input type="radio" name="bodyGoal" th:value="3"
-                                                           th:checked="*{bodyGoal}">Przybranie na masie</label>
+                                <div class="form-group">
+                                    <label>Planowany wysiłek fizyczny w tygodniu</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="plannedEffort" th:value="1" th:checked="*{plannedEffort}">Raz w tygodniu
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="plannedEffort" th:value="2" th:checked="*{plannedEffort}">2-3 razy w tygodniu
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="plannedEffort" th:value="3" th:checked="*{plannedEffort}">4+ w tygodniu
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Określ swój cel</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyGoal" th:value="1" th:checked="*{bodyGoal}">Utrzymanie wagi
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyGoal" th:value="2" th:checked="*{bodyGoal}">Schudnięcie
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="bodyGoal" th:value="3" th:checked="*{bodyGoal}">Przybranie na masie
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Oblicz</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div th:if="${!successMessage.isEmpty()}" class="form-group">
+                                <div class="alert alert-success">
+                                    <p th:text="'Twoje zapotrzebowanie to: '+${successMessage}+' kcal'"></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Dodaj</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
 

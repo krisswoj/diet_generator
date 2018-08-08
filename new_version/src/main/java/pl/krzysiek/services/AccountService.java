@@ -7,11 +7,12 @@ import java.util.List;
 
 public interface AccountService {
 
-    public List<Account> findAll();
-    public void addAccount(Account acc);
-    public Account getById(int id);
-    public Integer checkNickExists(String name);
-    public int checkPassword(String email, String password);
-    public Integer checkEmailExists(String email);
-    public Account findUserByEmail(Account account);
+    List<Account> findAll();
+    void addAccount(Account acc);
+    Account getById(int id);
+    Integer checkNickExists(String name);
+    int checkPassword(String email, String password);
+    Integer checkEmailExists(String email);
+    Account findUserByEmail(Account account);
+    Account loggedUser();
 }
