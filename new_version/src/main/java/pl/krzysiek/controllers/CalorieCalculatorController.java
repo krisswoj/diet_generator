@@ -10,6 +10,8 @@ import pl.krzysiek.domain.CalorieCalculator;
 import pl.krzysiek.services.CalculatorService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class CalorieCalculatorController {
@@ -38,6 +40,14 @@ public class CalorieCalculatorController {
         CalorieCalculator calorieCalculator = new CalorieCalculator();
         modelAndView.addObject("calculator", calorieCalculator);
         modelAndView.setViewName("calculator/calculator_outside");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/calorie-history", method = RequestMethod.GET)
+    public ModelAndView calorieHistory(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("calculator", calculatorService.listAllForUser());
+        modelAndView.setViewName("calculator/calorie_history_profile");
         return modelAndView;
     }
 }

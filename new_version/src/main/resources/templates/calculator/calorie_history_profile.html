@@ -7,8 +7,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header smaller_h1">Baza składnikow spożywczych</h1>
-                <h4 th:utext="${successMessage}"></h4>
+                <h1 class="page-header smaller_h1">Historia zapotrzebowania kalorycznego</h1>
             </div>
         </div>
 
@@ -17,26 +16,24 @@
                 <div class="panel-body">
                     <div class="row">
 
-
-                        <div th:if="${not #lists.isEmpty(counts)}">
+                        <div th:if="${not #lists.isEmpty(calculator)}">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>ID Wedki</th>
-                                    <th>Nazwa</th>
-                                    <th>Opis</th>
-                                    <th>Ilość g białka</th>
-                                    <th>Ilość g węgli</th>
-                                    <th>Ilość g tłuszczu</th>
-                                    <th>Operacje</th>
+                                    <th>Data wygenerowania</th>
+                                    <th>Waga</th>
+                                    <th>Wiek</th>
+                                    <th>Planowany wysiłek fizyczny</th>
+                                    <th>Cel</th>
+                                    <th>Niezbędna ilość kcal</th>
                                 </tr>
-                                <tr th:each="count : ${counts}">
-                                    <td th:text="${count.id}"></td>
-                                    <td th:text="${count.name}"></td>
-                                    <td th:text="${count.description}"></td>
-                                    <td th:text="${count.amountProtins}"></td>
-                                    <td th:text="${count.amountCarbs}"></td>
-                                    <td th:text="${count.amountFats}"></td>
-                                    <td><a href="list.html" th:href="@{/rods-test/(id=${count.id})}">Usun</a></td>
+                                <tr th:each="count : ${calculator}">
+                                    <td th:text="${count.createdDate}"></td>
+                                    <td th:text="${count.weight}"></td>
+                                    <td th:text="${count.age}"></td>
+                                    <td th:text="${count.plannedEffort}"></td>
+                                    <td th:text="${count.bodyGoal}"></td>
+                                    <td th:text="${count.caloriesDemand}"></td>
+                                    <!--<td><a href="list.html" th:href="@{/rods-test/(id=${count.id})}">Usun</a></td>-->
                                 </tr>
                             </table>
                         </div>

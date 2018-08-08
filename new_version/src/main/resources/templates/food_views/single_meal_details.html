@@ -2,80 +2,105 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="layout :: page">
-
 <div class="container" th:fragment="content">
 
-    <div class="row">
-        <div class="col-md-8 order-md-1">
-            <h2>Szczegóły posiłku</h2>
-            <fieldset disabled>
-                <div class="form-group">
-                    <label>Nazwa dania</label>
-                    <input type="text" class="form-control" th:value="${readyMealInfo.title}">
-                </div>
-            </fieldset>
 
-            <fieldset disabled>
-                <div class="form-group">
-                    <label>Opis dania</label>
-                    <textarea type="text" class="form-control" th:field="*{readyMealInfo.description}"
-                              rows="2"></textarea>
-                </div>
-            </fieldset>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header smaller_h1">Szczegóły dania</h1>
+            </div>
+        </div>
 
 
-            <div class="mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Niezbędne składniki</span>
-                </h4>
-                <ul class="list-group mb-3" th:each="count : ${readyMealInfo.readyMealDetailsList}">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                            <h6 class="my-0" th:text="${count.foodIngredientByFoodIngredientId.name}"></h6>
-                            <small class="text-muted"
-                                   th:text="'Węglowodany: '+${ #numbers.formatDecimal((calories.carbsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountCarbs)),1,1)
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <label>Nazwa dania</label>
+                                        <input type="text" class="form-control" th:value="${readyMealInfo.title}">
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group">
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <label>Opis dania</label>
+                                        <textarea type="text" class="form-control"
+                                                  th:field="*{readyMealInfo.description}"
+                                                  rows="2"></textarea>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="mb-4">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-muted">Niezbędne składniki</span>
+                                    </h4>
+                                    <ul class="list-group mb-3" th:each="count : ${readyMealInfo.readyMealDetailsList}">
+                                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                            <div>
+                                                <h6 class="my-0"
+                                                    th:text="${count.foodIngredientByFoodIngredientId.name}"></h6>
+                                                <small class="text-muted"
+                                                       th:text="'Węglowodany: '+${ #numbers.formatDecimal((calories.carbsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountCarbs)),1,1)
                                    + ' g | Białko: '+ #numbers.formatDecimal((calories.protinsGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountProtins)),1,1)
                                    + ' g | Tłuszcze: '+ #numbers.formatDecimal((calories.fatGramsAmount(count.gramsPortion,count.foodIngredientByFoodIngredientId.amountFats)),1,1)
                                    + ' g | ' + #numbers.formatDecimal((calories.kcalAmount(count.gramsPortion, count.foodIngredientByFoodIngredientId.amountCarbs, count.foodIngredientByFoodIngredientId.amountProtins,
                                    count.foodIngredientByFoodIngredientId.amountFats)),1,1) +' kcal'}"></small>
+                                            </div>
+                                            <span class="text-muted"
+                                                  th:text="${#numbers.formatDecimal(count.gramsPortion, 1, 1)} +' gram'"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="mb-4">
+                                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                        <span class="text-muted">Podsumowanie</span>
+                                    </h4>
+                                    <table class="table table-borderless">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Węglowodany</th>
+                                            <th scope="col">Białko</th>
+                                            <th scope="col">Tłuszcze</th>
+                                            <th scope="col">Kcal</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td th:text="${#numbers.formatDecimal(calories.totalCarbsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                                            <td th:text="${#numbers.formatDecimal(calories.totalProtinsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                                            <td th:text="${#numbers.formatDecimal(calories.totalFatsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
+                                            <td th:text="${#numbers.formatDecimal(calories.totalKcalGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' kcal'}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <label>Data dodania</label>
+                                        <input type="text" class="form-control" th:value="${readyMealInfo.createdDate}">
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
-                        <span class="text-muted"
-                              th:text="${#numbers.formatDecimal(count.gramsPortion, 1, 1)} +' gram'"></span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Podsumowanie</span>
-                </h4>
-                <table class="table table-borderless">
-                    <thead>
-                    <tr>
-                        <th scope="col">Węglowodany</th>
-                        <th scope="col">Białko</th>
-                        <th scope="col">Tłuszcze</th>
-                        <th scope="col">Kcal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td th:text="${#numbers.formatDecimal(calories.totalCarbsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
-                        <td th:text="${#numbers.formatDecimal(calories.totalProtinsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
-                        <td th:text="${#numbers.formatDecimal(calories.totalFatsGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' g'}"></td>
-                        <td th:text="${#numbers.formatDecimal(calories.totalKcalGramsAmount(readyMealInfo.readyMealDetailsList),1,1)+' kcal'}"></td>
-                    </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-            <fieldset disabled>
-                <div class="form-group">
-                    <label>Data dodania</label>
-                    <input type="text" class="form-control" th:value="${readyMealInfo.createdDate}">
+                    </div>
                 </div>
-            </fieldset>
+            </div>
         </div>
     </div>
 </div>

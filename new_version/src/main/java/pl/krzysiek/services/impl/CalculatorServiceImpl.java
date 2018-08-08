@@ -28,6 +28,12 @@ public class CalculatorServiceImpl implements CalculatorService {
     }
 
     @Override
+    public List<CalorieCalculator> listAllForUser(){
+        List<CalorieCalculator> calorieCalculatorList = calculatorRepository.findAllByAccountByUserId(accountService.loggedUser());
+        return calorieCalculatorList;
+    }
+
+    @Override
     public CalorieCalculator addNew(CalorieCalculator calorieCalculator) {
         java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
         calorieCalculator.setCreatedDate(date);

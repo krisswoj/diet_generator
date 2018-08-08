@@ -77,4 +77,13 @@ public class ReadyMealController {
 
         return modelAndView;
     }
+
+    @RequestMapping(value = "/ready-meals-list", method = RequestMethod.GET)
+    public ModelAndView ReadyMealsList(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("readyMealsList", readyMealsRepository.findAll());
+        modelAndView.addObject("calories", foodIngredientCaloriesService);
+        modelAndView.setViewName("food_views/ready_meals_list");
+        return modelAndView;
+    }
 }

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       th:include="layout :: page">
+
 <div class="container" th:fragment="content">
 
 
@@ -115,8 +116,8 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <div th:if="${!successMessage.isEmpty()}" class="form-group">
-                                <div class="alert alert-success">
+                            <div class="form-group">
+                                <div class="alert alert-success" th:if="${!successMessage.isEmpty()}" >
                                     <p th:text="'Twoje zapotrzebowanie to: '+${successMessage}+' kcal'"></p>
                                 </div>
                             </div>
