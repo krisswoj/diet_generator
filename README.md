@@ -1,4 +1,4 @@
-# wedki_tau_2
+# diet_generator
 System for generating individual ready diet plans - based on the user's physical activity profile
 
 ![alt text](http://v55581844.wirt29.bhlink.pl/img/1.png)
