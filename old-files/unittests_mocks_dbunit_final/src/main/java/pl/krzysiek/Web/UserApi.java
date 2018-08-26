@@ -27,21 +27,21 @@ public class UserApi {
         return userRepository.getById(id);
     }
 
-    @RequestMapping(value ="/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getTransmiters() throws SQLException {
         return userRepository.getAll();
     }
 
-//    @RequestMapping(value = "/user",
-//            method = RequestMethod.POST,
-//            consumes = MediaType.APPLICATION_JSON_VALUE,
-//            produces = MediaType.APPLICATION_JSON_VALUE)
-//    public User addTransmiter(@RequestBody User p) {
-//        if (userRepository.addUser(p)) return null;
-//        return p;
-//    }
+    @RequestMapping(value = "/user",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public User addTransmiter(@RequestBody User p) {
+        if(userRepository.addUser(p) == 1) return p;
+        return null;
+    }
 
-    @RequestMapping(value = "/transmiterDelete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user-delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public int deleteTransmiter(@PathVariable("id") int id) throws SQLException {
         User transmiterToDelete = new User();
