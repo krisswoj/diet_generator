@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <account user_id="3" name="Krzysiek" password="testowe_haslo"/>
+  <account user_id="4" name="Krzysiek" password="testowe_haslo"/>
+
+  <food_ingredient id="1" name="Makaron zbozowy" amount_protins="10" amount_carbs="66" amount_fats="5"/>
+  <food_ingredient id="2" name="Mieso mielone" amount_protins="23" amount_carbs="8" amount_fats="30"/>
+  <food_ingredient id="3" name="Cebula" amount_protins="4" amount_carbs="5" amount_fats="5"/>
+  <food_ingredient id="4" name="Sos pomidorowy" amount_protins="10" amount_carbs="30" amount_fats="10"/>
+
+  <ready_meal meal_id="1" title="Spaghetti Bolognese" user_id="3"/>
+
+  <ready_meal_details id="1" food_ingredient_id="1" grams_portion="150"/>
+  <ready_meal_details id="2" food_ingredient_id="2" grams_portion="300"/>
+  <ready_meal_details id="3" food_ingredient_id="3" grams_portion="100"/>
+  <ready_meal_details id="4" food_ingredient_id="4" grams_portion="400"/>
+
+  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="1" />
+  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="2" />
+  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="3" />
+  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="4" />
+
+</dataset>

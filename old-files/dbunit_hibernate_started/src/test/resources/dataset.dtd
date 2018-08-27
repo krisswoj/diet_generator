@@ -1,0 +1,42 @@
+<!ELEMENT DATASET (
+        ACCOUNT*,
+        FOOD_INGREDIENT*,
+        READY_MEAL*,
+        READY_MEAL_DETAILS*,
+        READY_MEAL_READY_MEAL_DETAILS_LIST*)>
+
+        <!ELEMENT ACCOUNT EMPTY>
+        <!ATTLIST ACCOUNT
+                USER_ID CDATA #REQUIRED
+                NAME CDATA #IMPLIED
+                PASSWORD CDATA #IMPLIED
+                >
+
+        <!ELEMENT FOOD_INGREDIENT EMPTY>
+        <!ATTLIST FOOD_INGREDIENT
+                ID CDATA #REQUIRED
+                NAME CDATA #IMPLIED
+                AMOUNT_PROTINS CDATA #IMPLIED
+                AMOUNT_CARBS CDATA #IMPLIED
+                AMOUNT_FATS CDATA #IMPLIED
+                >
+
+        <!ELEMENT READY_MEAL EMPTY>
+        <!ATTLIST READY_MEAL
+                MEAL_ID CDATA #REQUIRED
+                TITLE CDATA #IMPLIED
+                USER_ID CDATA #REQUIRED
+                >
+
+        <!ELEMENT READY_MEAL_DETAILS EMPTY>
+        <!ATTLIST READY_MEAL_DETAILS
+                ID CDATA #REQUIRED
+                FOOD_INGREDIENT_ID CDATA #REQUIRED
+                GRAMS_PORTION #IMPLIED
+                >
+
+        <!ELEMENT READY_MEAL_READY_MEAL_DETAILS_LIST EMPTY>
+        <!ATTLIST READY_MEAL_READY_MEAL_DETAILS_LIST
+                READY_MEAL_MEAL_ID CDATA #REQUIRED
+                READY_MEAL_DETAILS_LIST_ID CDATA #REQUIRED
+                >

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <ACCOUNT USER_ID="2" NAME="Krzysiek" PASSWORD="testowe_haslo"/>
+  <FOOD_INGREDIENT/>
+  <READY_MEAL/>
+  <READY_MEAL_DETAILS/>
+  <READY_MEAL_READY_MEAL_DETAILS_LIST/>
+</dataset>
