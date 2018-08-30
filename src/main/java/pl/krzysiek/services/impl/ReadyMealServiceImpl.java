@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import pl.krzysiek.dao.IAccountRepository;
+import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.dao.IReadyMealsRepository;
 import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
@@ -25,28 +26,28 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     IReadyMealsRepository readyMealsRepository;
     @Autowired
     AccountService accountService;
+    @Autowired
+    IFoodIngredientsRepository foodIngredientsRepository;
+
 
     @Override
-    public List<ReadyMealDetails> converterDataFromForm(Double[] gramsPortion, Integer[] food_ingredient_id) {
-        List<ReadyMealDetails> readyMealDetailsList = new ArrayList<ReadyMealDetails>();
+    public void createReadyMeal(ReadyMeal readyMeal, Double[] gramsPortion, Integer[] food_ingredient_id) {
 
-        for(int i = 0; i<food_ingredient_id.length; i++){
-            if(gramsPortion[i] > 0){
-                ReadyMealDetails readyMealDetails = new ReadyMealDetails();
-                FoodIngredient foodIngredient = new FoodIngredient();
-                foodIngredient.setId(food_ingredient_id[i]);
-                readyMealDetails.setGramsPortion(gramsPortion[i]);
-                readyMealDetails.setFoodIngredientByFoodIngredientId(foodIngredient);
-                readyMealDetailsList.add(readyMealDetails);
+        List<ReadyMealDetails> readyMealDetailsList = new ArrayList<>();
+
+        for (int i = 0; i < food_ingredient_id.length; i++) {
+            if (gramsPortion[i] > 0) {
+                readyMealDetailsList.add(new ReadyMealDetails(gramsPortion[i], readyMeal, foodIngredientsRepository.findById((int) food_ingredient_id[i])));
             }
         }
-        return readyMealDetailsList;
+        readyMeal.setReadyMealReadyMealDetails(readyMealDetailsList);
     }
+
 
     @Override
     public Boolean saveReadyMeal(ReadyMeal readyMeal) {
 
-        readyMeal.setAccountByUserId(accountService.loggedUser());
+        readyMeal.setReadyMealAccount(accountService.loggedUser());
         try {
             readyMealsRepository.save(readyMeal);
         } catch (Exception e) {
@@ -59,10 +60,9 @@ public class ReadyMealServiceImpl implements ReadyMealService {
     @Override
     public List<ReadyMeal> findAll() {
         List<ReadyMeal> readyMealList = new ArrayList<>();
-        for(ReadyMeal readyMeal : readyMealsRepository.findAll()){
+        for (ReadyMeal readyMeal : readyMealsRepository.findAll()) {
             readyMealList.add(readyMeal);
         }
-
         return readyMealList;
     }
 

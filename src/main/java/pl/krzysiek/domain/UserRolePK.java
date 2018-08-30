@@ -1,18 +1,26 @@
 package pl.krzysiek.domain;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-public class Role {
+public class UserRolePK implements Serializable {
+    private Integer userId;
     private Integer roleId;
-    private String role;
 
+    @Column(name = "user_id")
     @Id
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Column(name = "role_id")
+    @Id
     public Integer getRoleId() {
         return roleId;
     }
@@ -21,27 +29,17 @@ public class Role {
         this.roleId = roleId;
     }
 
-    @Basic
-    @Column(name = "role")
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Role role1 = (Role) o;
-        return Objects.equals(roleId, role1.roleId) &&
-                Objects.equals(role, role1.role);
+        UserRolePK that = (UserRolePK) o;
+        return Objects.equals(userId, that.userId) &&
+                Objects.equals(roleId, that.roleId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roleId, role);
+        return Objects.hash(userId, roleId);
     }
 }

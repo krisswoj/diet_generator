@@ -35,21 +35,20 @@
                 <h2>Logowanie</h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" id="email" name="email" th:placeholder="Email"
+                        <input type="text" id="email" name="email" th:placeholder="#{email}"
                                class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="password" id="password" name="password" placeholder="Haslo"
+                        <input type="password" id="password" name="password" th:placeholder="#{password}"
                                class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" name="Submit" value="Login" class="btn btn-primary btn-block">Zaloguj
-                        </button>
+                        <button type="submit" name="Submit" value="Login" class="btn btn-primary btn-block" th:text="#{loggin_button}" />
                     </div>
                 </div>
             </form>

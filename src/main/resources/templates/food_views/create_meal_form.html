@@ -24,13 +24,13 @@
 
                                 <div class="form-group">
                                     <div>
-                                        <input type="text" th:field="*{title}" placeholder="Nazwa składnika" class="form-control"/>
+                                        <input type="text" th:field="*{title}" th:placeholder="#{meal_title}" class="form-control"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div>
-                                        <input type="text" th:field="*{description}" placeholder="Opis składnika (Opcjonalnie)"
+                                        <input type="text" th:field="*{description}" th:placeholder="#{meal_description_optional}"
                                                class="form-control"/>
                                     </div>
                                 </div>
@@ -38,31 +38,29 @@
                                 <div class="form-group">
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="category" id="1" th:value="1" th:checked="*{category}">Danie
-                                            główne
+                                            <input type="radio" name="category" id="1" th:value="1" th:checked="*{category}" th:text="#{main_meal_name}">
                                         </label>
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="category" id="2" autocomplete="off" th:value="2"
-                                                   th:checked="*{category}">Danie dodatkowe
+                                            <input type="radio" name="category" id="2" autocomplete="off" th:value="2" th:checked="*{category}" th:text="#{second_type_meal_name}">
                                         </label>
                                     </div>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <p>W obecnej wersji prosimy o wyświetelenie wszystkich możliwych składników</p>
+                                    <p th:text="#{suggestion_view_all_ingredients}"></p>
                                     <table id="ingredientsTable" class="display">
                                         <!-- Header Table -->
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nazwa</th>
-                                            <th>Opis</th>
-                                            <th>Kategoria</th>
-                                            <th>Białko (g)</th>
-                                            <th>Węglowodany (g)</th>
-                                            <th>Tłuszcze (g)</th>
-                                            <th>Twoja poracja</th>
+                                            <th th:text="#{id_table}" />
+                                            <th th:text="#{name_table}" />
+                                            <th th:text="#{description_table}" />
+                                            <th th:text="#{category_table}" />
+                                            <th th:text="#{proteins_table}" />
+                                            <th th:text="#{carbs_table}" />
+                                            <th th:text="#{fats_table}" />
+                                            <th th:text="#{your_portion_table}" />
                                         </tr>
                                         </thead>
 
@@ -71,21 +69,21 @@
 
                                         <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nazwa</th>
-                                            <th>Opis</th>
-                                            <th>Kategoria</th>
-                                            <th>Białko (g)</th>
-                                            <th>Węglowodany (g)</th>
-                                            <th>Tłuszcze (g)</th>
-                                            <th>Twoja poracja</th>
+                                            <th th:text="#{id_table}" />
+                                            <th th:text="#{name_table}" />
+                                            <th th:text="#{description_table}" />
+                                            <th th:text="#{category_table}" />
+                                            <th th:text="#{proteins_table}" />
+                                            <th th:text="#{carbs_table}" />
+                                            <th th:text="#{fats_table}" />
+                                            <th th:text="#{your_portion_table}" />
                                         </tr>
                                         </tfoot>
                                     </table>
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary btn-block">Utwórz posiłek</button>
+                                    <button type="submit" class="btn btn-primary btn-block" th:text="#{create_meal_button}" />
                                 </div>
                             </form>
                         </div>
@@ -99,16 +97,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

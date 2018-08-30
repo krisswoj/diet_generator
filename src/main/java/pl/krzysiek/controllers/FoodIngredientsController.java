@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import pl.krzysiek.domain.FoodIngredient;
+import pl.krzysiek.domain.enums.Notifications;
 import pl.krzysiek.services.FoodIngredientsService;
 
 import javax.validation.Valid;
@@ -39,7 +40,7 @@ public class FoodIngredientsController {
     public ModelAndView addFood(@Valid FoodIngredient foodIngredient, @RequestParam("name") String name) {
         ModelAndView modelAndView = new ModelAndView();
         foodIngredientsService.addNew(foodIngredient);
-        modelAndView.addObject("successMessage", "Dziekujemy, składnik zostal dodany");
+        modelAndView.addObject("successMessage", Notifications.SUCCESS_ADDED_NEW_INGREDIENT);
         modelAndView.addObject("food_ingredient", new FoodIngredient());
         modelAndView.setViewName("food_views/add_to_list_new_ingredient");
         return modelAndView;
@@ -48,8 +49,8 @@ public class FoodIngredientsController {
     @RequestMapping(value = "/add-food-ingredient", method = RequestMethod.POST)
     public ModelAndView addFoodByXML(@RequestParam("file") MultipartFile file) {
         ModelAndView modelAndView = new ModelAndView();
-        foodIngredientsService.loadIngredients("none", "ingredient");
-        modelAndView.addObject("successMessage", "Potwierdzamy dodanie skladnikow do bazy");
+        foodIngredientsService.loadIngredients("upload-dir/ingredients.xml", "ingredient");
+        modelAndView.addObject("successMessage", Notifications.SUCCESS_ADDED_NEW_INGREDIENTS);
         modelAndView.addObject("food_ingredient", new FoodIngredient());
         modelAndView.setViewName("food_views/add_to_list_new_ingredient");
         return modelAndView;

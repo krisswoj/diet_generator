@@ -6,10 +6,11 @@ import java.util.List;
 
 public interface CalculatorService {
 
-    public List<CalorieCalculator> listAll();
+    List<CalorieCalculator> listAll();
 
     List<CalorieCalculator> listAllForUser();
 
-    public CalorieCalculator addNew(CalorieCalculator calorieCalculator);
-    public Integer caloricDemand(CalorieCalculator calorieCalculator);
+    CalorieCalculator addNew(CalorieCalculator calorieCalculator);
+
+    Integer caloricDemand(CalorieCalculator calorieCalculator);
 }

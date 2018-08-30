@@ -16,18 +16,16 @@
             <div class="col-lg-10">
                 <div class="panel-body">
                     <div class="row">
-
-
                         <div th:if="${not #lists.isEmpty(counts)}">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>ID Wedki</th>
-                                    <th>Nazwa</th>
-                                    <th>Opis</th>
-                                    <th>Ilość g białka</th>
-                                    <th>Ilość g węgli</th>
-                                    <th>Ilość g tłuszczu</th>
-                                    <th>Operacje</th>
+                                    <th th:text="#{id_table}" />
+                                    <th th:text="#{name_table}" />
+                                    <th th:text="#{description_table}" />
+                                    <th th:text="#{proteins_table}" />
+                                    <th th:text="#{carbs_table}" />
+                                    <th th:text="#{fats_table}" />
+                                    <th th:text="#{operations}" />
                                 </tr>
                                 <tr th:each="count : ${counts}">
                                     <td th:text="${count.id}"></td>
@@ -46,26 +44,3 @@
         </div>
     </div>
 </div>
-
-
-<!--<div class="container" th:fragment="content">-->
-<!--<div class="row">-->
-<!--<div class="col-12">-->
-<!--<h2>Lista składników</h2>-->
-<!--<table class="table table-striped table-bordered dataTable" id="ingredientsTable">-->
-<!--<thead>-->
-<!--<tr>-->
-<!--<th>id</th>-->
-<!--<th>name</th>-->
-<!--<th>description</th>-->
-<!--<th>amountProtins</th>-->
-<!--<th>amountCarbs</th>-->
-<!--<th>amountFats</th>-->
-<!--</tr>-->
-<!--</thead>-->
-<!--<tbody>-->
-<!--</tbody>-->
-<!--</table>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->

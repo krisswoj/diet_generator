@@ -33,11 +33,11 @@
             <form autocomplete="off" action="#" th:action="@{/register}"
                   th:object="${account}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Rejestracja</h2>
+                <h2 th:text="#{register_title}" />
                 <span th:utext="${successMessage}"></span>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{name}" placeholder="Name"
+                        <input type="text" th:field="*{name}" th:placeholder="#{name}"
                                class="form-control"/>
                     </div>
                 </div>
@@ -45,24 +45,24 @@
                 <div class="form-group">
                     <div class="col-sm-9">
                         <input type="text" th:field="*{surname}"
-                               placeholder="Last Name" class="form-control"/>
+                               th:placeholder="#{surname}" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{email}" placeholder="Email"
+                        <input type="text" th:field="*{email}" th:placeholder="#{email}"
                                class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
                         <input type="password" th:field="*{password}"
-                               placeholder="Password" class="form-control"/>
+                               th:placeholder="#{password}" class="form-control"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
+                        <button type="submit" class="btn btn-primary btn-block" th:text="#{register_button}"></button>
                     </div>
                 </div>
             </form>

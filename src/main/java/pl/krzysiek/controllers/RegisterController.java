@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pl.krzysiek.domain.Account;
+import pl.krzysiek.domain.enums.Notifications;
 import pl.krzysiek.services.AccountService;
 
 import javax.validation.Valid;
@@ -18,11 +19,10 @@ public class RegisterController {
     private AccountService accountService;
 
 
-    @RequestMapping(value="/register", method = RequestMethod.GET)
-    public ModelAndView register(){
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
-        Account account = new Account();
-        modelAndView.addObject("account", account);
+        modelAndView.addObject("account", new Account());
         modelAndView.setViewName("login/register");
         return modelAndView;
     }
@@ -30,17 +30,16 @@ public class RegisterController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid Account account, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        Account userExists = accountService.findUserByEmail(account);
-        if (userExists != null) {
+        if (accountService.findUserByEmail(account) != null) {
             bindingResult
                     .rejectValue("email", "error.user",
-                            "There is already a user registered with the email provided");
+                            String.valueOf(Notifications.FAILED_REGISTER_ACCOUNT));
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("login/register");
         } else {
             accountService.addAccount(account);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
+            modelAndView.addObject("successMessage", Notifications.SUCCESS_REGISTER_ACCOUNT);
             modelAndView.addObject("account", new Account());
             modelAndView.setViewName("login/register");
         }

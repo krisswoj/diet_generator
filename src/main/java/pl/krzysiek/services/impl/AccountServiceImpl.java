@@ -13,10 +13,8 @@ import pl.krzysiek.domain.Role;
 import pl.krzysiek.services.AccountService;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -40,20 +38,17 @@ public class AccountServiceImpl implements AccountService {
         acc.setPassword(bCryptPasswordEncoder.encode(acc.getPassword()));
         acc.setActive(1);
         Role userRole = roleRepository.findByRole("USER");
-        acc.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        acc.setUserRole(new HashSet<Role>(Arrays.asList(userRole)));
         accountRepository.save(acc);
     }
 
     public Account getById(int id) {
-        Account acc = accountRepository.findById(id);
-        return acc;
+        return accountRepository.findById(id);
     }
 
     public Integer checkNickExists(String name) {
-        String userId;
         try {
-            Account account = accountRepository.findByName(name);
-            userId = String.valueOf(account.getUserId());
+            String userId = String.valueOf(accountRepository.findByName(name));
         } catch (Exception ex) {
             return 0;
         }
@@ -64,7 +59,6 @@ public class AccountServiceImpl implements AccountService {
 
         Account passwordToCheck = accountRepository.findByEmail(email);
         if (passwordToCheck != null) {
-
             if (passwordToCheck.getPassword().equals(password)) {
                 return 1;
             } else
@@ -94,5 +88,10 @@ public class AccountServiceImpl implements AccountService {
                 (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Account account = accountRepository.findByEmail(userDetails.getUsername());
         return account;
+    }
+
+    @Override
+    public Timestamp currentDate(){
+        return new java.sql.Timestamp(new java.util.Date().getTime());
     }
 }

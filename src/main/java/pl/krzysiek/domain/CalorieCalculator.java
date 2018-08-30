@@ -1,6 +1,7 @@
 package pl.krzysiek.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -9,7 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "calorie_calculator", schema = "tau", catalog = "")
 public class CalorieCalculator {
-    private int id;
+    private Integer id;
     private Integer sex;
     private Integer weight;
     private Integer height;
@@ -20,16 +21,16 @@ public class CalorieCalculator {
     private Integer caloriesDemand;
     private Timestamp createdDate;
     private Timestamp updateDate;
-    private Account accountByUserId;
+    private Account calorieCalculatorAccount;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -138,7 +139,7 @@ public class CalorieCalculator {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CalorieCalculator that = (CalorieCalculator) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(sex, that.sex) &&
                 Objects.equals(weight, that.weight) &&
                 Objects.equals(height, that.height) &&
@@ -153,18 +154,25 @@ public class CalorieCalculator {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, sex, weight, height, age, plannedEffort, bodyGoal, bodyType, caloriesDemand, createdDate, updateDate);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    public Account getAccountByUserId() {
-        return accountByUserId;
+    public Account getCalorieCalculatorAccount() {
+        return calorieCalculatorAccount;
     }
 
-    public void setAccountByUserId(Account accountByUserId) {
-        this.accountByUserId = accountByUserId;
+    public void setCalorieCalculatorAccount(Account calorieCalculatorAccount) {
+        this.calorieCalculatorAccount = calorieCalculatorAccount;
+    }
+
+    public CalorieCalculator(Integer caloriesDemand, Timestamp createdDate, Account calorieCalculatorAccount) {
+        this.caloriesDemand = caloriesDemand;
+        this.createdDate = createdDate;
+        this.calorieCalculatorAccount = calorieCalculatorAccount;
+    }
+
+    public CalorieCalculator() {
     }
 }

@@ -25,9 +25,7 @@ public class CalorieCalculatorController {
     @RequestMapping(value = "/calculator", method = RequestMethod.POST)
     public ModelAndView calculatorOutsideAdd(@Valid CalorieCalculator calorieCalculator){
         ModelAndView modelAndView = new ModelAndView();
-
         calculatorService.addNew(calorieCalculator);
-
         modelAndView.addObject("successMessage", (calculatorService.caloricDemand(calorieCalculator).toString()));
         modelAndView.addObject("calculator", new CalorieCalculator());
         modelAndView.setViewName("calculator/calculator_outside");
@@ -37,8 +35,7 @@ public class CalorieCalculatorController {
     @RequestMapping(value = "/calculator", method = RequestMethod.GET)
     public ModelAndView calculatorOutside(){
         ModelAndView modelAndView = new ModelAndView();
-        CalorieCalculator calorieCalculator = new CalorieCalculator();
-        modelAndView.addObject("calculator", calorieCalculator);
+        modelAndView.addObject("calculator", new CalorieCalculator());
         modelAndView.setViewName("calculator/calculator_outside");
         return modelAndView;
     }

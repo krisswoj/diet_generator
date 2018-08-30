@@ -10,37 +10,24 @@ import java.util.Set;
 
 @Entity
 public class Account {
-    private int userId;
+    private Integer userId;
     private String name;
     private String surname;
     private String email;
     private String password;
     private Integer active;
-    private Set<Role> roles;
-    private List<ReadyMeal> readyMeals;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonBackReference
-    public Set<Role> getRoles() { return roles; }
-
-    public void setRoles(Set<Role> roles) { this.roles = roles; }
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @JsonManagedReference
-    public List<ReadyMeal> getReadyMeals() { return readyMeals; }
-
-    public void setReadyMeals(List<ReadyMeal> readyMeals) { this.readyMeals = readyMeals; }
+    private Set<Role> userRole;
+    private List<CalorieCalculator> accountCalorieCalculator;
+    private List<ReadyMeal> accountReadyMeal;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -94,26 +81,52 @@ public class Account {
         this.active = active;
     }
 
-    public Account() {
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Account)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return getUserId() == account.getUserId() &&
-                Objects.equals(getName(), account.getName()) &&
-                Objects.equals(getSurname(), account.getSurname()) &&
-                Objects.equals(getEmail(), account.getEmail()) &&
-                Objects.equals(getPassword(), account.getPassword()) &&
-                Objects.equals(getActive(), account.getActive());
-//                Objects.equals(getRole(), account.getRole());
+        return Objects.equals(userId, account.userId) &&
+                Objects.equals(name, account.name) &&
+                Objects.equals(surname, account.surname) &&
+                Objects.equals(email, account.email) &&
+                Objects.equals(password, account.password) &&
+                Objects.equals(active, account.active);
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(userId, name, surname, email, password, active);
+    }
 
-        return Objects.hash(getUserId(), getName(), getSurname(), getEmail(), getPassword(), getActive());
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", catalog = "", schema = "tau", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id", nullable = false))
+    @JsonBackReference
+    public Set<Role> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<Role> userRole) {
+        this.userRole = userRole;
+    }
+
+    @OneToMany(mappedBy = "calorieCalculatorAccount", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    public List<CalorieCalculator> getAccountCalorieCalculator() {
+        return accountCalorieCalculator;
+    }
+
+    public void setAccountCalorieCalculator(List<CalorieCalculator> accountCalorieCalculator) {
+        this.accountCalorieCalculator = accountCalorieCalculator;
+    }
+
+    @OneToMany(mappedBy = "readyMealAccount", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    public List<ReadyMeal> getAccountReadyMeal() {
+        return accountReadyMeal;
+    }
+
+    public void setAccountReadyMeal(List<ReadyMeal> accountReadyMeal) {
+        this.accountReadyMeal = accountReadyMeal;
     }
 }

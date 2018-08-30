@@ -11,50 +11,34 @@ import java.util.Objects;
 @Entity
 @Table(name = "ready_meal", schema = "tau", catalog = "")
 public class ReadyMeal {
-    private int mealId;
+    private Integer mealId;
     private Integer category;
-    private String title;
-    private String description;
     private Timestamp createdDate;
+    private String description;
+    private String title;
     private Timestamp updateDate;
-    private Account accountByUserId;
-    private List<ReadyMealDetails> readyMealDetailsList;
+    private Account readyMealAccount;
+    private List<ReadyMealDetails> readyMealReadyMealDetails;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "meal_id")
-    public int getMealId() {
+    public Integer getMealId() {
         return mealId;
     }
 
-    public void setMealId(int mealId) {
+    public void setMealId(Integer mealId) {
         this.mealId = mealId;
     }
 
     @Basic
-    @Column(name = "title")
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    @Basic
     @Column(name = "category")
-    public Integer getCategory() { return category; }
-
-    public void setCategory(Integer category) { this.category = category; }
-
-    @Basic
-    @Column(name = "description")
-    public String getDescription() {
-        return description;
+    public Integer getCategory() {
+        return category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 
     @Basic
@@ -68,6 +52,26 @@ public class ReadyMeal {
     }
 
     @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Basic
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Basic
     @Column(name = "update_date")
     public Timestamp getUpdateDate() {
         return updateDate;
@@ -77,47 +81,41 @@ public class ReadyMeal {
         this.updateDate = updateDate;
     }
 
-    public ReadyMeal() {
-    }
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JsonManagedReference
-    public List<ReadyMealDetails> getReadyMealDetailsList() {
-        return readyMealDetailsList;
-    }
-
-    public void setReadyMealDetailsList(List<ReadyMealDetails> readyMealDetailsList) {
-        this.readyMealDetailsList = readyMealDetailsList;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ReadyMeal)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ReadyMeal readyMeal = (ReadyMeal) o;
-        return getMealId() == readyMeal.getMealId() &&
-                Objects.equals(getTitle(), readyMeal.getTitle()) &&
-                Objects.equals(getDescription(), readyMeal.getDescription()) &&
-                Objects.equals(getCreatedDate(), readyMeal.getCreatedDate()) &&
-                Objects.equals(getUpdateDate(), readyMeal.getUpdateDate()) &&
-                Objects.equals(getCategory(), readyMeal.getCategory()) &&
-                Objects.equals(getAccountByUserId(), readyMeal.getAccountByUserId());
+        return Objects.equals(mealId, readyMeal.mealId) &&
+                Objects.equals(category, readyMeal.category) &&
+                Objects.equals(createdDate, readyMeal.createdDate) &&
+                Objects.equals(description, readyMeal.description) &&
+                Objects.equals(title, readyMeal.title) &&
+                Objects.equals(updateDate, readyMeal.updateDate);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getMealId(), getTitle(), getDescription(), getCreatedDate(), getUpdateDate(), getAccountByUserId(), getCategory());
+        return Objects.hash(mealId, category, createdDate, description, title, updateDate);
     }
 
-    @ManyToOne
+    @OneToMany(mappedBy = "readyMealDetailsReadyMeal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    public List<ReadyMealDetails> getReadyMealReadyMealDetails() {
+        return readyMealReadyMealDetails;
+    }
+
+    public void setReadyMealReadyMealDetails(List<ReadyMealDetails> readyMealReadyMealDetails) {
+        this.readyMealReadyMealDetails = readyMealReadyMealDetails;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-    public Account getAccountByUserId() {
-        return accountByUserId;
+    public Account getReadyMealAccount() {
+        return readyMealAccount;
     }
 
-    public void setAccountByUserId(Account accountByUserId) {
-        this.accountByUserId = accountByUserId;
+    public void setReadyMealAccount(Account readyMealAccount) {
+        this.readyMealAccount = readyMealAccount;
     }
 }

@@ -2,6 +2,7 @@ package pl.krzysiek.services;
 
 import pl.krzysiek.domain.Account;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -15,4 +16,6 @@ public interface AccountService {
     Integer checkEmailExists(String email);
     Account findUserByEmail(Account account);
     Account loggedUser();
+
+    Date currentDate();
 }

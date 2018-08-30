@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.Account;
 import pl.krzysiek.domain.FoodIngredient;
+import pl.krzysiek.domain.ReadyMealDetails;
+import pl.krzysiek.domain.enums.CalorieAmount;
 import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReaderXMLFilesService;
 
@@ -12,10 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-//@Transactional
 public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
-    static String ingredientsFile = "upload-dir/ingredients.xml";
+    private final static String ingredientsFile = "upload-dir/ingredients.xml";
 
     @Autowired
     IFoodIngredientsRepository foodIngredientsRepository;
@@ -39,8 +40,7 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
     }
 
     public FoodIngredient getById(int id) {
-        FoodIngredient acc = foodIngredientsRepository.findById(id);
-        return acc;
+        return foodIngredientsRepository.findById(id);
     }
 
     @Override
@@ -52,7 +52,6 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
         for (List<String> list2 : list) {
             FoodIngredient foodIngredient = new FoodIngredient();
-
             foodIngredient.setName(list2.get(0));
             foodIngredient.setDescription(list2.get(1));
             foodIngredient.setCategory(Integer.parseInt(list2.get(2)));
@@ -60,12 +59,59 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
             foodIngredient.setAmountProtins(Double.parseDouble(list2.get(4)));
             foodIngredient.setAmountCarbs(Double.parseDouble(list2.get(5)));
             foodIngredient.setAmountFats(Double.parseDouble(list2.get(6)));
-
             foodIngredientList.add(foodIngredient);
         }
-
-        System.out.println(foodIngredientList);
         return foodIngredientsRepository.saveAll(foodIngredientList);
+    }
+
+    @Override
+    public Double nutritionGramsAmount(Double totallyGramsPortion, Double nutritionAmount) {
+        return ((totallyGramsPortion * (nutritionAmount / 10) / 10));
+    }
+
+    @Override
+    public Double kcalAmount(Double gramsPortion, Double amountCarbs, Double amountProtins, Double amountFats) {
+        return (nutritionGramsAmount(gramsPortion, amountCarbs) * CalorieAmount.CARBS.getValue()
+                + (nutritionGramsAmount(gramsPortion, amountProtins) * CalorieAmount.PROTINS.getValue()
+                + (nutritionGramsAmount(gramsPortion, amountFats) * CalorieAmount.FATS.getValue())));
+    }
+
+    @Override
+    public Double totalCarbsGramsAmount(List<ReadyMealDetails> readyMealDetails) {
+        Double result = 0.00;
+        for (ReadyMealDetails meal : readyMealDetails) {
+            result += nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountCarbs());
+        }
+        return result;
+    }
+
+    @Override
+    public Double totalProtinsGramsAmount(List<ReadyMealDetails> readyMealDetails) {
+        Double result = 0.00;
+        for (ReadyMealDetails meal : readyMealDetails) {
+            result += nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountProtins());
+        }
+        return result;
+    }
+
+    @Override
+    public Double totalFatsGramsAmount(List<ReadyMealDetails> readyMealDetails) {
+        Double result = 0.00;
+        for (ReadyMealDetails meal : readyMealDetails) {
+            result += nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountFats());
+        }
+        return result;
+    }
+
+    @Override
+    public Double totalKcalGramsAmount(List<ReadyMealDetails> readyMealDetails) {
+        Double result = 0.00;
+        for (ReadyMealDetails meal : readyMealDetails) {
+            result += ((nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountCarbs() * CalorieAmount.CARBS.getValue())
+                    + (nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountProtins() * CalorieAmount.PROTINS.getValue()))
+                    + nutritionGramsAmount(meal.getGramsPortion(), meal.getReadyMealDetailsFoodIngredient().getAmountFats()) * CalorieAmount.FATS.getValue()));
+        }
+        return result;
     }
 
 }

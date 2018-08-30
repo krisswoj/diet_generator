@@ -11,12 +11,6 @@ import pl.krzysiek.services.AccountService;
 @Controller
 public class LoginController {
 
-    @Autowired
-    private IAccountRepository accountRepository;
-
-    @Autowired
-    private AccountService accountService;
-
     @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();

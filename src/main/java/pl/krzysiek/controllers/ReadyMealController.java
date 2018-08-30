@@ -10,7 +10,7 @@ import pl.krzysiek.dao.IAccountRepository;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.dao.IReadyMealsRepository;
 import pl.krzysiek.domain.*;
-import pl.krzysiek.services.FoodIngredientCaloriesService;
+import pl.krzysiek.domain.enums.Notifications;
 import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReadyMealService;
 
@@ -36,8 +36,6 @@ public class ReadyMealController {
     @Autowired
     IAccountRepository accountRepository;
 
-    @Autowired
-    FoodIngredientCaloriesService foodIngredientCaloriesService;
 
     @RequestMapping(value = "/create-meal", method = GET)
     public ModelAndView createMealForm() {
@@ -53,15 +51,16 @@ public class ReadyMealController {
                                         @RequestParam("gramsPortion") Double[] gramsPortion,
                                         @RequestParam("food_ingredient_id") Integer[] food_ingredient_id) {
         ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.addObject("ingredientsForm", new ReadyMeal());
         modelAndView.addObject("ingredientsList", foodIngredientsService.listAll());
 
-        readyMeal.setReadyMealDetailsList(readyMealService.converterDataFromForm(gramsPortion, food_ingredient_id));
+        readyMealService.createReadyMeal(readyMeal, gramsPortion, food_ingredient_id);
 
         if (readyMealService.saveReadyMeal(readyMeal)) {
-            modelAndView.addObject("message", "Danie dodano do bazy danych");
+            modelAndView.addObject("message", Notifications.SUCCESS_ADDED_MEAL);
         } else {
-            modelAndView.addObject("message", "Przepraszamy, danie nie zostalo dodane - sprobuj ponownie");
+            modelAndView.addObject("message", Notifications.FAILED_ADDED_MEAL);
         }
         modelAndView.setViewName("food_views/create_meal_form");
         return modelAndView;
@@ -70,9 +69,8 @@ public class ReadyMealController {
     @RequestMapping(value = "/take-meal", method = RequestMethod.GET)
     public ModelAndView getReadReal(@RequestParam("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        ReadyMeal readyMeal = readyMealsRepository.findByMealId(id);
-        modelAndView.addObject("readyMealInfo", readyMeal);
-        modelAndView.addObject("calories", foodIngredientCaloriesService);
+        modelAndView.addObject("readyMealInfo", readyMealsRepository.findByMealId(id));
+        modelAndView.addObject("calories", foodIngredientsService);
         modelAndView.setViewName("food_views/single_meal_details");
 
         return modelAndView;
@@ -82,7 +80,7 @@ public class ReadyMealController {
     public ModelAndView ReadyMealsList(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("readyMealsList", readyMealsRepository.findAll());
-        modelAndView.addObject("calories", foodIngredientCaloriesService);
+        modelAndView.addObject("calories", foodIngredientsService);
         modelAndView.setViewName("food_views/ready_meals_list");
         return modelAndView;
     }
