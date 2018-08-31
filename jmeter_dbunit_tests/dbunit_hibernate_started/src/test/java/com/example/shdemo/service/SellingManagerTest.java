@@ -1,6 +1,9 @@
 package com.example.shdemo.service;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotSame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +11,11 @@ import java.util.List;
 import com.example.shdemo.domain.Account;
 import com.example.shdemo.domain.FoodIngredient;
 import com.example.shdemo.domain.ReadyMeal;
-import org.junit.Ignore;
+import com.example.shdemo.domain.ReadyMealDetails;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,9 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
-//@Rollback
-//@Commit
-//@Transactional(transactionManager = "txManager")
+@Rollback
+@Commit
+@Transactional(transactionManager = "txManager")
 public class SellingManagerTest {
 
 	@Autowired
@@ -32,35 +36,14 @@ public class SellingManagerTest {
 	private final String NAME_1 = "Krzysiek";
 	private final String PASSWORD_1 = "testowe_haslo";
 
-	private final String NAME_2 = "Krzysiek";
-	private final String PASSWORD_2 = "testowe_haslo";
-
-
-//	private final String MODEL_1 = "126p";
-//	private final String MAKE_1 = "Fiat";
-//
-//	private final String MODEL_2 = "Mondeo";
-//	private final String MAKE_2 = "Ford";
 
 	@Test
 	public void addClientCheck() {
 
-		List<Account> retrievedClients = foodCreator.getAllAccounts();
-		// If there is a client with PIN_1 delete it
-		for (Account account : retrievedClients) {
-			System.out.println("Klient: " + account.getName() + " " + account.getPassword());
-			if (account.getName().equals(NAME_1)) {
-				foodCreator.deleteAccount(account);
-			}
-		}
-		retrievedClients = foodCreator.getAllAccounts();
-
 		Account account = new Account();
 		account.setName(NAME_1);
 		account.setPassword(PASSWORD_1);
-		// ... other properties here
 
-		// Pin is Unique
 		foodCreator.addAccount(account);
 
 		Account accountByName = foodCreator.findAccountByName(NAME_1);
@@ -71,82 +54,95 @@ public class SellingManagerTest {
 		accountByName.setName("Roman");
 		foodCreator.updateClient(accountByName);
 		assertEquals("Roman", foodCreator.findAccountByName(accountByName.getName()).getName());
-
-		// ... check other properties here
-
 	}
 
 	@Test
     public void addNewMeal(){
 
         Account account = new Account();
-        account.setName(NAME_1);
-        account.setPassword(PASSWORD_1);
-
+        account.setName("Marek");
+        account.setPassword("marekarek");
         foodCreator.addAccount(account);
+		ReadyMeal readyMeal = new ReadyMeal();
+		readyMeal.setTitle("Testowe danie");
+		readyMeal.setReadyMealAccount(account);
+        foodCreator.addNewReadMeal(readyMeal);
 
         List<FoodIngredient> foodIngredientList = new ArrayList<>();
-        foodIngredientList.add(new FoodIngredient(1, "Makaron zbozowy", 10, 66, 5));
-        foodIngredientList.add(new FoodIngredient(2, "Mieso mielone", 23,8,30));
-        foodIngredientList.add(new FoodIngredient(3, "Cebula", 4, 5, 6));
-        foodIngredientList.add(new FoodIngredient(4, "Sos pomidorowy", 10, 30, 10));
+        foodIngredientList.add(new FoodIngredient(1, 66, 10, 12, "Makaron zbozowy"));
+        foodIngredientList.add(new FoodIngredient(2, 2, 20, 20, "Mieso wolowe"));
+        foodIngredientList.add(new FoodIngredient(3, 3, 4, 5, "Cebula"));
+        foodIngredientList.add(new FoodIngredient(4, 10, 15, 20, "Sos pomidorowy"));
 
-        List<ReadyMeal> readyMealList = new ArrayList<>();
-        readyMealList.add(foodCreator.createReadyMeal(account, foodIngredientList));
+        for(FoodIngredient foodIngredient : foodIngredientList){
+        	foodCreator.addNewIngredient(foodIngredient);
+        	foodCreator.addNewReadMealDetails(new ReadyMealDetails(55, readyMeal, foodIngredient));
+		}
 
-        account.setReadyMeals(readyMealList);
-
-        foodCreator.updateClient(account);
-
+		assertEquals(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).get(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).size()-1).getReadyMealDetailsFoodIngredient().getName(), foodIngredientList.get(foodIngredientList.size()-1).getName());
+		assertEquals(foodCreator.findReadyMealByTitle("Testowe danie"), readyMeal);
     }
 
+    @Test
+	public void updateIngredient(){
 
+		Account account = new Account();
+		account.setName("Marek");
+		account.setPassword("marekarek");
+		foodCreator.addAccount(account);
+		ReadyMeal readyMeal = new ReadyMeal();
+		readyMeal.setTitle("Testowe danie");
+		readyMeal.setReadyMealAccount(account);
+		foodCreator.addNewReadMeal(readyMeal);
 
-//	@Test
-//	public void addCarCheck() {
-//
-//		Car car = new Car();
-//		car.setMake(MAKE_1);
-//		car.setModel(MODEL_1);
-//		// ... other properties here
-//
-//		Long carId = sellingManager.addNewCar(car);
-//
-//		Car retrievedCar = sellingManager.findCarById(carId);
-//		assertEquals(MAKE_1, retrievedCar.getMake());
-//		assertEquals(MODEL_1, retrievedCar.getModel());
-//		// ... check other properties here
-//
-//	}
-//
-//	@Test
-//	public void sellCarCheck() {
-//
-//		Person person = new Person();
-//		person.setFirstName(NAME_2);
-//		person.setPin(PIN_2);
-//		sellingManager.addClient(person);
-//
-//		Person retrievedPerson = sellingManager.findClientByPin(PIN_2);
-//
-//		Car car = new Car();
-//		car.setMake(MAKE_2);
-//		car.setModel(MODEL_2);
-//
-//		Long carId = sellingManager.addNewCar(car);
-//
-//		sellingManager.sellCar(retrievedPerson.getId(), carId);
-//
-//		List<Car> ownedCars = sellingManager.getOwnedCars(retrievedPerson);
-//
-//		assertEquals(1, ownedCars.size());
-//		assertEquals(MAKE_2, ownedCars.get(0).getMake());
-//		assertEquals(MODEL_2, ownedCars.get(0).getModel());
-//	}
+		List<FoodIngredient> foodIngredientList = new ArrayList<>();
+		foodIngredientList.add(new FoodIngredient(1, 66, 10, 12, "Makaron zbozowy"));
+		foodIngredientList.add(new FoodIngredient(2, 2, 20, 20, "Mieso wolowe"));
+		foodIngredientList.add(new FoodIngredient(3, 3, 4, 5, "Cebula"));
+		foodIngredientList.add(new FoodIngredient(4, 10, 15, 20, "Sos pomidorowy"));
 
-	// @Test -
-	public void disposeCarCheck() {
-		// Do it yourself
+		List<ReadyMealDetails> readyMealDetailsList = new ArrayList<>();
+		for(FoodIngredient foodIngredient : foodIngredientList){
+			foodCreator.addNewIngredient(foodIngredient);
+			foodCreator.addNewReadMealDetails(new ReadyMealDetails(55, readyMeal, foodIngredient));
+			readyMealDetailsList.add(new ReadyMealDetails(55, readyMeal, foodIngredient));
+		}
+
+		ReadyMealDetails readyMealDetailsToUpdate = readyMealDetailsList.get(readyMealDetailsList.size()-1);
+		readyMealDetailsToUpdate.setGramsPortion(70);
+
+		foodCreator.updateReadyMealsDetails(readyMealDetailsToUpdate);
+
+		assertEquals(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).get(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).size()-1).getGramsPortion(), (Integer) 70);
 	}
 
+	@Test
+	public void deleteIngredientFromMealList(){
+
+		Account account = new Account();
+		account.setName("Marek");
+		account.setPassword("marekarek");
+		foodCreator.addAccount(account);
+		ReadyMeal readyMeal = new ReadyMeal();
+		readyMeal.setTitle("Testowe danie");
+		readyMeal.setReadyMealAccount(account);
+		foodCreator.addNewReadMeal(readyMeal);
+
+		List<FoodIngredient> foodIngredientList = new ArrayList<>();
+		foodIngredientList.add(new FoodIngredient(1, 66, 10, 12, "Makaron zbozowy"));
+		foodIngredientList.add(new FoodIngredient(2, 2, 20, 20, "Mieso wolowe"));
+		foodIngredientList.add(new FoodIngredient(3, 3, 4, 5, "Cebula"));
+		foodIngredientList.add(new FoodIngredient(4, 10, 15, 20, "Sos pomidorowy"));
+
+		List<ReadyMealDetails> readyMealDetailsList = new ArrayList<>();
+		for(FoodIngredient foodIngredient : foodIngredientList){
+			foodCreator.addNewIngredient(foodIngredient);
+			foodCreator.addNewReadMealDetails(new ReadyMealDetails(55, readyMeal, foodIngredient));
+			readyMealDetailsList.add(new ReadyMealDetails(55, readyMeal, foodIngredient));
+		}
+
+		foodCreator.deleteIngredientFromReadyMealList(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).get(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()).size()-1));
+
+		assertNotSame(foodCreator.findReadyMealDeatilsById(readyMeal.getMealId()), readyMealDetailsList.size());
+	}
 }

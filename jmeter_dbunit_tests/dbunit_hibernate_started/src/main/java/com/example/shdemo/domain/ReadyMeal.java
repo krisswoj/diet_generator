@@ -4,16 +4,23 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
+//@NamedQuery(name = "readyMeal.byChuj", query = "Select r from ReadyMeal r where r.title = :titla")
+
+
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "readyMeal.byTitle", query = "Select r from ReadyMeal r where r.title = :title"),
+        @NamedQuery(name = "readyMealDeatils.byId", query = "Select r from ReadyMealDetails r where r.readyMealDetailsReadyMeal.mealId = :mealId")})
 @Table(name = "ready_meal")
 public class ReadyMeal {
     private Integer mealId;
     private String title;
-    private Account accountByUserId;
-    private List<ReadyMealDetails> readyMealDetailsList;
+    private Account readyMealAccount;
+    private List<ReadyMealDetails> readyMealReadyMealDetails;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,44 +43,37 @@ public class ReadyMeal {
         this.title = title;
     }
 
-    public ReadyMeal() {
-    }
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    @JoinColumn(name = "meal_id", referencedColumnName = "meal_id")
-    public List<ReadyMealDetails> getReadyMealDetailsList() {
-        return readyMealDetailsList;
-    }
-
-    public void setReadyMealDetailsList(List<ReadyMealDetails> readyMealDetailsList) {
-        this.readyMealDetailsList = readyMealDetailsList;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ReadyMeal)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ReadyMeal readyMeal = (ReadyMeal) o;
-        return getMealId() == readyMeal.getMealId() &&
-                Objects.equals(getTitle(), readyMeal.getTitle()) &&
-                Objects.equals(getAccountByUserId(), readyMeal.getAccountByUserId());
+        return Objects.equals(mealId, readyMeal.mealId) &&
+                Objects.equals(title, readyMeal.title);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getMealId(), getTitle(), getAccountByUserId());
+        return Objects.hash(mealId, title);
     }
 
-    @ManyToOne
+    @OneToMany(mappedBy = "readyMealDetailsReadyMeal", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonManagedReference
+    public List<ReadyMealDetails> getReadyMealReadyMealDetails() {
+        return readyMealReadyMealDetails;
+    }
+
+    public void setReadyMealReadyMealDetails(List<ReadyMealDetails> readyMealReadyMealDetails) {
+        this.readyMealReadyMealDetails = readyMealReadyMealDetails;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-    public Account getAccountByUserId() {
-        return accountByUserId;
+    public Account getReadyMealAccount() {
+        return readyMealAccount;
     }
 
-    public void setAccountByUserId(Account accountByUserId) {
-        this.accountByUserId = accountByUserId;
+    public void setReadyMealAccount(Account readyMealAccount) {
+        this.readyMealAccount = readyMealAccount;
     }
 }

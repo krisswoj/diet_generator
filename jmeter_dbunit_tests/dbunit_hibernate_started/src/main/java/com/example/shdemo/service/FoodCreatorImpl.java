@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 @Component
@@ -35,8 +35,30 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
+    public Integer addNewIngredient(FoodIngredient foodIngredient) {
+        foodIngredient.setId(null);
+        return (Integer) sessionFactory.getCurrentSession().save(foodIngredient);
+    }
+
+    @Override
+    public Integer addNewReadMeal(ReadyMeal readyMeal) {
+        readyMeal.setMealId(null);
+        return (Integer) sessionFactory.getCurrentSession().save(readyMeal);
+    }
+
+    @Override
     public void updateClient(Account account) {
         sessionFactory.getCurrentSession().update(account);
+    }
+
+    @Override
+    public void updateReadyMeal(ReadyMeal readyMeal) {
+        sessionFactory.getCurrentSession().update(readyMeal);
+    }
+
+    @Override
+    public Serializable addNewReadMealDetails(ReadyMealDetails readyMealDetails) {
+        return sessionFactory.getCurrentSession().save(readyMealDetails);
     }
 
     @Override
@@ -55,8 +77,32 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
+    public void deleteIngredientFromReadyMealList(ReadyMealDetails readyMealDetails){
+        readyMealDetails = (ReadyMealDetails) sessionFactory.getCurrentSession().get(ReadyMealDetails.class,
+                readyMealDetails.getId());
+        sessionFactory.getCurrentSession().delete(readyMealDetails);
+    }
+
+    @Override
     public Account findAccountByName(String name) {
         return (Account) sessionFactory.getCurrentSession().getNamedQuery("account.byName").setString("name", name).uniqueResult();
+    }
+
+    @Override
+    public ReadyMeal findReadyMealByTitle(String title) {
+        return (ReadyMeal) sessionFactory.getCurrentSession().getNamedQuery("readyMeal.byTitle").setString("title", title).uniqueResult();
+    }
+
+    @Override
+    public List<ReadyMealDetails> findReadyMealDeatilsById(int mealId) {
+        return (List<ReadyMealDetails>) sessionFactory.getCurrentSession().getNamedQuery("readyMealDeatils.byId").setInteger("mealId", mealId).list();
+    }
+
+    @Override
+    public void updateReadyMealsDetails(ReadyMealDetails readyMealDetails) {
+        readyMealDetails.setId(null);
+        sessionFactory.getCurrentSession().persist(readyMealDetails);
+        sessionFactory.getCurrentSession().flush();
     }
 
     @Override
@@ -66,29 +112,10 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
-//    @SuppressWarnings("unchecked")
-    public List<FoodIngredient> getAllFoodIngredients() {
-//        return sessionFactory.getCurrentSession().getNamedQuery("foodingredient.all")
-//                .list();
+    public ReadyMeal createReadyMeal(Account account, List<FoodIngredient> foodIngredientList) {
         return null;
     }
 
-    @Override
-    public ReadyMeal createReadyMeal(Account account, List<FoodIngredient> foodIngredientList) {
-        ReadyMeal readyMeal = new ReadyMeal();
-
-        List<ReadyMealDetails> readyMealDetails = new ArrayList<>();
-
-        for(FoodIngredient foodIngredient : foodIngredientList){
-            readyMealDetails.add(new ReadyMealDetails(50, foodIngredient));
-        }
-
-        readyMeal.setReadyMealDetailsList(readyMealDetails);
-        readyMeal.setAccountByUserId(account);
-        readyMeal.setTitle("Testowy posilek");
-
-        return readyMeal;
-    }
 
     @Override
     public List<ReadyMeal> getAllReadyMeal() {

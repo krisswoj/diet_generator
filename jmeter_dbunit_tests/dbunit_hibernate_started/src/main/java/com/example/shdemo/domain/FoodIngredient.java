@@ -8,10 +8,10 @@ import java.util.Objects;
 @Table(name = "food_ingredient")
 public class FoodIngredient {
     private Integer id;
-    private String name;
-    private Integer amountProtins;
     private Integer amountCarbs;
     private Integer amountFats;
+    private Integer amountProtins;
+    private String name;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,27 +22,6 @@ public class FoodIngredient {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    @Basic
-    @Column(name = "amount_protins")
-    public Integer getAmountProtins() {
-        return amountProtins;
-    }
-
-    public void setAmountProtins(Integer amountProtins) {
-        this.amountProtins = amountProtins;
     }
 
     @Basic
@@ -65,36 +44,51 @@ public class FoodIngredient {
         this.amountFats = amountFats;
     }
 
+    @Basic
+    @Column(name = "amount_protins")
+    public Integer getAmountProtins() {
+        return amountProtins;
+    }
+
+    public void setAmountProtins(Integer amountProtins) {
+        this.amountProtins = amountProtins;
+    }
+
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FoodIngredient that = (FoodIngredient) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(amountProtins, that.amountProtins) &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(amountCarbs, that.amountCarbs) &&
-                Objects.equals(amountFats, that.amountFats);
+                Objects.equals(amountFats, that.amountFats) &&
+                Objects.equals(amountProtins, that.amountProtins) &&
+                Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, name, amountProtins, amountCarbs, amountFats);
+        return Objects.hash(id, amountCarbs, amountFats, amountProtins, name);
     }
 
-    public FoodIngredient(Integer id, String name, Integer amountProtins, Integer amountCarbs, Integer amountFats) {
+    public FoodIngredient() {
+    }
+
+    public FoodIngredient(Integer id, Integer amountCarbs, Integer amountFats, Integer amountProtins, String name) {
         this.id = id;
-        this.name = name;
-        this.amountProtins = amountProtins;
         this.amountCarbs = amountCarbs;
         this.amountFats = amountFats;
-    }
-
-    public FoodIngredient(String name, Integer amountProtins, Integer amountCarbs, Integer amountFats) {
-        this.name = name;
         this.amountProtins = amountProtins;
-        this.amountCarbs = amountCarbs;
-        this.amountFats = amountFats;
+        this.name = name;
     }
 }

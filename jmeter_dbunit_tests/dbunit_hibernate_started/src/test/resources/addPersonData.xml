@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <account name="Krzysiek" password="testowe_haslo"/>
-  <account name="Krzysiek" password="testowe_haslo"/>
-  <account name="Krzysiek" password="testowe_haslo"/>
+  <ACCOUNT NAME="Krzysiek" PASSWORD="testowe_haslo"/>
+  <ACCOUNT NAME="Krzysiek" PASSWORD="testowe_haslo"/>
+  <ACCOUNT NAME="Krzysiek" PASSWORD="testowe_haslo"/>
 </dataset>

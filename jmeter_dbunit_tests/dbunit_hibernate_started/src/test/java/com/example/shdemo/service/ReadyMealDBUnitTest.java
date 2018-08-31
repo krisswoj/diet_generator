@@ -31,14 +31,14 @@ import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
 @Rollback
-//@Commit
+@Commit
 @Transactional(transactionManager = "txManager")
 @TestExecutionListeners({
     DependencyInjectionTestExecutionListener.class,
     DirtiesContextTestExecutionListener.class,
     TransactionalTestExecutionListener.class,
     DbUnitTestExecutionListener.class })
-public class SellingManagerDBUnitTest {
+public class ReadyMealDBUnitTest {
 
 
 	@Autowired

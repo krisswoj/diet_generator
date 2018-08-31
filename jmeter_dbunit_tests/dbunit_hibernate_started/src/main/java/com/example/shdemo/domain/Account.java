@@ -1,10 +1,12 @@
 package com.example.shdemo.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @NamedQueries({
@@ -14,15 +16,7 @@ public class Account {
     private Integer userId;
     private String name;
     private String password;
-    private List<ReadyMeal> readyMeals;
-
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    @JsonManagedReference
-    public List<ReadyMeal> getReadyMeals() { return readyMeals; }
-
-    public void setReadyMeals(List<ReadyMeal> readyMeals) { this.readyMeals = readyMeals; }
+    private List<ReadyMeal> accountReadyMeal;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +39,6 @@ public class Account {
         this.name = name;
     }
 
-
     @Basic
     @Column(name = "password")
     public String getPassword() {
@@ -56,28 +49,28 @@ public class Account {
         this.password = password;
     }
 
-
-    public Account() {
-    }
-
-    public Account(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Account)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return getUserId() == account.getUserId() &&
-                Objects.equals(getName(), account.getName()) &&
-                Objects.equals(getPassword(), account.getPassword());
+        return Objects.equals(userId, account.userId) &&
+                Objects.equals(name, account.name) &&
+                Objects.equals(password, account.password);
     }
 
     @Override
     public int hashCode() {
+        return Objects.hash(userId, name, password);
+    }
 
-        return Objects.hash(getUserId(), getName(), getPassword());
+    @OneToMany(mappedBy = "readyMealAccount", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    public List<ReadyMeal> getAccountReadyMeal() {
+        return accountReadyMeal;
+    }
+
+    public void setAccountReadyMeal(List<ReadyMeal> accountReadyMeal) {
+        this.accountReadyMeal = accountReadyMeal;
     }
 }

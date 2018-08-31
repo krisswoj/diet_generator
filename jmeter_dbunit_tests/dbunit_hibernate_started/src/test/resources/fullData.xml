@@ -1,23 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version='1.0' encoding='utf-8'?>
 <dataset>
-  <account user_id="3" name="Krzysiek" password="testowe_haslo"/>
-  <account user_id="4" name="Krzysiek" password="testowe_haslo"/>
-
-  <food_ingredient id="1" name="Makaron zbozowy" amount_protins="10" amount_carbs="66" amount_fats="5"/>
-  <food_ingredient id="2" name="Mieso mielone" amount_protins="23" amount_carbs="8" amount_fats="30"/>
-  <food_ingredient id="3" name="Cebula" amount_protins="4" amount_carbs="5" amount_fats="5"/>
-  <food_ingredient id="4" name="Sos pomidorowy" amount_protins="10" amount_carbs="30" amount_fats="10"/>
-
-  <ready_meal meal_id="1" title="Spaghetti Bolognese" user_id="3"/>
-
-  <ready_meal_details id="1" food_ingredient_id="1" grams_portion="150"/>
-  <ready_meal_details id="2" food_ingredient_id="2" grams_portion="300"/>
-  <ready_meal_details id="3" food_ingredient_id="3" grams_portion="100"/>
-  <ready_meal_details id="4" food_ingredient_id="4" grams_portion="400"/>
-
-  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="1" />
-  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="2" />
-  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="3" />
-  <ready_meal_ready_meal_details_list READYMEAL_MEAL_ID="1" READYMEALDETAILSLIST_ID="4" />
-
+  <ACCOUNT USER_ID="3" NAME="Krzysiek" PASSWORD="testowe_haslo"/>
+  <ACCOUNT USER_ID="4" NAME="Krzysiek" PASSWORD="testowe_haslo"/>
+  <FOOD_INGREDIENT ID="1" NAME="MAKARON ZBOZOWY" AMOUNT_PROTINS="10" AMOUNT_CARBS="66" AMOUNT_FATS="5"/>
+  <FOOD_INGREDIENT ID="2" NAME="MIESO MIELONE" AMOUNT_PROTINS="23" AMOUNT_CARBS="8" AMOUNT_FATS="30"/>
+  <FOOD_INGREDIENT ID="3" NAME="CEBULA" AMOUNT_PROTINS="4" AMOUNT_CARBS="5" AMOUNT_FATS="5"/>
+  <FOOD_INGREDIENT ID="4" NAME="SOS POMIDOROWY" AMOUNT_PROTINS="10" AMOUNT_CARBS="30" AMOUNT_FATS="10"/>
+  <READY_MEAL MEAL_ID="1" TITLE="SPAGHETTI BOLOGNESE" READYMEALACCOUNT_USER_ID="3"/>
+  <READY_MEAL_DETAILS ID="1" GRAMS_PORTION="150" READYMEALDETAILSFOODINGREDIENT_ID="1" READYMEALDETAILSREADYMEAL_MEAL_ID="1"/>
+  <READY_MEAL_DETAILS ID="2" GRAMS_PORTION="300" READYMEALDETAILSFOODINGREDIENT_ID="2" READYMEALDETAILSREADYMEAL_MEAL_ID="1"/>
+  <READY_MEAL_DETAILS ID="3" GRAMS_PORTION="100" READYMEALDETAILSFOODINGREDIENT_ID="3" READYMEALDETAILSREADYMEAL_MEAL_ID="1"/>
+  <READY_MEAL_DETAILS ID="4" GRAMS_PORTION="400" READYMEALDETAILSFOODINGREDIENT_ID="4" READYMEALDETAILSREADYMEAL_MEAL_ID="1"/>
 </dataset>

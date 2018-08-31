@@ -10,8 +10,8 @@ import java.util.Objects;
 public class ReadyMealDetails {
     private Integer id;
     private Integer gramsPortion;
-    private ReadyMeal readyMealByMealId;
-    private FoodIngredient foodIngredientByFoodIngredientId;
+    private ReadyMeal readyMealDetailsReadyMeal;
+    private FoodIngredient readyMealDetailsFoodIngredient;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,40 +39,46 @@ public class ReadyMealDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReadyMealDetails that = (ReadyMealDetails) o;
-        return id == that.id &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(gramsPortion, that.gramsPortion);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, gramsPortion);
     }
 
-    @ManyToOne
-    @JoinColumn(name = "meal_id", referencedColumnName = "meal_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonBackReference
-    public ReadyMeal getReadyMealByMealId() {
-        return readyMealByMealId;
+    public ReadyMeal getReadyMealDetailsReadyMeal() {
+        return readyMealDetailsReadyMeal;
     }
 
-    public void setReadyMealByMealId(ReadyMeal readyMealByMealId) {
-        this.readyMealByMealId = readyMealByMealId;
+    public void setReadyMealDetailsReadyMeal(ReadyMeal readyMealDetailsReadyMeal) {
+        this.readyMealDetailsReadyMeal = readyMealDetailsReadyMeal;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "food_ingredient_id", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    public FoodIngredient getFoodIngredientByFoodIngredientId() {
-        return foodIngredientByFoodIngredientId;
+    public FoodIngredient getReadyMealDetailsFoodIngredient() {
+        return readyMealDetailsFoodIngredient;
     }
 
-    public void setFoodIngredientByFoodIngredientId(FoodIngredient foodIngredientByFoodIngredientId) {
-        this.foodIngredientByFoodIngredientId = foodIngredientByFoodIngredientId;
+    public void setReadyMealDetailsFoodIngredient(FoodIngredient readyMealDetailsFoodIngredient) {
+        this.readyMealDetailsFoodIngredient = readyMealDetailsFoodIngredient;
     }
 
-    public ReadyMealDetails(Integer gramsPortion, FoodIngredient foodIngredientByFoodIngredientId) {
+    public ReadyMealDetails() {
+    }
+
+    public ReadyMealDetails(Integer gramsPortion, ReadyMeal readyMealDetailsReadyMeal, FoodIngredient readyMealDetailsFoodIngredient) {
         this.gramsPortion = gramsPortion;
-        this.foodIngredientByFoodIngredientId = foodIngredientByFoodIngredientId;
+        this.readyMealDetailsReadyMeal = readyMealDetailsReadyMeal;
+        this.readyMealDetailsFoodIngredient = readyMealDetailsFoodIngredient;
+    }
+
+    public ReadyMealDetails(ReadyMeal readyMealDetailsReadyMeal, FoodIngredient readyMealDetailsFoodIngredient) {
+        this.readyMealDetailsReadyMeal = readyMealDetailsReadyMeal;
+        this.readyMealDetailsFoodIngredient = readyMealDetailsFoodIngredient;
     }
 }
