@@ -27,23 +27,23 @@ public class PureDBUnitTest extends TestCase {
 
 	IDatabaseConnection connection ;
 	private IDatabaseTester databaseTester;
-	
+
 	protected void setUp() throws Exception {
 		Connection jdbcConnection;
 		jdbcConnection = DriverManager.getConnection(
 				"jdbc:hsqldb:hsql://localhost/workdb", "sa", "");
 		connection = new DatabaseConnection(jdbcConnection);
-		
+
 		databaseTester = new JdbcDatabaseTester(
 				"org.hsqldb.jdbcDriver", "jdbc:hsqldb:hsql://localhost/workdb", "sa", "");
 		IDataSet dataSet = new FlatXmlDataSetBuilder().build(
 				new FileInputStream(new File("src/test/resources/fullData.xml")));
 		databaseTester.setDataSet(dataSet);
 		databaseTester.onSetup();
-		
+
 		//DatabaseOperation.CLEAN_INSERT.execute(connection, dataSet);
 	}
-	
+
 	public void test() throws Exception {
 
 		// Operacje
@@ -60,10 +60,10 @@ public class PureDBUnitTest extends TestCase {
 		Assertion.assertEquals(expectedTable, filteredTable);
 
 	}
-	
+
 	protected void tearDown() throws Exception{
 		databaseTester.onTearDown();
 	}
-	
-	
+
+
 }

@@ -20,7 +20,7 @@ public class DatabaseExport {
 
 		FlatDtdDataSet.write(connection.createDataSet(), new FileOutputStream(
 				"src/test/resources/dataSet_.dtd"));
-		
+
 		FlatXmlDataSet.write(connection.createDataSet(), new FileOutputStream(
 				"src/test/resources/fullData_.xml"));
 

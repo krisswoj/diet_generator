@@ -6,7 +6,6 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -19,7 +18,6 @@ import java.sql.DriverManager;
         UserDbunitTest.class
 })
 public class UserTest {
-
     @BeforeClass
     public static void before() throws Exception {
         String url = "jdbc:hsqldb:hsql://localhost/workdb";

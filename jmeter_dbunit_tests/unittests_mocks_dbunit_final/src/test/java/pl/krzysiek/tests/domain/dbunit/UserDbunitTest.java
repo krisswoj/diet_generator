@@ -19,7 +19,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.krzysiek.domain.User;
 import pl.krzysiek.repository.UserRepository;
 import pl.krzysiek.services.UserImpl;
@@ -52,7 +52,8 @@ public class UserDbunitTest extends DBTestCase {
     public void checkAdding() throws Exception{
 
         User user = new User("Maciek", 33);
-        assertEquals(1, userRepository.addUser(user));
+        int userId = userRepository.addUser(user);
+        assertEquals(userRepository.getById(userId).getName(), user.getName());
 
         // Data verification
 
@@ -63,11 +64,11 @@ public class UserDbunitTest extends DBTestCase {
         ITable expectedTable = expectedDataSet.getTable("USERS");
         Assertion.assertEquals(expectedTable, filteredTable);
 
-//        userRepository.deleteUser(user);
     }
 
     @Test
     public void checkRead() throws Exception{
+
         assertEquals("Stefan", userRepository.getById(1).getName());
 
         IDataSet dbDataSet = this.getConnection().createDataSet();
@@ -99,25 +100,19 @@ public class UserDbunitTest extends DBTestCase {
     @Test
     public void checkDelete() throws Exception{
 
-        User user = new User(0,"Szymon", 19);
-        userRepository.addUser(user);
+        User user = new User(6,"Arkadiusz", 29);
 
-        // baza nadaje swoj wlasny numer ID, wiec jezeli rekord by sie nie zapisal, nie wywola sie funkcja usuwania
-        if(user.getId() > 0){
-            userRepository.deleteUser(user);
-        }
+        userRepository.deleteUser(user);
 
         assertNull(userRepository.getById(user.getId()).getName());
 
         IDataSet dbDataSet = this.getConnection().createDataSet();
         ITable actualTable = dbDataSet.getTable("USERS");
         ITable filteredTable = DefaultColumnFilter.excludedColumnsTable(actualTable, new String[] { "ID" });
-        IDataSet expectedDataSet = getDataSet("ds-2.xml");
+        IDataSet expectedDataSet = getDataSet("ds-4.xml");
         ITable expectedTable = expectedDataSet.getTable("USERS");
         Assertion.assertEquals(expectedTable, filteredTable);
     }
-
-
 
     @Override
     protected DatabaseOperation getSetUpOperation() throws Exception {
