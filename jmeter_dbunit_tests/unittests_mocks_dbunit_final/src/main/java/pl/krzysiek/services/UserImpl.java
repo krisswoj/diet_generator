@@ -29,7 +29,7 @@ public class UserImpl implements UserRepository {
     }
 
     public UserImpl() throws SQLException {
-        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb");
+        this.connection = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/workdb", "sa", "");
         if (!isReady()) {
             createTables();
         }

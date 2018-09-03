@@ -144,4 +144,19 @@ public class FoodIngredient {
 
     public FoodIngredient() {
     }
+
+    public FoodIngredient(Integer id, Double amountCarbs, Double amountFats, Double amountProtins, String name) {
+        this.id = id;
+        this.amountCarbs = amountCarbs;
+        this.amountFats = amountFats;
+        this.amountProtins = amountProtins;
+        this.name = name;
+    }
+
+    public FoodIngredient(Double amountCarbs, Double amountFats, Double amountProtins, String name) {
+        this.amountCarbs = amountCarbs;
+        this.amountFats = amountFats;
+        this.amountProtins = amountProtins;
+        this.name = name;
+    }
 }

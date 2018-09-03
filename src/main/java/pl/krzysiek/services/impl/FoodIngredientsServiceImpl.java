@@ -10,6 +10,7 @@ import pl.krzysiek.domain.enums.CalorieAmount;
 import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.ReaderXMLFilesService;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +19,19 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
     private final static String ingredientsFile = "upload-dir/ingredients.xml";
 
-    @Autowired
-    IFoodIngredientsRepository foodIngredientsRepository;
+//    @Autowired
+//    IFoodIngredientsRepository foodIngredientsRepository;
     @Autowired
     ReaderXMLFilesService readerXMLFilesService;
     @Autowired
     FoodIngredientsService foodIngredientsService;
 
+    @Resource
+    private IFoodIngredientsRepository foodIngredientsRepository;
+
     @Override
     public List<FoodIngredient> listAll() {
-        List<FoodIngredient> counts = new ArrayList<>();
-        foodIngredientsRepository.findAll().forEach(counts::add);
-        return counts;
+        return (List<FoodIngredient>) foodIngredientsRepository.findAll();
     }
 
     @Override
@@ -113,5 +115,42 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
         }
         return result;
     }
+
+
+    @Override
+    public FoodIngredient saveFoodIngredient(FoodIngredient foodIngredient) {
+        return foodIngredientsRepository.save(foodIngredient);
+    }
+
+    @Override
+    public void deleteFoodIngredient(FoodIngredient foodIngredient) {
+        foodIngredientsRepository.delete(foodIngredient);
+    }
+
+    @Override
+    public FoodIngredient updateFoodIngredient(FoodIngredient foodIngredient) {
+        return foodIngredientsRepository.save(foodIngredient);
+    }
+
+    @Override
+    public List<FoodIngredient> saveListOfFoodIngredients(List<FoodIngredient> foodIngredients){
+        return (List<FoodIngredient>) foodIngredientsRepository.saveAll(foodIngredients);
+    }
+
+    @Override
+    public void dropFoodIngredientTable() {
+        foodIngredientsRepository.dropFoodIngredientsTable();
+    }
+
+    /**
+     * This setter method should be used only by unit tests.
+     */
+
+    public void setFoodIngredientsRepository(IFoodIngredientsRepository foodIngredientsRepository)
+    {
+        this.foodIngredientsRepository = foodIngredientsRepository;
+    }
+
+
 
 }

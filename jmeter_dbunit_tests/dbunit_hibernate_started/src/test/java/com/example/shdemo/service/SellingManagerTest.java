@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })
-@Rollback
+//@Rollback
 @Commit
 @Transactional(transactionManager = "txManager")
 public class SellingManagerTest {

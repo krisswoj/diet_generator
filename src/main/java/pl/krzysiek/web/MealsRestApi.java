@@ -9,6 +9,7 @@ import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.services.*;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.*;
@@ -31,13 +32,13 @@ public class MealsRestApi {
     @Autowired
     ReadyMealService readyMealService;
 
-    @RequestMapping(value ="/take-meals", method = GET)
+    @RequestMapping(value = "/take-meals", method = GET)
     public List<ReadyMeal> getReadyMeals() throws SQLException {
         return readyMealService.findAll();
     }
 
     @RequestMapping(path = "/ingredients-list-all", method = RequestMethod.GET)
-    public List<FoodIngredient> getFoodIngredients(){
+    public List<FoodIngredient> getFoodIngredients() {
         return foodIngredientsService.listAll();
     }
 
@@ -46,14 +47,31 @@ public class MealsRestApi {
         return readyMealsRepository.findByMealId(id);
     }
 
+    @RequestMapping(value = "/add-ingredient",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public FoodIngredient addFoodIngredient(@RequestBody FoodIngredient foodIngredient) {
+        return foodIngredientsRepository.save(foodIngredient);
+    }
+
+    @RequestMapping(value = "/ingredient-delete/{id}", method = RequestMethod.DELETE)
+    public String deleteIngredient(@PathVariable("id") int id) {
+        if (foodIngredientsService.getById(id) != null) {
+            foodIngredientsService.deleteFoodIngredient(foodIngredientsService.getById(id));
+            return "rekord usuniety";
+        }
+        return "Pozycja nie zostala usnieta";
+    }
+
     @RequestMapping(value = "/ingredients-by-id/{id}")
     @ResponseBody
-    public List<FoodIngredient> listById(@PathVariable("id") int id) throws SQLException{
+    public List<FoodIngredient> listById(@PathVariable("id") int id) throws SQLException {
         return foodIngredientsRepository.findAllByCategory(id);
     }
 
     @RequestMapping(value = "/xml-add", method = RequestMethod.GET)
-    public List<FoodIngredient> addByXml(){
+    public List<FoodIngredient> addByXml() {
         return (List<FoodIngredient>) foodIngredientsService.loadIngredients("upload-dir/ingredients.xml", "ingredient");
     }
 }

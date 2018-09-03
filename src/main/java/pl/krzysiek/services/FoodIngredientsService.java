@@ -27,4 +27,14 @@ public interface FoodIngredientsService {
 
     Double totalKcalGramsAmount(List<ReadyMealDetails> readyMealDetails);
 
+    FoodIngredient saveFoodIngredient(FoodIngredient foodIngredient);
+
+    void deleteFoodIngredient(FoodIngredient foodIngredient);
+
+    FoodIngredient updateFoodIngredient(FoodIngredient foodIngredient);
+
+    List<FoodIngredient> saveListOfFoodIngredients(List<FoodIngredient> foodIngredients);
+
+    void dropFoodIngredientTable();
+
 }
