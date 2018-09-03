@@ -17,7 +17,7 @@ import pl.krzysiek.services.impl.FoodIngredientsServiceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodIngredientsServiceImplTest {
+public class FoodIngredientsServiceMockTest {
 
     private FoodIngredientsServiceImpl foodIngredientsService;
 
@@ -76,5 +76,5 @@ public class FoodIngredientsServiceImplTest {
 
         verify(foodIngredientsRepositoryMock, times(1)).delete(any(FoodIngredient.class));
     }
-    
+
 }

@@ -17,4 +17,7 @@ public interface IFoodIngredientsRepository extends CrudRepository<FoodIngredien
 
     @Query(nativeQuery = true, value = "drop table tau.food_ingredient")
     void dropFoodIngredientsTable();
+
+    @Query(nativeQuery = true, value = "CREATE TABLE `food_ingredient` (`id` int(11) NOT NULL AUTO_INCREMENT, `amount_carbs` double DEFAULT NULL, `amount_fats` double DEFAULT NULL, `amount_protins` double DEFAULT NULL, `name` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`))")
+    void createTable();
 }
