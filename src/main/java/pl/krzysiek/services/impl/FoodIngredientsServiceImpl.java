@@ -19,7 +19,7 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
     private final static String ingredientsFile = "upload-dir/ingredients.xml";
 
-//    @Autowired
+    //    @Autowired
 //    IFoodIngredientsRepository foodIngredientsRepository;
     @Autowired
     ReaderXMLFilesService readerXMLFilesService;
@@ -137,11 +137,6 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
         return (List<FoodIngredient>) foodIngredientsRepository.saveAll(foodIngredients);
     }
 
-    @Override
-    public void dropFoodIngredientTable() {
-        foodIngredientsRepository.dropFoodIngredientsTable();
-    }
-
     /**
      * This setter method should be used only by unit tests.
      */
@@ -154,3 +149,4 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
 
 }
+

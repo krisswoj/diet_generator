@@ -1,21 +1,18 @@
-package pl.krzysiek.tests.domain.service;
+package pl.krzysiek.tests.domain;
 
-import static junit.framework.Assert.assertEquals;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.*;
-import static junit.framework.Assert.assertEquals;
-
-import org.junit.*;
-import org.mockito.*;
+import org.junit.Before;
+import org.junit.Test;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.FoodIngredient;
-import pl.krzysiek.services.FoodIngredientsService;
 import pl.krzysiek.services.impl.FoodIngredientsServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static junit.framework.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyCollectionOf;
+import static org.mockito.Mockito.*;
 
 public class FoodIngredientsServiceMockTest {
 

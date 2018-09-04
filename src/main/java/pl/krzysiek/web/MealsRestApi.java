@@ -9,7 +9,6 @@ import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.services.*;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.*;

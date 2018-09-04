@@ -1,17 +1,13 @@
-package pl.krzysiek.tests.domain.service;
+package pl.krzysiek.tests.domain;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import pl.krzysiek.App;
 import pl.krzysiek.dao.IFoodIngredientsRepository;
 import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.services.FoodIngredientsService;
@@ -21,7 +17,6 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 
 
 @RunWith(SpringRunner.class)

@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 		http.
 			authorizeRequests()
-				.antMatchers("/", "/login", "/register", "/add-ingredient", "/ingredient-delete/**").permitAll()
+				.antMatchers("/", "/login", "/register", "/add-ingredient").permitAll()
 				.antMatchers("/add_rod/**").hasAuthority("USER")
 				.antMatchers("/show_rods/**").hasAnyAuthority("USER", "ADMIN")
 				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()

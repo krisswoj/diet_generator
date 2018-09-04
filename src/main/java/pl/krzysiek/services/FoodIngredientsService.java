@@ -35,6 +35,4 @@ public interface FoodIngredientsService {
 
     List<FoodIngredient> saveListOfFoodIngredients(List<FoodIngredient> foodIngredients);
 
-    void dropFoodIngredientTable();
-
 }
