@@ -30,6 +30,7 @@ public class MealsRestApi {
 
     @Autowired
     ReadyMealService readyMealService;
+    
 
     @RequestMapping(value = "/take-meals", method = GET)
     public List<ReadyMeal> getReadyMeals() throws SQLException {

@@ -7,5 +7,7 @@ import pl.krzysiek.domain.ReadyMeal;
 @Repository
 public interface IReadyMealsRepository extends CrudRepository<ReadyMeal, Integer> {
 
-    public ReadyMeal findByMealId(int id);
+    ReadyMeal findByMealId(int id);
+    ReadyMeal findReadyMealByTitle(String title);
+
 }
