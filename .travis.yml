@@ -1,10 +1,15 @@
 language: java
-rvm:
-- maven
-- 3.3.9
 
 services:
 - mysql
+
+addons:
+  apt:
+    sources:
+    - mysql-5.5
+    packages:
+    - mysql-server
+    - mysql-client
 
 before_install:
 - mysql -e 'CREATE DATABASE tau;'
