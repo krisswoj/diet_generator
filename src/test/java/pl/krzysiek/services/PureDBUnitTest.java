@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain.service;
+package pl.krzysiek.services;
 
 import junit.framework.TestCase;
 import org.dbunit.Assertion;

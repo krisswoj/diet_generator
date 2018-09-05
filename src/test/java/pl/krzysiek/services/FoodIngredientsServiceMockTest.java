@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain;
+package pl.krzysiek.services;
 
 import org.junit.Before;
 import org.junit.Test;

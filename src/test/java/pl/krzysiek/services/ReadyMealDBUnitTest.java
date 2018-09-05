@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain.service;
+package pl.krzysiek.services;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
@@ -41,7 +41,6 @@ import static org.junit.Assert.assertEquals;
     DbUnitTestExecutionListener.class })
 @Import(FoodCreatorImpl.class)
 public class ReadyMealDBUnitTest {
-
 
 	@Autowired
 	private FoodCreatorImpl foodCreator;

@@ -19,10 +19,10 @@ public class FoodIngredientsServiceImpl implements FoodIngredientsService {
 
     private final static String ingredientsFile = "upload-dir/ingredients.xml";
 
-    //    @Autowired
-//    IFoodIngredientsRepository foodIngredientsRepository;
+
     @Autowired
     ReaderXMLFilesService readerXMLFilesService;
+
     @Autowired
     FoodIngredientsService foodIngredientsService;
 

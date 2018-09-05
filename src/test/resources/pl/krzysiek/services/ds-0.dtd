@@ -1,0 +1,8 @@
+<!ELEMENT dataset (users*)>
+        <!ELEMENT users EMPTY>
+        <!ATTLIST users
+                id CDATA #REQUIRED
+                name CDATA #REQUIRED
+                age CDATA #IMPLIED
+                >
+

@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain;
+package pl.krzysiek.services;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

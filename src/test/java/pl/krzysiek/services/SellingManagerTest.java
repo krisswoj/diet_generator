@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain.service;
+package pl.krzysiek.services;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import org.junit.Test;

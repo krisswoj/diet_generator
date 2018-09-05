@@ -1,4 +1,4 @@
-package pl.krzysiek.tests.domain.helper;
+package pl.krzysiek.tests.services.helper;
 
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;

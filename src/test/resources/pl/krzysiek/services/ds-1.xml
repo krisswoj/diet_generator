@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <users id="1" name="Stefan" age="20"/>
+    <users id="2" name="Genowefa" age="25"/>
+    <users id="3" name="Maciek" age="33"/>
+    <users id="4" name="Arkadiusz" age="29" />
+</dataset>
