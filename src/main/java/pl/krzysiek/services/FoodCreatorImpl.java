@@ -11,7 +11,6 @@ import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Service
@@ -28,6 +27,9 @@ public class FoodCreatorImpl implements FoodCreator {
 
     @Autowired
     private IReadyMealDetailsRepository readyMealDetailsRepository;
+
+    @Autowired
+    private ReadyMealService readyMealService;
 
 
     @Override
@@ -51,13 +53,8 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
-    public void updateReadyMeal(ReadyMeal readyMeal) {
-        readyMealsRepository.save(readyMeal);
-    }
-
-    @Override
-    public Serializable addNewReadMealDetails(ReadyMealDetails readyMealDetails) {
-        return (Serializable) readyMealDetailsRepository.save(readyMealDetails);
+    public ReadyMeal updateReadyMeal(ReadyMeal readyMeal) {
+        return readyMealsRepository.save(readyMeal);
     }
 
     @Override
@@ -93,8 +90,8 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
-    public void updateReadyMealsDetails(ReadyMealDetails readyMealDetails) {
-        readyMealDetailsRepository.save(readyMealDetails);
+    public ReadyMeal findReadyMealById(int id){
+        return readyMealsRepository.findByMealId(id);
     }
 
     @Override
@@ -103,13 +100,7 @@ public class FoodCreatorImpl implements FoodCreator {
     }
 
     @Override
-    public ReadyMeal createReadyMeal(Account account, List<FoodIngredient> foodIngredientList) {
-        return null;
-    }
-
-
-    @Override
-    public List<ReadyMeal> getAllReadyMeal() {
-        return null;
+    public ReadyMeal addReadyMeal(ReadyMeal readyMeal){
+        return readyMealsRepository.save(readyMeal);
     }
 }

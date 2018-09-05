@@ -45,16 +45,15 @@ public class ReadyMealServiceImpl implements ReadyMealService {
 
 
     @Override
-    public Boolean saveReadyMeal(ReadyMeal readyMeal) {
+    public ReadyMeal saveReadyMeal(ReadyMeal readyMeal) {
 
         readyMeal.setReadyMealAccount(accountService.loggedUser());
         try {
-            readyMealsRepository.save(readyMeal);
+            return readyMealsRepository.save(readyMeal);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
     }
 
     @Override

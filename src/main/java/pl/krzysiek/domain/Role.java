@@ -1,12 +1,10 @@
 package pl.krzysiek.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "role", schema = "tau", catalog = "")
 public class Role {
     private Integer roleId;
     private String role;

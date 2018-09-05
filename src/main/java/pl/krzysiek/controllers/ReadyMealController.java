@@ -57,7 +57,7 @@ public class ReadyMealController {
 
         readyMealService.createReadyMeal(readyMeal, gramsPortion, food_ingredient_id);
 
-        if (readyMealService.saveReadyMeal(readyMeal)) {
+        if (readyMealService.saveReadyMeal(readyMeal) != null) {
             modelAndView.addObject("message", Notifications.SUCCESS_ADDED_MEAL);
         } else {
             modelAndView.addObject("message", Notifications.FAILED_ADDED_MEAL);
@@ -77,7 +77,7 @@ public class ReadyMealController {
     }
 
     @RequestMapping(value = "/ready-meals-list", method = RequestMethod.GET)
-    public ModelAndView ReadyMealsList(){
+    public ModelAndView ReadyMealsList() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("readyMealsList", readyMealsRepository.findAll());
         modelAndView.addObject("calories", foodIngredientsService);

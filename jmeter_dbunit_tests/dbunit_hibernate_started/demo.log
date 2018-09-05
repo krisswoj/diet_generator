@@ -12802,3 +12802,10 @@ Caused by: java.sql.SQLSyntaxErrorException: user lacks privilege or object not 
 2018-09-04 14:15:12,073 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
 2018-09-04 14:15:13,163 INFO  [SchemaCreatorImpl]  - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@1f2d2181'
 2018-09-04 14:15:13,187 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory
+2018-09-04 20:55:44,759 INFO  [Version]  - HHH000412: Hibernate Core {5.1.6.Final}
+2018-09-04 20:55:44,768 INFO  [Environment]  - HHH000206: hibernate.properties not found
+2018-09-04 20:55:44,771 INFO  [Environment]  - HHH000021: Bytecode provider name : javassist
+2018-09-04 20:55:44,857 INFO  [Version]  - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2018-09-04 20:55:45,265 INFO  [Dialect]  - HHH000400: Using dialect: org.hibernate.dialect.HSQLDialect
+2018-09-04 20:55:46,631 INFO  [SchemaCreatorImpl]  - HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@622ef26a'
+2018-09-04 20:55:46,663 INFO  [QueryTranslatorFactoryInitiator]  - HHH000397: Using ASTQueryTranslatorFactory

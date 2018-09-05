@@ -5,9 +5,7 @@ import pl.krzysiek.domain.FoodIngredient;
 import pl.krzysiek.domain.ReadyMeal;
 import pl.krzysiek.domain.ReadyMealDetails;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 public interface FoodCreator {
 
@@ -19,9 +17,7 @@ public interface FoodCreator {
 
     void updateClient(Account account);
 
-    void updateReadyMeal(ReadyMeal readyMeal);
-
-    Serializable addNewReadMealDetails(ReadyMealDetails readyMealDetails);
+    ReadyMeal updateReadyMeal(ReadyMeal readyMeal);
 
     List<Account> getAllAccounts();
 
@@ -35,13 +31,9 @@ public interface FoodCreator {
 
     List<ReadyMealDetails> findReadyMealDeatilsById(int mealId);
 
-    void updateReadyMealsDetails(ReadyMealDetails readyMealDetails);
+    ReadyMeal findReadyMealById(int id);
 
     FoodIngredient addIngrefient(FoodIngredient foodIngredient);
 
-    ReadyMeal createReadyMeal(Account account, List<FoodIngredient> foodIngredientList);
-
-    List<ReadyMeal> getAllReadyMeal();
-
-
+    ReadyMeal addReadyMeal(ReadyMeal readyMeal);
 }
