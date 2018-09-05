@@ -27,21 +27,24 @@ public class RegisterController {
         return modelAndView;
     }
 
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid Account account, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
-        if (accountService.findUserByEmail(account) != null) {
+        Account userExists = accountService.findUserByEmail(account);
+        if (userExists != null) {
             bindingResult
                     .rejectValue("email", "error.user",
-                            String.valueOf(Notifications.FAILED_REGISTER_ACCOUNT));
+                            "There is already a user registered with the email provided");
         }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("login/register");
         } else {
             accountService.addAccount(account);
-            modelAndView.addObject("successMessage", Notifications.SUCCESS_REGISTER_ACCOUNT);
+            modelAndView.addObject("successMessage", "User has been registered successfully");
             modelAndView.addObject("account", new Account());
             modelAndView.setViewName("login/register");
+
         }
         return modelAndView;
     }

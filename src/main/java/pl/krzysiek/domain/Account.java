@@ -2,8 +2,11 @@ package pl.krzysiek.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -34,6 +37,7 @@ public class Account {
 
     @Basic
     @Column(name = "name")
+    @NotEmpty(message = "*Please provide your name")
     public String getName() {
         return name;
     }
@@ -44,6 +48,7 @@ public class Account {
 
     @Basic
     @Column(name = "surname")
+    @NotEmpty(message = "*Please provide your last name")
     public String getSurname() {
         return surname;
     }
@@ -54,6 +59,8 @@ public class Account {
 
     @Basic
     @Column(name = "email")
+    @Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide an email")
     public String getEmail() {
         return email;
     }
@@ -64,6 +71,8 @@ public class Account {
 
     @Basic
     @Column(name = "password")
+    @Length(min = 5, message = "*Your password must have at least 5 characters")
+    @NotEmpty(message = "*Please provide your password")
     public String getPassword() {
         return password;
     }

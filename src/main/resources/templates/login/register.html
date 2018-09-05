@@ -35,34 +35,46 @@
                   role="form">
                 <h2 th:text="#{register_title}" />
                 <span th:utext="${successMessage}"></span>
+
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                               class="validation-message" id="wrongName"></label>
                         <input type="text" th:field="*{name}" th:placeholder="#{name}"
-                               class="form-control"/>
+                               class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label	th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"
+                                  class="validation-message"></label>
                         <input type="text" th:field="*{surname}"
-                               th:placeholder="#{surname}" class="form-control"/>
+                               th:placeholder="#{surname}" class="form-control" />
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                               class="validation-message" id="wrongEmail"></label>
                         <input type="text" th:field="*{email}" th:placeholder="#{email}"
-                               class="form-control"/>
+                               class="form-control" />
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                               class="validation-message" id="wrongPassword"></label>
                         <input type="password" th:field="*{password}"
-                               th:placeholder="#{password}" class="form-control"/>
+                               th:placeholder="#{password}" class="form-control" />
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block" th:text="#{register_button}"></button>
+                        <button type="submit" name="SubmitRegister" id="SubmitCreate" class="btn btn-primary btn-block" th:text="#{register_button}"></button>
                     </div>
                 </div>
             </form>
