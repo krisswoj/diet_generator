@@ -23,6 +23,7 @@ public class SeleniumTests {
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
+    private static String usedEmail = null;
 
     @Before
     public void setUp() throws Exception {
@@ -41,14 +42,14 @@ public class SeleniumTests {
 
     @Test
     public void successfulRegistrationTest() throws Exception {
-        String email = "Testowy" + number() + "@gmail.com";
-        registration("1", "stefan", email, "Laftyjvgukhijst");
+        usedEmail = "Testowy" + number() + "@gmail.com";
+        registration("1", "stefan", usedEmail, "Laftyjvgukhijst");
     }
 
     @Test
     public void failedRegistrationTest_email() throws Exception {
 
-        failedRegistrationEmail("jasiu", "1", "grerfwrgttrerg", "Last");
+        failedRegistrationEmail("jasiu", "1", usedEmail, "Last");
 
     }
 
@@ -104,7 +105,7 @@ public class SeleniumTests {
         driver.findElement(By.id("SubmitCreate")).click();
 
         Thread.sleep(2000);
-        assertEquals("*Please provide a valid Email", driver
+        assertEquals("There is already a user registered with the email provided", driver
                 .findElement(By.cssSelector("label.validation-message")).getText());
 
     }
@@ -151,9 +152,6 @@ public class SeleniumTests {
         Thread.sleep(2000);
         assertEquals("*Please provide your name", driver
                 .findElement(By.id("wrongName")).getText());
-        Thread.sleep(2000);
-        assertEquals("*Please provide an email", driver
-                .findElement(By.id("wrongEmail")).getText());
 
     }
 

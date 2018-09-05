@@ -48,7 +48,6 @@ public class Account {
 
     @Basic
     @Column(name = "surname")
-    @NotEmpty(message = "*Please provide your last name")
     public String getSurname() {
         return surname;
     }
@@ -59,8 +58,8 @@ public class Account {
 
     @Basic
     @Column(name = "email")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
+//    @Email(message = "*Please provide a valid Email")
+//    @NotEmpty(message = "*Please provide an email")
     public String getEmail() {
         return email;
     }
