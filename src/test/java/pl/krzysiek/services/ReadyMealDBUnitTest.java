@@ -47,8 +47,7 @@ public class ReadyMealDBUnitTest {
 
 	@Test
 	@DatabaseSetup("/fullData.xml")
-	@ExpectedDatabase(value = "/addPersonData.xml", 
-	assertionMode = DatabaseAssertionMode.NON_STRICT)
+	@ExpectedDatabase(value = "/addPersonData.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
 	public void getClientCheck() throws Exception {
 	    assertEquals(2, foodCreator.getAllAccounts().size());
         
