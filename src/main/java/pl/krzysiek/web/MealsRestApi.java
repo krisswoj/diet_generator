@@ -55,6 +55,15 @@ public class MealsRestApi {
         return foodIngredientsRepository.save(foodIngredient);
     }
 
+    @RequestMapping(value = "/add-ingredient/{id}",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public FoodIngredient addFoodIngredient(@RequestBody FoodIngredient foodIngredient, @PathVariable("id") int id) {
+        foodIngredient.setId(id);
+        return foodIngredientsRepository.save(foodIngredient);
+    }
+
     @RequestMapping(value = "/ingredient-delete/{id}", method = RequestMethod.DELETE)
     public String deleteIngredient(@PathVariable("id") int id) {
         if (foodIngredientsService.getById(id) != null) {

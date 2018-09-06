@@ -53,7 +53,7 @@
           <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Konfiguracja plików CSV" enabled="true">
             <stringProp name="delimiter">,</stringProp>
             <stringProp name="fileEncoding"></stringProp>
-            <stringProp name="filename">dane.csv</stringProp>
+            <stringProp name="filename">/Users/krisswoj/Documents/code/wedki2/wedki_tau_2/src/test/java/jmeter/jmeter_test_data.csv</stringProp>
             <boolProp name="ignoreFirstLine">false</boolProp>
             <boolProp name="quotedData">false</boolProp>
             <boolProp name="recycle">false</boolProp>
@@ -77,9 +77,11 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{&#xd;
-&quot;name&quot;:&quot;${name}&quot;,&#xd;
-&quot;age&quot;:${age}	&#xd;
+                  <stringProp name="Argument.value">{    &#xd;
+&quot;amountCarbs&quot;:${amountCarbs},   &#xd;
+&quot;amountFats&quot;:${amountFats},   &#xd;
+&quot;amountProtins&quot;:${amountProtins},&#xd;
+&quot;name&quot;:&quot;${name}&quot;&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -89,7 +91,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/user2</stringProp>
+            <stringProp name="HTTPSampler.path">/add-ingredient</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -102,18 +104,18 @@
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Czy kod odpowiedzi jest poprawny" enabled="true">
             <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
+              <stringProp name="1537198">200 </stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message"></stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
             <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">16</intProp>
+            <intProp name="Assertion.test_type">2</intProp>
+            <stringProp name="Assertion.scope">children</stringProp>
           </ResponseAssertion>
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Sprawdzenie czy zawiera tekst" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="1216364763">${name}</stringProp>
-              <stringProp name="1147234485">${age}</stringProp>
             </collectionProp>
             <stringProp name="Assertion.custom_message"></stringProp>
             <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
@@ -144,7 +146,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/users</stringProp>
+          <stringProp name="HTTPSampler.path">/ingredients-list-all</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -155,8 +157,8 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="jp@gc - JSON Path Extractor - user_id" enabled="true">
-            <stringProp name="VAR">user_id</stringProp>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="jp@gc - JSON Path Extractor - id" enabled="true">
+            <stringProp name="VAR">id</stringProp>
             <stringProp name="JSONPATH">$..id</stringProp>
             <stringProp name="DEFAULT">NOT-FOUND</stringProp>
             <stringProp name="VARIABLE"></stringProp>
@@ -171,8 +173,8 @@
             <stringProp name="SUBJECT">BODY</stringProp>
           </com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor>
           <hashTree/>
-          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="jp@gc - JSON Path Extractor - age" enabled="true">
-            <stringProp name="VAR">age</stringProp>
+          <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="jp@gc - JSON Path Extractor - amountCarbs" enabled="false">
+            <stringProp name="VAR">amountCarbs</stringProp>
             <stringProp name="JSONPATH">$..age</stringProp>
             <stringProp name="DEFAULT">NOT-FOUND</stringProp>
             <stringProp name="VARIABLE"></stringProp>
@@ -228,7 +230,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/jdbc/user/${personid}</stringProp>
+            <stringProp name="HTTPSampler.path">/ingredients-by-id/${toupdate}</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -239,7 +241,7 @@
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check != null (age)" enabled="true">
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check != null (id)" enabled="true">
               <collectionProp name="Asserion.test_strings">
                 <stringProp name="-408170552">NOT-FOUND</stringProp>
               </collectionProp>
@@ -248,19 +250,7 @@
               <boolProp name="Assertion.assume_success">false</boolProp>
               <intProp name="Assertion.test_type">12</intProp>
               <stringProp name="Assertion.scope">variable</stringProp>
-              <stringProp name="Scope.variable">age</stringProp>
-            </ResponseAssertion>
-            <hashTree/>
-            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check != null (user_id)" enabled="true">
-              <collectionProp name="Asserion.test_strings">
-                <stringProp name="-408170552">NOT-FOUND</stringProp>
-              </collectionProp>
-              <stringProp name="Assertion.custom_message"></stringProp>
-              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
-              <boolProp name="Assertion.assume_success">false</boolProp>
-              <intProp name="Assertion.test_type">12</intProp>
-              <stringProp name="Assertion.scope">variable</stringProp>
-              <stringProp name="Scope.variable">user_id</stringProp>
+              <stringProp name="Scope.variable">id</stringProp>
             </ResponseAssertion>
             <hashTree/>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Check != null (name)" enabled="true">
@@ -310,9 +300,10 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-	&quot;id&quot;:&quot;${toupdate}&quot;,&#xd;
-	&quot;name&quot;: &quot;update_position&quot;,   &#xd;
-	&quot;age&quot;: 666&#xd;
+	&quot;amountCarbs&quot;: 12.0,   &#xd;
+	&quot;amountFats&quot;: 22.3,&#xd;
+	&quot;amountProtins&quot;: 45.0,   &#xd;
+	&quot;name&quot;: &quot;swiniak&quot;&#xd;
 	}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
@@ -322,8 +313,8 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/user/${toupdate}</stringProp>
-            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            <stringProp name="HTTPSampler.path">/add-ingredient/${toupdate}</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -335,12 +326,12 @@
           <hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Czy kod odpowiedzi jest poprawny" enabled="true">
               <collectionProp name="Asserion.test_strings">
-                <stringProp name="-1709643804">{&quot;id&quot;:${toupdate},&quot;name&quot;:&quot;update_position&quot;,&quot;age&quot;:666}</stringProp>
+                <stringProp name="1016001325">{&quot;id&quot;:${toupdate},&quot;amountCarbs&quot;:12.0,&quot;amountFats&quot;:22.3,&quot;amountProtins&quot;:45.0,&quot;category&quot;:null,&quot;createdDate&quot;:null,&quot;description&quot;:null,&quot;name&quot;:&quot;swiniak&quot;,&quot;subcategory&quot;:null,&quot;updateDate&quot;:null}</stringProp>
               </collectionProp>
               <stringProp name="Assertion.custom_message"></stringProp>
               <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
               <boolProp name="Assertion.assume_success">false</boolProp>
-              <intProp name="Assertion.test_type">1</intProp>
+              <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
@@ -379,7 +370,8 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename"></stringProp>
+        <stringProp name="filename">/Users/krisswoj/Desktop/results.csv</stringProp>
+        <boolProp name="useGroupName">true</boolProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>

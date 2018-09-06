@@ -1,0 +1,8 @@
+Label,# Samples,Average,Min,Max,Std. Dev.,Error %,Throughput,Received KB/sec,Sent KB/sec,Avg. Bytes
+Dodanie danych do bazy ,3,16,12,23,4.64,0.000%,57.69231,27.93,15.94,495.7
+Pobranie wszystkich pozycji z bazy danych,1,23,23,23,0.00,0.000%,43.47826,223.08,8.62,5254.0
+Pobierz jedną osobę,23,6,4,10,1.18,0.000%,1.80251,0.57,0.37,322.0
+Zaktualizuj jedna osobe,23,5,4,11,1.44,0.000%,1.80279,0.87,0.55,495.0
+Pobranie wszystkich rekordów z bazy danych:Pobierz jedną osobę,4,6,5,7,0.71,0.000%,1.62404,0.51,0.34,322.0
+Pobranie wszystkich rekordów z bazy danych:Zaktualizuj jedna osobe,4,7,5,12,2.77,0.000%,1.62536,0.79,0.50,495.0
+TOTAL,58,6,4,23,3.69,0.000%,3.51132,1.70,0.90,496.6
